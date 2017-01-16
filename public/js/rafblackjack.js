@@ -45,7 +45,6 @@ let deal = () => {
         // random num between [0, 155] - 3 decks - take %52 because image arry is [0, 52]
         let rand = Math.floor(Math.random() * 156);
         $(id).html(imgArray[j]);
-        
     }    
 }
 $(() => {
