@@ -1,0 +1,18 @@
+.row, .container{
+    background-color: #009A00;
+}
+
+h1{
+    text-align: center;
+}
+
+.box{
+    background-color: pink;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: inline-block; 
+    width: 15%;
+    height: 200px;
+}
