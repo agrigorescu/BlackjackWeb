@@ -1,41 +1,39 @@
-#deal {
-    width: 150px;
+div.fish {
+    float: left;
+    width: 70px;
     height: 70px;
-    font-size: 30px;
+    margin: 30px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    border: 10px dotted #fff;
 }
 
-#blackJackButtons {
-    display: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
+div.fish div {
+    font-family: Verdana;
+    text-align: center;
+    line-height: 70px;
+    font-size: .9em;
+	color:#fff;
+	text-shadow: 0.1em 0.2em 0.07em rgb(82, 82, 82);
 }
 
-#blackJackButtons button {
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
+div.orange { background: rgb(223, 99, 1) }
+
+div.green { background: rgb(75, 158, 0) }
+
+div.blue { background: rgb(4, 83, 145) }
+
+div.black {
+    background: rgb(36, 36, 36);
+    color: #eee;
+    box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
+    -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
+    border: 10px dotted #ccc;
 }
 
-.amount {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    line-height: 50px;
-    background-color: #CCC;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-}
-
-.amount:hover {
-    background-color: #CCA;
-}
-
-.selected {
-    background-color: #CCA;
-}
+div.red { background: rgb(175, 17, 36) }
