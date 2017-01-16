@@ -8,6 +8,7 @@ let createImagesArray = () => {
     let imgArray = [];
     for(let j=0; j<156; j++){
         img = new Image();
+        // when j > 52 need to assign a valid image src so take modulo
         img.src = `../card_images/${deck[j%52]}.png`;
         imgArray.push(img);
         console.log(img.src);
@@ -36,6 +37,7 @@ let shuffle = (deck) => {
 let finalDeck = deck.concat(deck).concat(deck);
 
 let deal = () => {
+    shuffle(deck);
     let imgArray = createImagesArray();
     let dealID = ["#0", "#1", "#5", "#6"];
     for(let j=0; j<4; j++){
@@ -43,9 +45,9 @@ let deal = () => {
         // random num between [0, 155] - 3 decks - take %52 because image arry is [0, 52]
         let rand = Math.floor(Math.random() * 156);
         $(id).html(imgArray[j]);
+        
     }    
 }
 $(() => {
-    shuffle(deck);
     deal();
 })
