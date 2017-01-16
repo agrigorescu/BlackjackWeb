@@ -16,7 +16,7 @@
 <body>
     <div id="app">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" onsubmit="return checkForm(this);">
                 <div class="row">
                     <div class="input-field col s12">
                         <p>Username is: {{ userName }}</p>
@@ -55,6 +55,7 @@
     <script src="js/jquery-3.1.1.js" type="text/javascript"></script>
     <script src="js/materialize.js" type="text/javascript"></script>
     <script src="js/registrationVue.js" type="text/javascript"></script>
+    <script src="js/registrationFormValidation.js" type="text/javascript"></script>
 </body>
 
 </html>
