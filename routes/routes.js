@@ -11,6 +11,8 @@ router.get("/login", loginController.showLogin);
 router.get("/registration", registrationController.showRegistration);
 router.get("/play", showGameController.showGameBoard);
 
-
+router.post("/login", (req,res) => {
+    res.status(201).send({sucess: "done"});
+});
 
 module.exports = router;
