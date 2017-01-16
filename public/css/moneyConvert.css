@@ -1,0 +1,41 @@
+#deal {
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+}
+
+#blackJackButtons {
+    display: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+#blackJackButtons button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.amount {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    line-height: 50px;
+    background-color: #CCC;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+.amount:hover {
+    background-color: #CCA;
+}
+
+.selected {
+    background-color: #CCA;
+}
