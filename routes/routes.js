@@ -4,6 +4,7 @@ const registrationController = require("../controllers/registrationController")
 const showGameController = require("../controllers/showGameController")
 const loginController = require("../controllers/loginController")
 const homepageController = require("../controllers/homepageController")
+const accountController = require("../controllers/accountController")
 
 
 router.get("/", homepageController.showHomepage);
@@ -14,5 +15,8 @@ router.get("/play", showGameController.showGameBoard);
 router.post("/login", (req,res) => {
     res.status(201).send({sucess: "done"});
 });
+router.get("/play", showGameController.showGameBoard); 
+router.get("/account", accountController.showAccount); 
+
 
 module.exports = router;
