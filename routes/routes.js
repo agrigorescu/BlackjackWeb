@@ -18,8 +18,13 @@ router.get("/play", showGameController.showGameBoard);
 router.get("/account", accountController.showAccount); 
 
 
+router.post("/login", (req,res) => {
+    res.status(201).send({sucess: "done"});
+});
+
 router.post("/registration", (req,res) => {
     res.status(201).send({success: "Done"});
 });
+
 
 module.exports = router;
