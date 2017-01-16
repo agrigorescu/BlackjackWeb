@@ -9,7 +9,8 @@ const homepageController = require("../controllers/homepageController")
 router.get("/", homepageController.showHomepage);
 router.get("/login", loginController.showLogin);
 router.get("/registration", registrationController.showRegistration);
+router.get("/play", showGameController.showGameBoard);
 
-router.get("/play", showGameController.showGameBoard); 
+
 
 module.exports = router;
