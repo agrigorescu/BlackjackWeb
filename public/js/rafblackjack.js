@@ -6,13 +6,12 @@ const subDeck = $.merge($.merge(hearts, diamonds), $.merge(spades, clubs));
 const deck = subDeck.concat(subDeck).concat(subDeck);
 let createImagesArray = () => {
     let imgArray = [];
-    for(let j=0; j<52; j++){
+    for(let j=0; j<156; j++){
         img = new Image();
-        img.src = `../card_images/${deck[j]}.png`;
+        img.src = `../card_images/${deck[j%52]}.png`;
         imgArray.push(img);
+        console.log(img.src);
     }
-    console.log("image array : ");
-    console.log(imgArray);
     return imgArray;
 }
 
@@ -22,19 +21,17 @@ let shuffle = (deck) => {
     let index;
     // While there remain elements to shuffle…
     while(m){
-        // Pick a remaining element at the end of the array
+        // Pick random element in the lim [0, m-1]
         index = Math.floor(Math.random() * m--);
-        // store the end-unshuffled element in currentElement
+        // let current element be last element
         currentElement = deck[m];
-        // assign a random element (array[i]) in the current position
-        // so shuffled item are at the end of the array
+        // now swap this last element with a random element
         deck[m] = deck[index];
-        // assign the random position the original element
         deck[index] = currentElement;
     }
     console.log(deck);
     return deck;
-    }
+}
 // this produces 3 decks
 let finalDeck = deck.concat(deck).concat(deck);
 
@@ -44,8 +41,8 @@ let deal = () => {
     for(let j=0; j<4; j++){
         let id = dealID[j];
         // random num between [0, 155] - 3 decks - take %52 because image arry is [0, 52]
-        let rand = Math.floor(Math.random() * 156)%52;
-        $(id).html(imgArray[rand]);
+        let rand = Math.floor(Math.random() * 156);
+        $(id).html(imgArray[j]);
     }    
 }
 $(() => {
