@@ -47,24 +47,35 @@ let deal = (deck, imgArray) => {
     deck.splice(0, 4);
     console.log(deck);
 }
-let playTurn = (imgArray, counter) => {
+let playerTurn = (imgArray, counter) => {
     // the remaining 3 card holders left for player
-    let boxesLeft = ["#7", "#8", "#9"];
-    $(boxesLeft[counter-1]).html(imgArray[0]);
+    let playerBoxes = ["#7", "#8", "#9"];
+    $(playerBoxes[counter-1]).html(imgArray[0]);
     imgArray.splice(0, 1);
     deck.splice(0, 1);
     console.log(deck);
 }
+let dealerTurn = (imgArray, counter) => {
+    $("#stick").click(() => {
+        counter++;
+        let dealerBoxes = ["#2", "#3", "#4"];
+        $(dealerBoxes[counter-1]).html(imgArray[0]);
+        imgArray.splice(0, 1);
+        deck.splice(0, 1);
+        console.log(deck);
+    });
+}
 $(() => {
-    let counter = 0;
     shuffle(deck);
-    console.log(deck);
+    let counter = 0;
     let imgArray = createImagesArray();
+    console.log(deck);
     $("#newGame").click(() => {
         deal(deck, imgArray);
-    })
+    });
     $("#hit").click(() => {
         counter++;
-        playTurn(imgArray, counter);
-    })
+        playerTurn(imgArray, counter);
+    });
+    dealerTurn(imgArray, counter);
 })
