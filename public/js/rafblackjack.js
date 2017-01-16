@@ -16,7 +16,7 @@ let createImagesArray = () => {
 let finalDeck = deck.concat(deck).concat(deck);
 
 let deal = () => {
-    // random number [0, 155]
+    // random numbers [0, 155]
     let rand = Math.floor(Math.random() * 156)
 }
 $(() => {
