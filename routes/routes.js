@@ -10,8 +10,13 @@ const accountController = require("../controllers/accountController")
 router.get("/", homepageController.showHomepage);
 router.get("/login", loginController.showLogin);
 router.get("/registration", registrationController.showRegistration);
+router.get("/play", showGameController.showGameBoard);
 
+router.post("/login", (req,res) => {
+    res.status(201).send({sucess: "done"});
+});
 router.get("/play", showGameController.showGameBoard); 
 router.get("/account", accountController.showAccount); 
+
 
 module.exports = router;
