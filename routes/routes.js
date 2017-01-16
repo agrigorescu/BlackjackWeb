@@ -2,14 +2,10 @@ const express = require("express");
 const router = express.Router();
 const registrationController = require("../controllers/registrationController")
 const showGameController = require("../controllers/showGameController")
-
+const loginController = require("../controllers/loginController")
 
 router.get("/", registrationController.showRegistration);
-<<<<<<< HEAD
-router.get("/login");
-=======
+router.get("/login", loginController.showLogin);
 router.get("/play", showGameController.showGameBoard); 
->>>>>>> master
-
 
 module.exports = router;
