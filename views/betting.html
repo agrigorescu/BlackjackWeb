@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../public/css/materialize.css">
+    <link rel="stylesheet" href="../public/css/moneyConvert.css">
+    <title>Game Board</title>
+</head>
+
+<body>
+
+    <!--nav bar ends here-->
+
+    <!--start of the game board-->
+
+    <div class="container bettingBoard">
+        <div class="row">
+            <div class="col s12">
+                <div id="redChip" class="fish red">
+                    <div class="value">5p</div>
+                </div> 
+                <div id="orangeChip" class="fish orange">
+                    <div class="value">10p</div>
+                </div>
+                <div id="greenChip" class="fish green">
+                    <div class="value">20p</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="12">
+                <form id='myform' method='POST' action='#'>
+                    <input id="quantity" type='text' name='quantity' value='0' class='qty' />
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div id="blueChip" class="fish blue">
+                    <div class="value">50p</div>
+                </div>
+
+                <div id="blackChip" class="fish black">
+                    <div>£1</div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="blackJackButtons">
+        <button data-id="quit" title="Quit the game!">Quit Game</button>
+        <button data-id="continue" title="Continue the game with original bet">Continue (1x)</button>                
+        <button data-id="double" title="Continue the game, but double the bet">Double (2x)</button>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="chipStack">
+                
+            </div>
+        </div>
+    </div>
+
+    <!--end of the game board-->
+
+    <!--end of my content container-->
+    
+    <script src="../public/js/jquery-3.1.1.js"></script>
+    <script src="../public/js/materialize.js"></script>
+    <script src="../public/js/moneyConversion.js"></script>
+
+</body>
+
+</html>
