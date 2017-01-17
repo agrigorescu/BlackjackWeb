@@ -3,8 +3,9 @@ const routes = require("./routes/routes");
 const app = express();
 
 
-app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
 
 app.use(routes);
 
