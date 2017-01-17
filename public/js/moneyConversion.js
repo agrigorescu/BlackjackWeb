@@ -16,6 +16,7 @@ $(document).ready(function (){
         $('#redChip').clone().appendTo('.chipStack').addClass("chip").css({
             'z-index' : zIndex++,
             marginTop : height-=5,
+            'bottom' : height+=5
         });
         $counter += 0.05;
         $('.chipStackBoard').css({
