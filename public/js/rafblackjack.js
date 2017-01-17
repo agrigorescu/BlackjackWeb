@@ -264,8 +264,8 @@ $(() => {
     dealerTurn(imgArray, counter, compScore, compScoreArray, compCards, playerScore);
     reset();
 });
-=======
->>>>>>> master
+
+$(() => {
     let myScoreArray = [];
     let compScoreArray = [];
     let myScore = compScore = 0;
@@ -278,9 +278,8 @@ $(() => {
     playerTurn(imgArray, counter, myScore, myScoreArray);
     dealerTurn(imgArray, counter, compScore, compScoreArray);
     reset();
-<<<<<<< HEAD
+    })
 })
-=======
-})
->>>>>>> master
->>>>>>> master
+
+
+
