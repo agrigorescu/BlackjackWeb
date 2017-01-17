@@ -30,10 +30,7 @@
         <div class="row">
             <div class="12">
                 <form id='myform' method='POST' action='#'>
-                    <input type='button' value='-' class='qtyminus' />
-                    <input type='text' name='quantity[]' value='0' class='qty' />
-                    <input type='button' value='+' class='qtyplus' />
-                    <div id="total">Total: <span>0</span></div>
+                    <input id="quantity" type='text' name='quantity' value='0' class='qty' />
                 </form>
             </div>
         </div>
@@ -54,7 +51,6 @@
         <button data-id="quit" title="Quit the game!">Quit Game</button>
         <button data-id="continue" title="Continue the game with original bet">Continue (1x)</button>                
         <button data-id="double" title="Continue the game, but double the bet">Double (2x)</button>
-        <button class="btn-copy">Copy</button>
     </div>
 
     <div class="container">
