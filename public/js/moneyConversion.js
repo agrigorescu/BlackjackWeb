@@ -1,4 +1,5 @@
 $(document).ready(function (){
+<<<<<<< HEAD
     let zIndex = 0;
     let height = 0;
     let chipArray = [];
