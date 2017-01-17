@@ -82,7 +82,9 @@
                 }
             },
             submitForm() {
-                this.formSubmitted = true
+                this.formSubmitted = true;
+                console.log({data:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}});
+                api.callApi({POST:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}});
             }
         },
         beforeMount: function () {
