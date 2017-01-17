@@ -39,6 +39,7 @@
     "restler": "^3.4.0",
     "vee-validate": "^2.0.0-beta.18",
     "vue": "^2.1.8",
+    "vue-recaptcha": "^0.3.0",
     "vue-resource": "^1.0.3",
     "vue-spinner": "^1.0.2"
   },
