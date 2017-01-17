@@ -1,0 +1,28 @@
+<template>
+    <div>
+        <nav>
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><v-link href="/">Home</v-link></li>
+                    <li><v-link href="/login">Login</v-link></li>
+                    <li><v-link href="/registration">Registration</v-link></li>
+                    <li><v-link href="/play">Play</v-link></li>
+                    <li><v-link href="/accountInfo">Account Info</v-link></li>
+                    <li><v-link href="/logout">Logout</v-link></li>
+                </ul>
+            </div>
+        </nav>
+
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+    import VLink from '../components/VLink.vue'
+
+    export default {
+        components: {
+            VLink
+        }
+    }
+</script>
