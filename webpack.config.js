@@ -14,19 +14,19 @@ module.exports = {
     resolveLoader: {
         root: path.join(__dirname, 'node_modules'),
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            $ : "jquery",
-            jQuery : "jquery",
-            "window.jQuery" : "jquery",
-            "root.jQuery" : "jquery"
-        })
-    ],
-    resolve: {
-        alias: {
-            jquery: "./public/js/dist/jquery"
-        }
-    },
+    // plugins: [
+    //     new webpack.ProvidePlugin({
+    //         $ : "jquery",
+    //         jQuery : "jquery",
+    //         "window.jQuery" : "jquery",
+    //         "root.jQuery" : "jquery"
+    //     })
+    // ],
+    // resolve: {
+    //     alias: {
+    //         jquery: "./public/js/dist/jquery"
+    //     }
+    // },
     module: {
         loaders: [
             {

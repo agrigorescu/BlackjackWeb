@@ -84,7 +84,14 @@
             submitForm() {
                 this.formSubmitted = true;
                 console.log({data:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}});
-                api.callApi({POST:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}});
+                api.callApi({method: 'POST', path: 'localhost:3000/registration',params:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}})
+                .then(result => {
+                    res.status(201).send({success: "Done"});
+                    //store token and ID
+                })
+                .catch(err => {
+                    res.status(400).send({sucess:"Not done"});
+                });
             }
         },
         beforeMount: function () {
