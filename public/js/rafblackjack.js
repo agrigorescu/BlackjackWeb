@@ -45,37 +45,53 @@ let deal = (deck, imgArray) => {
     }
     imgArray.splice(0, 4);
     deck.splice(0, 4);
-    console.log(deck);
 }
 let playerTurn = (imgArray, counter) => {
+    let myCards = [];
     // the remaining 3 card holders left for player
-    let playerBoxes = ["#7", "#8", "#9"];
-    $(playerBoxes[counter-1]).html(imgArray[0]);
-    imgArray.splice(0, 1);
-    deck.splice(0, 1);
-    console.log(deck);
+    $("#hit").click((e) => {
+        counter++;
+        myCards.push(deck[0]);
+        let playerBoxes = ["#7", "#8", "#9"];
+        $(playerBoxes[counter-1]).html(imgArray[0]);
+        imgArray.splice(0, 1);
+        deck.splice(0, 1);
+        score(myCards);
+    });
 }
-let dealerTurn = (imgArray, counter) => {
+let score = (cards) => {
+    let score = 0;
+    let arr = cards.split('');
+    if(arr.length === 3){
+        score+=10;
+    }else if(arr[0] === "A"){
+        score+=11;
+    }
+    else if(arr[0] === "K" || arr[0] === "Q" || arr[0] === "J"){
+        score+=10;
+    }
+    else{
+        score+= parseInt(arr[0].concat(arr[1]));
+    }
+    console.log(score);
+    return score;
+}
+let dealerTurn = (imgArray, counter) => { // use recursion once score calculated i.e. < 17 || myScore -> twist
     $("#stick").click(() => {
         counter++;
         let dealerBoxes = ["#2", "#3", "#4"];
         $(dealerBoxes[counter-1]).html(imgArray[0]);
         imgArray.splice(0, 1);
         deck.splice(0, 1);
-        console.log(deck);
     });
 }
 $(() => {
     shuffle(deck);
     let counter = 0;
     let imgArray = createImagesArray();
-    console.log(deck);
     $("#newGame").click(() => {
         deal(deck, imgArray);
     });
-    $("#hit").click(() => {
-        counter++;
-        playerTurn(imgArray, counter);
-    });
+    playerTurn(imgArray, counter);
     dealerTurn(imgArray, counter);
 })
