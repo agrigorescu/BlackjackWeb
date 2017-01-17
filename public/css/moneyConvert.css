@@ -1,8 +1,16 @@
+div.container.bettingBoard {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 25px;
+    padding: 20px;
+    width: 40%;
+    height: 100%;
+}
+
 div.fish {
     float: left;
     width: 70px;
     height: 70px;
-    margin: 30px;
+    margin: 10px;
     border-radius: 150px;
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px;
@@ -15,7 +23,7 @@ div.fish {
 div.fish div {
     font-family: Verdana;
     text-align: center;
-    line-height: 70px;
+    line-height: 50px;
     font-size: .9em;
 	color:#fff;
 	text-shadow: 0.1em 0.2em 0.07em rgb(82, 82, 82);
@@ -37,3 +45,12 @@ div.black {
 }
 
 div.red { background: rgb(175, 17, 36) }
+
+.qty {
+    width: 40%;
+    height: 25%;
+    text-align: center;
+    color: white;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
