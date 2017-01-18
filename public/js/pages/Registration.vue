@@ -6,19 +6,19 @@
                     <div class="column is-12">
                         <label class="label">User Name</label>
                         <p class="control has-icon has-icon-right">
-                            <input name="userName" v-model="userName" v-validate.initial="userName" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('userName') }"
+                            <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('username') }"
                                 type="text" placeholder="User Name">
-                            <i v-show="errors.has('userName')" class="fa fa-warning"></i>
-                            <span v-show="errors.has('userName')" class="help is-danger">{{ errors.first('userName') }}</span>
+                            <i v-show="errors.has('username')" class="fa fa-warning"></i>
+                            <span v-show="errors.has('username')" class="help is-danger">{{ errors.first('username') }}</span>
                         </p>
                     </div>
                     <div class="column is-12">
                         <label class="label">Name</label>
                         <p class="control has-icon has-icon-right">
-                            <input name="name" v-model="name" v-validate.initial="name" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('name') }"
+                            <input name="fullName" v-model="fullName" v-validate.initial="fullName" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('fullName') }"
                                 type="text" placeholder="Name">
-                            <i v-show="errors.has('name')" class="fa fa-warning"></i>
-                            <span v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
+                            <i v-show="errors.has('fullName')" class="fa fa-warning"></i>
+                            <span v-show="errors.has('fullName')" class="help is-danger">{{ errors.first('fullName') }}</span>
                         </p>
                     </div>
                     <div class="column is-12">
@@ -40,8 +40,8 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <p>Date of birth is: {{ birthDate }}</p>
-                            <input v-model="birthDate" id="birthDate" type="date" class="datepicker validate">
+                            <p>Date of birth is: {{ dob }}</p>
+                            <input v-model="dob" id="dob" type="date" class="datepicker validate">
                         </div>
                     </div>
                     <button class="btn  waves-effect waves-light right btn-primary btn-block" name="action" id="submitRegistration" type="submit">Submit</button>
@@ -65,11 +65,11 @@
         },
         data: function () {
             return {
-                userName: '',
-                name: '',
+                fullName: '',
                 email: '',
+                username: '',
                 password: '',
-                birthDate: '',
+                dob: '',
                 formSubmitted: false,
 
             }
@@ -83,8 +83,8 @@
             },
             submitForm() {
                 this.formSubmitted = true;
-                console.log({data:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}});
-                api.callApi({method: 'POST', path: 'localhost:3000/registration',params:{userName:this.userName, name:this.name,email:this.email,password:this.password,birthDate:this.birthDate}})
+                console.log({data:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}});
+                api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/register',params:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}})
                 .then(result => {
                     res.status(201).send({success: "Done"});
                     //store token and ID

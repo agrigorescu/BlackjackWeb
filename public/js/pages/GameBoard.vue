@@ -87,9 +87,6 @@
                 formSubmitted: false
             }
         },
-        // submitting the post request to the Bee CLI to start running
-        methods: {
-        },
         beforeMount: function () {
             console.log('Mounting');
             // ***** MAXIMUM 5 cards        ***** //
