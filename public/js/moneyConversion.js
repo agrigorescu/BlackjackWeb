@@ -1,10 +1,6 @@
 $(document).ready(function (){
     let zIndex = 0;
     let height = 0;
-<<<<<<< HEAD
-    let chipArray = [];
-=======
->>>>>>> Chips stack together from the bottom of the DIV
     $counter = 0;
 
     $("#resetChip").click(function(){
@@ -18,11 +14,7 @@ $(document).ready(function (){
     $("#redChip").click(function(){
         $('#redChip').clone().appendTo('.chipStack').addClass("chip").css({
             'z-index' : zIndex++,
-<<<<<<< HEAD
-            marginTop : height-=5,
-=======
->>>>>>> Chips stack together from the bottom of the DIV
-            'bottom' : height+=5
+            'bottom' : height-=5
         });
         $counter += 0.05;
         $('.chipStackBoard').css({
