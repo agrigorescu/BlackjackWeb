@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test",
     "start": "webpack --progress && node app.js",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "repository": {
     "type": "git",
