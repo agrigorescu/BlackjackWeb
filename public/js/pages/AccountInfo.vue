@@ -2,7 +2,7 @@
     <main-layout>
         <!--start of the game board-->
         <div class="row container" id="title">
-            <h1>Game Board</h1>
+            <h1>'Username''s Account</h1>
             <div id="accountInfo">
                 <div class="boxinfo" id="computer">
                     <h5>"Username"'s Account</h5>

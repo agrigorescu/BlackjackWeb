@@ -1,7 +1,10 @@
 <template>
     <main-layout>
+        <img id="homeBackground" src="img/gameBoardHomepage.png" alt="some text">
         <div class="container">
-            <h5>Home</h5>
+            <li><v-link href="/login">Login</v-link></li>
+            <li><v-link href="/registration">Registration</v-link></li>
+            <!--<h5>Home</h5>-->
         </div>
     </main-layout>
 </template>
