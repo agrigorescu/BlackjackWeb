@@ -45,7 +45,7 @@
         },
         data: function () {
             return {
-                userName: '',
+                username: '',
                 password: '',
                 formSubmitted: false
             }
@@ -55,9 +55,10 @@
             submit: function (event) {
                 event.preventDefault();
                 console.log({ data: { userName: this.userName, password: this.password } });
-                api.callApi({method: 'POST', path: 'localhost:3000/login', params:{username: this.userName, password: this.password}})
+                api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
+                    this.$cookie.set('loginCookie',result.success);
                 })
                 .catch(err => {
                     
