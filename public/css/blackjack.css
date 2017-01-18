@@ -6,12 +6,19 @@ body {
 /*end of body css*/
 /*----------------------------------------------------------------*/
 /*start of layout components css */
-.row, .container{
+
+
+/*.row, .container{
     background-color: #000000;
-}
+}*/
+
+/*nav{
+    position: fixed;
+}*/
 
 .nav-wrapper{
-    background-color: #000000;
+    background-color: #272828;
+    /*position: fixed;*/
     
 }
 
@@ -22,7 +29,7 @@ body {
 }
 
 #title{
-    background-color: #000000;
+    background-color: #186a39;
     padding-top: 4%;
     padding-bottom: 23%;
 }
@@ -64,6 +71,10 @@ h1, h2, h4, h5, h6{
 p{
     font-family: 'Abel', sans-serif;
 }
+
+#blueChip{
+    margin-top: -39%;
+}
 /*end of font css*/
 
 /*----------------------------------------------------------------*/
@@ -72,6 +83,12 @@ p{
 #imgLogo{
     margin-left: 32%;
     margin-top: 5%;
+}
+
+#whiteLogo{
+    width: 17%;
+    padding-top: 1%;
+    margin-left: 1%;
 }
 /*end of images css*/
 
@@ -99,7 +116,7 @@ p{
 }
 
 .boxinfo{
-    background-color: #186a39;
+    background-color: #255b3a;
     color: #ffffff;
     font-family: 'Abel', sans-serif;
     /*margin-left: 2%;*/
@@ -116,7 +133,7 @@ p{
 
 #playButton{
     width: 40%;
-    background-color: #a43934;
+    /*background-color: #a43934;*/
     padding: 3%;
     float: right;
     text-align: center;
@@ -127,9 +144,26 @@ p{
 }
 /*start of placeholder boxes css*/
 
+
+/*----------------------------------------------------------------*/
+
+/*start of button css*/
+.btn{
+    background-color: #272828;
+}
+/*end of button css*/
+
+/*----------------------------------------------------------------*/
+
+/*start of the forms css*/
+.input-field .prefix{
+    position: inherit;
+}
+/*end of the forms css*/
+
 /*#miniMenu, #miniMenu2, #miniMenu3{
     margin-top: -44%;
 }
 
 #dropdown1, .miniMenu{
-    top: 259.906px;
+    top: 259.906px;*/

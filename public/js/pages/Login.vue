@@ -4,13 +4,13 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <i class="material-icons prefix">account_circle</i>
+                        <!--<i class="material-icons prefix">Username</i>-->
                         <p> Username is:{{ userName }} </p>
                         <input v-model="userName" id="icon_prefix" type="text" class="validate">
                         <label for="icon_prefix"></label>
                     </div>
                     <div class="input-field col s6">
-                        <i class="material-icons prefix">phone</i>
+                        <!--<i class="material-icons prefix">Password</i>-->
                         <p> Password is:{{ password }} </p>
                         <input v-model="password" id="password" type="password" class="validate">
                         <label for="passord"></label>
