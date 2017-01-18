@@ -11,10 +11,10 @@ class ApiService {
     static callApi(obj) {
         return new Promise(
             (resolve, reject) => {
+
                 switch (obj.method) {
                     case "POST":
-                        Vue.http.post(obj.path, obj.params).then((result) => {
-                          
+                        Vue.http.post(obj.path, obj.params, {headers: {"x-access-token": '', "x-access-username":''}}).then((result) => {
                             resolve(result);
                         }, (err) => {
                             

@@ -55,7 +55,6 @@
             submit: function (event) {
                 event.preventDefault();
                 console.log({ data: { userName: this.userName, password: this.password } });
-                //api.callApi({ POST: { userName: this.userName, password: this.password } });
                 api.callApi({method: 'POST', path: 'localhost:3000/login', params:{username: this.userName, password: this.password}})
                 .then(result => {
                     //store token and ID

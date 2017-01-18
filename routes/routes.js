@@ -27,5 +27,9 @@ router.get('*', (req, res) => {
     res.sendFile(`index.html`,{root:path.resolve('./public')});
 });
 
+router.post("/successpage/:username/:token", (req,res) => {
+    res.status(201).send({success: "Done"});
+});
+
 
 module.exports = router;
