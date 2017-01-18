@@ -1,6 +1,7 @@
 $(document).ready(function (){
     let zIndex = 0;
     let height = 0;
+    let chipArray = [];
     $counter = 0;
 
     $("#resetChip").click(function(){
@@ -14,7 +15,7 @@ $(document).ready(function (){
     $("#redChip").click(function(){
         $('#redChip').clone().appendTo('.chipStack').addClass("chip").css({
             'z-index' : zIndex++,
-            'bottom' : height+=5
+            marginTop : height-=5,
         });
         $counter += 0.05;
         $('.chipStackBoard').css({
