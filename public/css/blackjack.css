@@ -37,7 +37,21 @@ h1{
     margin-top: -20%;
 
 }
-
+#scoreboard{
+    position:absolute;
+    top:120px;
+    left:80px;
+    border: 2px solid black;
+    width:100px;
+    height:60px;
+}
+#myscore{
+    padding:3px;
+}
+#compscore{
+    padding:3px;
+}
 #miniMenu, #miniMenu2, #miniMenu3{
     margin-top: -44%;
 }
+

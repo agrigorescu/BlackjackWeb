@@ -20,22 +20,18 @@
                     <div class="box" id="8">8</div>
                     <div class="box" id="9">9</div>
                 </div>
-
-
                 <div id="gamebuttons">
-                    <button type="input" id="twist" class="twist">HIT</button>
-                    <button type="input" id="stick" class="stick">STICK</button>
-                    <button type="input" id="newGame">NEW GAME</button>
+                    <button type="input" id="stick" disabled>STICK</button>
+                    <button type="input" id="twist" disabled>HIT</button>
+                    <button type="input" id="newGame" class="newGame">NEW GAME</button>
                 </div>
-
-
                 <div id="game">
                     <div id="betAmount"></div>
                     <div id="totalAmount"></div>
                     <div id="dealer"></div>
 
                     <div id="bet">
-                        <button id="reset">Reset</button>
+                        <!--<button id="reset">Reset</button>-->
                         <div class="fish red">
                             <button type="button">5p</button>
                         </div>
@@ -57,7 +53,10 @@
                         </div>
                     </div>
                 </div>
-
+                <div id="scoreboard">
+                    <div id="myscore">me: 1</div>
+                    <div id="compscore">dealer: 2</div>
+                </div>
                 <div id="blackJackButtons">
                     <button data-id="quit" title="Quit the game!">Quit Game</button>
                     <button data-id="continue" title="Continue the game with original bet">Continue (1x)</button>
