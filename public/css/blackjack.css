@@ -1,6 +1,21 @@
+/*body {
+    background-image: url("gameBoard.png");
+    background-color: #cccccc;
+}*/
 .row, .container{
     background-color: #009A00;
 }
+
+#homeBackground{
+    position: fixed;
+    z-index: -100;
+}
+
+.nav-wrapper{
+    background-color: #000000;
+}
+
+
 
 h1{
     text-align: center;
@@ -41,3 +56,8 @@ h1{
 #miniMenu, #miniMenu2, #miniMenu3{
     margin-top: -44%;
 }
+
+#dropdown1, .miniMenu{
+    top: 259.906px;
+}
+/*this doesn't work above - as in doesn't do anything*/

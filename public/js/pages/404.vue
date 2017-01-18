@@ -1,6 +1,6 @@
 <template>
     <main-layout>
-        <p>Page not found</p>
+        <p>Page not found. Your results clicking that link may vary. That's why we call it testing in production.</p>
     </main-layout>
 </template>
 
