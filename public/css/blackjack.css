@@ -1,6 +1,21 @@
+/*body {
+    background-image: url("gameBoard.png");
+    background-color: #cccccc;
+}*/
 .row, .container{
     background-color: #009A00;
 }
+
+#homeBackground{
+    position: fixed;
+    z-index: -100;
+}
+
+.nav-wrapper{
+    background-color: #000000;
+}
+
+
 
 h1{
     text-align: center;

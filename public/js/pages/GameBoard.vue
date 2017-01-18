@@ -1,7 +1,9 @@
 <template>
     <main-layout>
         <!--start of the game board-->
+        <img src="img/gameBoard.png" alt="some text">
     <div class="row container" id="title">
+        
         <h1>Game Board</h1>
         <div id="gameBoard">
             <div id="computer">
