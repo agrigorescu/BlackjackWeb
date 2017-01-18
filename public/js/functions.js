@@ -1,4 +1,5 @@
 //writing the class needed in test-functions.js
+"use strict";
 class Functions {
     getRandomNumber(){
         return new Promise(

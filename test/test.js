@@ -1,4 +1,5 @@
 //adding the 'chai' assertion lib from the json object file
+"use strict";
 const chai = require('chai');
 //adding methods that chai requires
 const should = chai.should();
