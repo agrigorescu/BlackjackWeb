@@ -65,7 +65,12 @@ div.gray { background: rgb(109, 109, 109) }
 
 .chip {
     position: absolute;
+<<<<<<< HEAD
     z-index: auto;
     top: 75%;
 }
 
+=======
+
+}
+>>>>>>> 13892f26e46cec428625fb5f1e9970ac816768a6
