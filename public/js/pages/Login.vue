@@ -6,10 +6,10 @@
                 <div class="column is-12">
                     <label class="label">Username</label>
                     <p class="control has-icon has-icon-right">
-                        <input name="userName" v-model="userName" v-validate.initial="userName" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('userName', 'form-2') }"
+                        <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('username', 'form-2') }"
                             type="text" placeholder="Enter Username">
-                        <i v-show="errors.has('userName', 'form-2')" class="fa fa-warning"></i>
-                        <span v-show="errors.has('userName', 'form-2')" class="help is-danger">{{ errors.first('userName', 'form-2') }}</span>
+                        <i v-show="errors.has('username', 'form-2')" class="fa fa-warning"></i>
+                        <span v-show="errors.has('username', 'form-2')" class="help is-danger">{{ errors.first('username', 'form-2') }}</span>
                     </p>
 
                 </div>
@@ -54,7 +54,7 @@
         methods: {
             submit: function (event) {
                 event.preventDefault();
-                console.log({ data: { userName: this.userName, password: this.password } });
+                console.log({ data: { userName: this.username, password: this.password } });
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
