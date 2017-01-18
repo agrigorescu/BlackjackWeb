@@ -31,11 +31,20 @@ $(document).ready(function (){
         $('.greenChips').empty();
         $('.blueChips').empty();
         $('.blackChips').empty();
+        $("#redChip").show();
+        $("#blueChip").show();
+        $("#greenChip").show();
+        $("#blackChip").show();
+        $("#orangeChip").show();
         $('#quantity').val($counter.toFixed(2));
     });
 
     $("#redChip").click(function(){
-        $('#redChip').clone().prependTo('.chipStack .redChips').addClass("chip chipRed").animate({
+        $("#blueChip").hide();
+        $("#greenChip").hide();
+        $("#blackChip").hide();
+        $("#orangeChip").hide();
+        $('#redChip').clone().prependTo('.chipStack .redChips').addClass("chip").animate({
             'z-index' : zIndex++,
             'marginTop' : redHeight-=5
         });
@@ -47,7 +56,11 @@ $(document).ready(function (){
     });
 
     $("#blueChip").click(function(){
-        $('#blueChip').clone().appendTo('.chipStack .blueChips').addClass("chip chipBlue").animate({
+        $("#redChip").hide();
+        $("#greenChip").hide();
+        $("#blackChip").hide();
+        $("#orangeChip").hide();
+        $('#blueChip').clone().appendTo('.chipStack .blueChips').addClass("chip").animate({
             'z-index' : zIndex++,
             'margin-top' : blueHeight-=5
         });
@@ -56,7 +69,11 @@ $(document).ready(function (){
     });
 
     $("#orangeChip").click(function(){
-        $('#orangeChip').clone().appendTo('.chipStack .orangeChips').addClass("chip chipOrange").animate({
+        $("#blueChip").hide();
+        $("#greenChip").hide();
+        $("#blackChip").hide();
+        $("#redChip").hide();
+        $('#orangeChip').clone().appendTo('.chipStack .orangeChips').addClass("chip").animate({
             'z-index' : zIndex++,
             'margin-top' : orangeHeight-=5
         });
@@ -65,7 +82,11 @@ $(document).ready(function (){
     });
 
     $("#blackChip").click(function(){
-        $('#blackChip').clone().appendTo('.chipStack .blackChips').addClass("chip chipBlack").animate({
+        $("#blueChip").hide();
+        $("#greenChip").hide();
+        $("#redChip").hide();
+        $("#orangeChip").hide();
+        $('#blackChip').clone().appendTo('.chipStack .blackChips').addClass("chip").animate({
             'z-index' : zIndex++,
             'margin-top' : blackHeight-=5
         });
@@ -74,7 +95,11 @@ $(document).ready(function (){
     });
 
     $("#greenChip").click(function(){
-        $('#greenChip').clone().appendTo('.chipStack .greenChips').addClass("chip chipGreen").animate({
+        $("#blueChip").hide();
+        $("#redChip").hide();
+        $("#blackChip").hide();
+        $("#orangeChip").hide();
+        $('#greenChip').clone().appendTo('.chipStack .greenChips').addClass("chip").animate({
             'z-index' : zIndex++,
             'margin-top' : greenHeight-=5
         });
