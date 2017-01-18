@@ -50,7 +50,7 @@
                 formSubmitted: false
             }
         },
-        // submitting the post request to the Bee CLI to start running
+        
         methods: {
             submit: function (event) {
                 event.preventDefault();
@@ -58,7 +58,7 @@
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
-                    this.$cookie.set('loginCookie',result.success);
+                    this.$cookie.set('loginCookie',result.success,1);
                 })
                 .catch(err => {
                     
