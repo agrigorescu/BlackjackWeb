@@ -2,36 +2,50 @@
     <main-layout>
         <!--start of the game board-->
         <div class="row container" id="title">
-            <h1>'Username''s Account</h1>
-            <div id="accountInfo">
-                <div class="boxinfo" id="computer">
-                    <h5>"Username"'s Account</h5>
-                    <ul>
-                        <li>Name: Test</li>
-                        <li>Username: Test01</li>
-                        <li>Email: test01@test.com</li>
-                        <li>Games played: 45</li>
-                        <li>Games won: 30</li>
-                        <li>Games lost: 15</li>
-                        <li>Bio - say something about yourself</li>
-                    </ul>
+            <div id="row">
+                <h2>'Username''s Account</h2>
+                <div class="col s6">
+                <div id="accountInfo">
+                    <div class="boxinfo" id="computer">
+                        <h5>"Username"'s Account</h5>
+                        <ul>
+                            <li>Name: Test</li>
+                            <li>Username: Test01</li>
+                            <li>Email: test01@test.com</li>
+                            <li>Games played: 45</li>
+                            <li>Games won: 30</li>
+                            <li>Games lost: 15</li>
+                            <li>Bio - say something about yourself</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' id="miniMenu" href='#' data-activates='dropdown1'>Drop Me!</a>
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a data-target="theModal" href="">Invite friends</a></li>
-                </ul>
-                <button class="btn waves-effect waves-light miniMenu" id="miniMenu2" type="edit">Edit</button>
-                <button class="btn waves-effect waves-light miniMenu" id="miniMenu3" type="other">Other</button>
+                </div>
+      
+                <div class="col s6">
+                    <div id="accountMenu">
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-button btn' id="miniMenu" href='#' data-activates='dropdown1'>Drop Me!</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#!">three</a></li>
+                        <li><a data-target="theModal" href="">Invite friends</a></li>
+                    </ul>
+                    <button class="btn waves-effect waves-light miniMenu" id="miniMenu2" type="edit">Edit</button>
+                    <button class="btn waves-effect waves-light miniMenu" id="miniMenu3" type="other">Other</button>
+                </div>
             </div>
-            <div id="playButton">PLAY</div>
         </div>
+        <div id="playButton">
+            <a href="/play"><h2>PLAY</h2></a>
+        </div>
+        
+        <div class="col s12" id="imgLogo">
+            <img src="img/logo.png" alt="some text">
+        </div>
+
         <!--end of the game board-->
         <div id="theModal" class="modal">
             <div class="modal-content">

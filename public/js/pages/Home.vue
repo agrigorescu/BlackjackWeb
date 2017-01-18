@@ -2,8 +2,8 @@
     <main-layout>
         <img id="homeBackground" src="img/gameBoardHomepage.png" alt="some text">
         <div class="container">
-            <li><v-link href="/login">Login</v-link></li>
-            <li><v-link href="/registration">Registration</v-link></li>
+            <li id="login"><a href="/login">Login</a></li>
+            <li id="register"><a href="/registration">Registration</a></li>
             <!--<h5>Home</h5>-->
         </div>
     </main-layout>
