@@ -10,8 +10,15 @@ div.container.chipStackBoard {
     background: rgba(0, 0, 0, 0.85);
     border-radius: 25px;
     padding: 20px;
-    width: 40%;
+    width: 45%;
     height: 50%;
+    position: absolute;
+}
+
+label {
+    color: white;
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 div.fish {
@@ -61,6 +68,8 @@ div.gray { background: rgb(109, 109, 109) }
     height: 25%;
     text-align: center;
     color: white;
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .chip {
@@ -69,3 +78,22 @@ div.gray { background: rgb(109, 109, 109) }
     top: 75%;
 }
 
+.chipRed {
+    left: 10px;
+}
+
+.chipOrange {
+    left: 90px;
+}
+
+.chipGreen {
+    left: 170px;
+}
+
+.chipBlue {
+    left: 250px;
+}
+
+.chipBlack {
+    left: 330px;
+}
