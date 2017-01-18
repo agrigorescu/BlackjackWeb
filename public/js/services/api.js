@@ -14,10 +14,8 @@ class ApiService {
                 switch (obj.method) {
                     case "POST":
                         Vue.http.post(obj.path, obj.params).then((result) => {
-                          
                             resolve(result);
                         }, (err) => {
-                            
                             reject(err);
                         });
                         break;
