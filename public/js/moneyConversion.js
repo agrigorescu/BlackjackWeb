@@ -29,7 +29,7 @@ $(document).ready(function (){
             'z-index' : zIndex++,
             'bottom' : height+=5
         });
-        $counter += 0.50;
+        $counter += 0.20;
         $('#quantity').val($counter.toFixed(2));
     });
 
