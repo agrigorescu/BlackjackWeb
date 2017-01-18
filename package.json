@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha test",
-    "start": "webpack --progress && node app.js"
+    "build": "webpack --progress && node app.js"
   },
   "repository": {
     "type": "git",
