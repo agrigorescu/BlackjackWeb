@@ -21,8 +21,8 @@
                     <div class="box" id="9">9</div>
                 </div>
                 <div id="gamebuttons">
-                    <button type="input" id="stick" disabled>STICK</button>
-                    <button type="input" id="twist" disabled>HIT</button>
+                    <button type="input" id="stick" class="stick" disabled>STICK</button>
+                    <button type="input" id="twist" disabled>TWIST</button>
                     <button type="input" id="newGame" class="newGame">NEW GAME</button>
                 </div>
                 <div id="game">

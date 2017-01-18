@@ -74,19 +74,9 @@ class Game{
             }
             console.log("dealt computer hand " + compCurrScore);
             console.log("dealt player hand " + myCurrScore);
-            if(myCurrScore == 21){
-                console.log("21 test");
-                $("#twist").on("click", () => {
-                    $("#twist").prop("disabled", true);
-                });
-            }
-            if(myCurrScore < 30){
-                myCurrScore = 11;
-                console.log(myCurrScore);
-            }
-            if(compCurrScore == 21){
-                $("#stick").on("click", () => {
-                    $("#stick").prop("disabled", true);
+            if(compCurrScore < 30){
+                $(".stick").on("click", () => {
+                    $(".stick").prop("disabled", true);
                 });
             }
         });
@@ -101,17 +91,13 @@ class Game{
             $(playerBoxes[counter-1]).html(imgArray[0]);
             imgArray.splice(0, 1);
             deck.splice(0, 1);
-            console.log("player current score " + myCurrScore);
-            if(myCurrScore == 22){
-                console.log("BUST!!");
-                scoreArray.push(11); 
-            }else if(myCurrScore == 21){
-                console.log("BLACKJACK!!");
-            }else if(counter-1 < 3){
+             if(counter-1 < 3){
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
-            }else{
-                console.log("wtf");
             }
+            if(myCurrScore > 21){
+                console.log("player is BUST");
+            }
+            console.log("player score: " + myCurrScore);
         });
     }
     static dealerLogic(playerScore, compCurrScore){
@@ -159,6 +145,9 @@ class Game{
         console.log(arr);
         if(arr.length === 3){
             score+=10;
+            scoreArray.push(score);
+        }else if(arr[0] === "A" && arr[1] === "A"){
+            score+=12;      // if two aces drawn take 12 since aces high & cant bust on deal
             scoreArray.push(score);
         }else if(arr[0] === "A"){
             score+=11;
