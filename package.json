@@ -4,7 +4,7 @@
   "description": "###The Brief",
   "main": "app.js",
   "scripts": {
-    "test": "",
+    "test": "mocha test",
     "start": "webpack --progress && node app.js"
   },
   "repository": {
