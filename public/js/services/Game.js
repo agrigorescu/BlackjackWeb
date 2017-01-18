@@ -116,21 +116,21 @@ class Game{
     }
     static dealerLogic(playerScore, compCurrScore){
         if(compCurrScore > 21){
-                console.log("BUST!!!");
-            }
-            else if(compCurrScore < playerScore){
-                console.log("less than player score");
-                $("#stick").trigger("click");
-            }else if(compCurrScore < 17){
-                console.log("less than 17");
-                $("#stick").trigger("click");
-            }else if(compCurrScore === playerScore){
-                console.log("DRAW!!");
-            }else if(compCurrScore > playerScore){
-                console.log("COMP WINS!!");
-            }else{
-                console.log("wtf");
-            }
+            console.log("BUST!!!");
+        }
+        else if(compCurrScore < playerScore){
+            console.log("less than player score");
+            $("#stick").trigger("click");
+        }else if(compCurrScore < 17){
+            console.log("less than 17");
+            $("#stick").trigger("click");
+        }else if(compCurrScore === playerScore){
+            console.log("DRAW!!");
+        }else if(compCurrScore > playerScore){
+            console.log("COMP WINS!!");
+        }else{
+            console.log("wtf");
+        }
     }
     static dealerTurn(deck, imgArray, counter, compScore, scoreArray, compCards, playerScoreArray){ 
         // use recursion once score calculated i.e. < 17 || myScore -> twist
