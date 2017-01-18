@@ -36,7 +36,7 @@ class Game{
         for(let j=0; j<5; j++){
             // While there remain elements to shuffle…
             while(m>0){
-                // Pick random element in the lim [0, m-1]
+                // Pick random element --> lim [0, m-1]
                 index = Math.floor(Math.random() * m--);
                 // swap the end element with a random element in array
                 currentElement = deck[m];
