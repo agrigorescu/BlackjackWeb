@@ -91,7 +91,7 @@ class Game{
             $(playerBoxes[counter-1]).html(imgArray[0]);
             imgArray.splice(0, 1);
             deck.splice(0, 1);
-             if(counter-1 < 3){
+            if(counter-1 < 3){
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
             }
             if(myCurrScore > 21){
