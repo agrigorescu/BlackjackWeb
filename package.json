@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test",
     "start": "webpack --progress && node app.js",
-    "postinstall": "webpack --progress"
+    "postinstall": "npm start"
   },
   "repository": {
     "type": "git",
