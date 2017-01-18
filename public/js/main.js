@@ -3,9 +3,9 @@ import VueRouter from 'vue-resource';
 import routes from './routes';
 import moment from 'moment';
 import VeeValidate from 'vee-validate';
-import jQuery from 'jquery';
 
-// var $ = require('jquery');
+const VueCookie = require('vue-cookie');
+
 
 
 exports.install = function (Vue, options) {
@@ -17,7 +17,8 @@ exports.install = function (Vue, options) {
 Vue.use(exports);
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
-// Vue.use(jQuery);
+Vue.use(VueCookie);
+
 
 window.Vue = Vue;
 

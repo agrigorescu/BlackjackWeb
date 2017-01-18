@@ -9,6 +9,8 @@
                     <li><v-link href="/play">Play</v-link></li>
                     <li><v-link href="/accountInfo">Account Info</v-link></li>
                     <li><v-link href="/logout">Logout</v-link></li>
+                    <li><v-link href="/success?:username&:token">Success</v-link></li>
+
                 </ul>
             </div>
         </nav>
