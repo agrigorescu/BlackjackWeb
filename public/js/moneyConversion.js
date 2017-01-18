@@ -6,7 +6,7 @@ $(document).ready(function (){
     $("#redChip").click(function(){
         $('#redChip').clone().appendTo('.chipStack').addClass("chip").css({
             'z-index' : zIndex++,
-            'bottom' : height+=5
+            'bottom' : height-=5
         });
         $counter += 0.05;
         $('#quantity').val($counter.toFixed(2));
