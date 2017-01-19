@@ -33,7 +33,7 @@
             <div class="container bettingBoard">
                     <div class="row">
                         <div class="col s12">
-                            <form id='myform' method='POST' action='#'>
+                            <form id='myform'>
                                 <div>
                                     <label for="bank">Your Amount</label>
                                     <input class='qty' id="bank" type='text' name='bank' />
@@ -42,6 +42,7 @@
                                     <label for="quantity">Bet Amount</label>
                                     <input class='qty' id="quantity" type='text' name='quantity' />
                                 </div>
+                                <input type="submit" value="Submit">    
                             </form>
                         </div>
                     </div>
