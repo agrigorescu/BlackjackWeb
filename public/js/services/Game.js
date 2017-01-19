@@ -12,9 +12,9 @@ Vue.use(VueResource);
 
 class Game{
     static generateDeck(){
-        const hearts = ["Ah", "Ah", "Ah", "Ah", "Ah", "6h", "Ah", "Ah", "Ah", "Ah", "Ah", "Ah", "Kh"];
+        const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
-        const clubs = ["6c", "6c", "6c", "6c", "6c", "6c", "6c", "6c", "6c", "6c", "Jc", "Qc", "Ks"];
+        const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
         const spades = ["As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks"];
         const oneDeck = $.merge($.merge(hearts, diamonds), $.merge(spades, clubs));
         const deck = oneDeck;
