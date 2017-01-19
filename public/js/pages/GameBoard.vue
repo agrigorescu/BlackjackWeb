@@ -35,7 +35,7 @@
                     <div id="dealer"></div>
 
                     <div id="bet">
-                        <!--<button id="reset">Reset</button>-->
+                        <button id="reset">Reset</button>
                         <div class="fish red">
                             <button type="button">5p</button>
                         </div>
