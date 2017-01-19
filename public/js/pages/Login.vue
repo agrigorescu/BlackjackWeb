@@ -3,7 +3,6 @@
         <div class="row container" id="title">
             <div class="row">
                 <form @submit.prevent="validateBeforeSubmit('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
-                    <legend>Login</legend>
                     <div class="column is-12">
                         <label class="label">Username</label>
                         <p class="control has-icon has-icon-right">
