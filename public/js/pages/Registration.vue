@@ -88,11 +88,11 @@
                 console.log({data:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}});
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/register',params:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}})
                 .then(result => {
-                    res.status(201).send({success: "Done"});
-                    //store token and ID
+                    console.log("data sent");
+                    window.location.href = "http://localhost:3000/login";
                 })
                 .catch(err => {
-                    res.status(400).send({sucess:"Not done"});
+                    console.log("error");
                 });
             }
         },

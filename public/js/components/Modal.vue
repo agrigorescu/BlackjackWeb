@@ -3,24 +3,10 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-
-          <!--<div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
-          </div>-->
-
           <div class="modal-body">
             <slot name="body">
               <div v-if="!formSubmitted">
                         <form @submit.prevent="validateBeforeSubmit">
-                            <label class="label">Your Email</label>
-                            <p class="control has-icon has-icon-right">
-                                <input name="userEmail" v-model="userEmail" v-validate.initial="userEmail" data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('userEmail') }"
-                                    type="text" placeholder="Your Email">
-                                <i v-show="errors.has('userEmail')" class="fa fa-warning"></i>
-                                <span v-show="errors.has('userEmail')" class="help is-danger">{{ errors.first('userEmail') }}</span>
-                            </p>
                             <label class="label">Your Friends Email</label>
                             <p class="control has-icon has-icon-right">
                                 <input name="friendEmail" v-model="friendEmail" v-validate.initial="friendEmail" data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('friendEmail') }"
@@ -47,9 +33,9 @@
     export default {
         data: function () {
                 return {
-                    userEmail: '',
                     friendEmail: '',
                     showModal: false,
+                    existingUserId: '',
                     formSubmitted: false
                 }
         },
@@ -62,14 +48,16 @@
                 },
                 submitForm() {
                     this.formSubmitted = true;
-                    console.log({ data: { fullName: this.fullName, email: this.email, username: this.username, password: this.password, dob: this.dob } });
-                    api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/friendinvite', params: { userEmail: this.userEmail, friendEmail: this.friendEmail } })
+                    this.existingUserId = this.$cookie.get('idCookie');
+                    console.log(this.existingUserId);
+                    console.log({ data: { firendEmail: this.friendEmail, existingUserId: this.existingUserId} });
+                    api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } })
                         .then(result => {
-                            res.status(201).send({ success: "Done" });
+                            console.log("send data");
                             //store token and ID
                         })
                         .catch(err => {
-                            res.status(400).send({ sucess: "Not done" });
+                            console.log("error");
                         });
                 }
         }
