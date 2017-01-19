@@ -40,8 +40,9 @@
                     </div>
                 </div>
                 <div id="playButton">
+                    <img src="img/blueChip.png" alt="some text">
                     <a href="/play">
-                        <h2>PLAY</h2>
+                        <h2 id="blueChip">PLAY</h2>
                     </a>
                 </div>
 

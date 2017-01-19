@@ -4,6 +4,7 @@
 // ***** 3 DECKS OF CARDS       ***** //
 // ***** NO SPLITS              ***** //
 // ***** DEALER TWISTS FOR < 17 ***** //
+// ***** 2 ACES ON DEAL = 12    ***** //
 //----------------------------------- //
 import Vue from 'vue';
 import VueResource from 'vue-resource';
@@ -13,7 +14,7 @@ class Game{
     static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
-        const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Kc"];
+        const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
         const spades = ["As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks"];
         const oneDeck = $.merge($.merge(hearts, diamonds), $.merge(spades, clubs));
         const deck = oneDeck;
@@ -105,7 +106,10 @@ class Game{
             console.log("player score: " + myCurrScore);
         });
     }
-    static dealerLogic(playerScore, compCurrScore){
+    static dealerLogic(playerScore, compCurrScore, compCards){
+        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
+            console.log("dealer sticks on soft 17");
+        }
         if(compCurrScore > 21){
             $("#newGame").prop("disabled", true);
             console.log("DEALER BUST!!!");
@@ -133,10 +137,16 @@ class Game{
         // let scoreArray = [];
         $("#stick").on("click", () => {
             counter++;
-            $("#stick").prop("disabled", true); 
-            $("#twist").prop("disabled", true); 
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
             computerScoreDeal = compScoreArray.reduce((a,b) => a + b, 0);
+            console.log("comp cards: ");
+            console.log(compCards);
+            if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
+                this.dealerLogic(playerScore, computerScore, compCards);
+                return;
+            }
+            $("#stick").prop("disabled", true); 
+            $("#twist").prop("disabled", true); 
             console.log("computer at deal:  " + computerScoreDeal);
             console.log("player at deal: " + playerScore);
             if(computerScoreDeal > playerScore){
@@ -150,19 +160,22 @@ class Game{
             }
             let computerScore = compScoreArray.reduce((a, b) => a + b, 0);
             console.log("computer score " + computerScore);
-            this.dealerLogic(playerScore, computerScore)
+            this.dealerLogic(playerScore, computerScore, compCards);
         });
     }
     static score(cards, counter, scoreArray, score, player){
+        // arr is only spliting each individual card that is dealt
+        // cards is accumulative array of cards without being split
         let arr = cards[counter-1].toString().split('');
+        console.log("card:");
         let sum = 0;
         if(arr.length === 3){
             score+=10;
             scoreArray.push(score);
-        }else if(arr[0] === "A" && arr[1] === "A"){
-            score+=12;      // if two aces drawn take 12 since aces high & cant bust on deal
+        }else if(cards.length == 2 && cards[0].toString().split('')[0] === "A" && cards[1].toString().split('')[0] === "A"){
+            score+=1;      // if two aces drawn take 12 since aces high & cant bust on deal
             scoreArray.push(score);
-        }else if(arr[0] === "A"){
+        }else if(arr[0] == "A"){
             score+=11;
             scoreArray.push(score);
         }else if(arr[0] === "K" || arr[0] === "Q" || arr[0] === "J"){
