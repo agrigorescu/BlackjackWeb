@@ -35,12 +35,12 @@
                         <div class="col s12">
                             <form id='myform' method='POST' action='#'>
                                 <div>
-                                    <label for="bank">Your Amount</label>k
-                                    <input class='qty' id="bank" type='text' name='bank' value='500'/>
+                                    <label for="bank">Your Amount</label>
+                                    <input class='qty' id="bank" type='text' name='bank' />
                                 </div>
                                 <div>
                                     <label for="quantity">Bet Amount</label>
-                                    <input class='qty' id="quantity" type='text' name='quantity' value='0'/>
+                                    <input class='qty' id="quantity" type='text' name='quantity' />
                                 </div>
                             </form>
                         </div>
@@ -52,29 +52,29 @@
                             </div>
                         </div>
                         <div class="col s4">
-                            <div id="redChip" class="fish red">
+                            <div v-on:click="selectBet(5)" id="redChip" class="fish red">
                                 <div class="value">5p</div>
                             </div>
                         </div> 
                         <div class="col s4">
-                            <div id="orangeChip" class="fish orange">
+                            <div v-on:click="selectBet(10)" id="orangeChip" class="fish orange">
                                 <div class="value">10p</div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s4">
-                                <div id="greenChip" class="fish green">
+                                <div v-on:click="selectBet(20)" id="greenChip" class="fish green">
                                     <div class="value">20p</div>
                                 </div>
                         </div>
                         <div class="col s4">
-                            <div id="blueChip" class="fish blue">
+                            <div v-on:click="selectBet(50)" id="blueChip" class="fish blue">
                                 <div class="value">50p</div>
                             </div>
                         </div>
                         <div class="col s4">
-                            <div id="blackChip" class="fish black">
+                            <div v-on:click="selectBet(100)" id="blackChip" class="fish black">
                                 <div>£1</div>  
                             </div>
                         </div>                           
@@ -120,6 +120,12 @@
         mounted: function () {
             //all the jquery
             Game.play(deck);
+        },
+        methods: {
+            selectBet: function (val){              
+                Game.setBetAmount(val);
+                // Game.calcDraw();
+            }
         }
     }
 </script>

@@ -108,6 +108,7 @@ class Game{
     static dealerLogic(playerScore, compCurrScore){
         if(compCurrScore > 21){
             $("#newGame").prop("disabled", true);
+            this.calcWinnings();
             console.log("DEALER BUST!!!");
         }
         else if(compCurrScore < playerScore){
@@ -118,9 +119,11 @@ class Game{
             $("#stick").trigger("click");
         }else if(compCurrScore === playerScore){
             $("#newGame").prop("disabled", true);
+            this.calcDraw();
             console.log("EQUAL SO DRAW!!");
         }else if(compCurrScore > playerScore){
             $("#newGame").prop("disabled", true);
+            this.calcLoss();
             console.log("COMP WINS!!");
         }else{
             console.log("wtf you doing?");
@@ -141,6 +144,7 @@ class Game{
             console.log("player at deal: " + playerScore);
             if(computerScoreDeal > playerScore){
                 console.log("computer wins at deal");
+                this.calcLoss();
                 return;
             }
             let dealerBoxes = ["#2", "#3", "#4"];
@@ -197,10 +201,42 @@ class Game{
            // }
         })
     }
+
+    static calcWinnings(betAmount, bankAmount){
+        bankAmount += betAmount * betAmount;
+        console.log(bankAmount);
+        //return parseFloat($('#quantity').val(bankAmount));
+    }
+
+    static calcLoss(betAmount, bankAmount){
+        bankAmount -= betAmount;
+        console.log(bankAmount);
+        return bankAmount;
+        //return parseFloat($('#quantity').val(bankAmount));
+    }
+
+    static calcDraw(betAmount, bankAmount){
+        betAmount = betAmount;
+        console.log(betAmount);
+        //return $('#quantity').val(betAmount).toFixed(2);
+    }
+
+    static setBetAmount(betAmount){
+        console.log(betAmount);
+        //$("#qunatity").html(betAmount);
+        return betAmount;
+    }
+
+    static getBankAmount(){
+        return parseFloat($('#bank').val());
+    }
+
     static play(){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
+        let betAmount = this.setBetAmount();
+        let bankAmount = this.getBankAmount();
         let imgArray = [];
         let deck = this.generateDeck();
         this.shuffle(deck);
