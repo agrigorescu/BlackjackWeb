@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha test",
-    "start": "webpack --progress && node app.js"
-    //"prepublish": "webpack --progress"
+    "start": "webpack --progress && node app.js",
+    "prepublish": "webpack --progress"
   },
   "repository": {
     "type": "git",
