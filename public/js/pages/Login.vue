@@ -1,23 +1,25 @@
 <template>
     <main-layout>
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <!--<i class="material-icons prefix">Username</i>-->
-                        <p> Username is:{{ userName }} </p>
-                        <input v-model="userName" id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix"></label>
+        <div class="row container" id="title">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <!--<i class="material-icons prefix">Username</i>-->
+                            <p> Username{{ userName }} </p>
+                            <input v-model="userName" id="icon_prefix" type="text" class="validate">
+                            <label for="icon_prefix"></label>
+                        </div>
+                        <div class="col s12">
+                            <!--<i class="material-icons prefix">Password</i>-->
+                            <p> Password:{{ password }} </p>
+                            <input v-model="password" id="password" type="password" class="validate">
+                            <label for="passord"></label>
+                        </div>
                     </div>
-                    <div class="input-field col s6">
-                        <!--<i class="material-icons prefix">Password</i>-->
-                        <p> Password is:{{ password }} </p>
-                        <input v-model="password" id="password" type="password" class="validate">
-                        <label for="passord"></label>
-                    </div>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action" id="submitLogin" v-on:click="submit($event)">Log In</button>
-            </form>
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="submitLogin" v-on:click="submit($event)">Log In</button>
+                </form>
+            </div>
         </div>
     </main-layout>
 </template>
