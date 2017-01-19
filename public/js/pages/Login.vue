@@ -24,7 +24,7 @@
         <div class="row container" id="title">
             <div class="row">
                 <form @submit.prevent="validateForm('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
-                    <legend>Login</legend>
+                    <!--<legend>Login</legend>-->
                     <div class="column is-12">
                         <label class="label">Username</label>
                         <p class="control has-icon has-icon-right">
@@ -35,7 +35,7 @@
                         </p>
 
                     </div>
-                    <div class="input-field col s12 form-group" :class="{'has-error': errors.has('password') }">
+                    <div class="column is-12">
                         <label class="label">Password</label>
                         <p class="control has-icon has-icon-right">
                             <input v-model="password" id="password" v-validate.initial="password" data-vv-rules="required|alpha|min:6" :class="{'input': true, 'is-danger': errors.has('password', 'form-2') }"
