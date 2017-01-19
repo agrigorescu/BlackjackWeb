@@ -214,7 +214,6 @@ class Game{
            // }
         })
     }
-
     static calcWinnings(betAmount, bankAmount){
         bankAmount += betAmount * betAmount;
         console.log(bankAmount);
@@ -227,23 +226,19 @@ class Game{
         return bankAmount;
         //return parseFloat($('#quantity').val(bankAmount));
     }
-
     static calcDraw(betAmount, bankAmount){
         betAmount = betAmount;
         console.log(betAmount);
         //return $('#quantity').val(betAmount).toFixed(2);
     }
-
     static setBetAmount(betAmount){
         console.log(betAmount);
         //$("#qunatity").html(betAmount);
         return betAmount;
     }
-
     static getBankAmount(){
         return parseFloat($('#bank').val());
     }
-
     static play(){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
