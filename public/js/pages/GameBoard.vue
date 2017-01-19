@@ -29,45 +29,82 @@
                     <button type="input" id="twist" disabled>TWIST</button>
                     <button type="input" id="newGame" class="newGame">NEW GAME</button>
                 </div>
-                <div id="game">
-                    <div id="betAmount"></div>
-                    <div id="totalAmount"></div>
-                    <div id="dealer"></div>
-
-                    <div id="bet">
-                        <button id="reset">Reset</button>
-                        <div class="fish red">
-                            <button type="button">5p</button>
+            </div>
+            <div class="container bettingBoard">
+                    <div class="row">
+                        <div class="col s12">
+                            <form id='myform' method='POST' action='#'>
+                                <div>
+                                    <label for="bank">Your Amount</label>k
+                                    <input class='qty' id="bank" type='text' name='bank' value='500'/>
+                                </div>
+                                <div>
+                                    <label for="quantity">Bet Amount</label>
+                                    <input class='qty' id="quantity" type='text' name='quantity' value='0'/>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="fish orange">
-                            <button type="button">10p</button>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <div id="resetChip" class="fish gray">
+                                <div>Reset</div>
+                            </div>
                         </div>
-
-                        <div class="fish green">
-                            <button type="button">20p</button>
+                        <div class="col s4">
+                            <div id="redChip" class="fish red">
+                                <div class="value">5p</div>
+                            </div>
+                        </div> 
+                        <div class="col s4">
+                            <div id="orangeChip" class="fish orange">
+                                <div class="value">10p</div>
+                            </div>
                         </div>
-
-                        <div class="fish blue">
-                            <button type="button">50p</button>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                                <div id="greenChip" class="fish green">
+                                    <div class="value">20p</div>
+                                </div>
                         </div>
-
-                        <div class="fish black">
-                            <button type="">£1</button>
+                        <div class="col s4">
+                            <div id="blueChip" class="fish blue">
+                                <div class="value">50p</div>
+                            </div>
+                        </div>
+                        <div class="col s4">
+                            <div id="blackChip" class="fish black">
+                                <div>£1</div>  
+                            </div>
+                        </div>                           
+                    </div>
+                    <div class="row">
+                        <div class="col s12 chipStackBoard">
+                            <div class="col s12 chipStack">
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            
                         </div>
                     </div>
                 </div>
+                <div id="bettingButtons">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right"></i>                        
+                    </button>
+                    <button class="btn waves-effect waves-light" id="continue" title="Continue the game with original bet">Continue (1x)</button>                
+                    <button class="btn waves-effect waves-light" id="double" title="Continue the game, but double the bet">Double (2x)</button>
+                    <button class="btn waves-effect waves-light" id="quit" title="Quit the game!">Quit Game</button>
+                </div>
+
                 <div id="scoreboard">
                     <div id="myscore">me: 1</div>
                     <div id="compscore">dealer: 2</div>
                 </div>
-                <div id="blackJackButtons">
-                    <button data-id="quit" title="Quit the game!">Quit Game</button>
-                    <button data-id="continue" title="Continue the game with original bet">Continue (1x)</button>
-                    <button data-id="double" title="Continue the game, but double the bet">Double (2x)</button>
-                </div>
             </div>
-        </div>
         <!--end of the game board-->
     </main-layout>
 </template>
