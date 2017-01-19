@@ -1,29 +1,8 @@
 <template>
-    <main-layout>
-
-        <!--<div class="row container" id="title">
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="col s12">-->
-        <!--<i class="material-icons prefix">Username</i>-->
-        <!--<p> Username: {{ userName }} </p>
-                            <input v-model="userName" id="icon_prefix" type="text" class="validate">
-                            <label for="icon_prefix"></label>
-                        </div>
-                        <div class="col s12">-->
-        <!--<i class="material-icons prefix">Password</i>-->
-        <!--<p> Password: {{ password }} </p>
-                            <input v-model="password" id="password" type="password" class="validate">
-                            <label for="passord"></label>
-                        </div>
-                    </div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" id="submitLogin" v-on:click="submit($event)">Log In</button>
-                </form>
-            </div>-->
+    <main-layout>     
         <div class="row container" id="title">
             <div class="row">
-                <form @submit.prevent="validateForm('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
+                <form @submit.prevent="validateBeforeSubmit('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
                     <legend>Login</legend>
                     <div class="column is-12">
                         <label class="label">Username</label>
@@ -33,9 +12,8 @@
                             <i v-show="errors.has('username', 'form-2')" class="fa fa-warning"></i>
                             <span v-show="errors.has('username', 'form-2')" class="help is-danger">{{ errors.first('username', 'form-2') }}</span>
                         </p>
-
                     </div>
-                    <div class="input-field col s12 form-group" :class="{'has-error': errors.has('password') }">
+                    <div class="icolumn is-12" >
                         <label class="label">Password</label>
                         <p class="control has-icon has-icon-right">
                             <input v-model="password" id="password" v-validate.initial="password" data-vv-rules="required|alpha|min:6" :class="{'input': true, 'is-danger': errors.has('password', 'form-2') }"
@@ -46,7 +24,7 @@
 
                     </div>
                     <p class="control">
-                        <button class="button btn waves-effect waves-light is-primary" type="submit" name="button" v-on:click="submit($event)">Log in</button>
+                        <button class="button btn waves-effect waves-light is-primary" type="submit" name="button" v-on:click="submitForm($event)">Log in</button>
                     </p>
                 </form>
             </div>
@@ -73,17 +51,30 @@
             }
         },
         
-        methods: {
-            submit: function (event) {
-                event.preventDefault();
-                console.log({ data: { userName: this.username, password: this.password } });
+     methods: {
+            validateBeforeSubmit(e) {
+                this.$validator.validateAll();
+                if (!this.errors.any()) {
+                    this.submitForm()
+                }
+            },
+            submitForm() {
+                this.formSubmitted = true;
+                console.log({data:{username:this.username,password:this.password}});
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
-                    this.$cookie.set('loginCookie',result.success,1);
+                    console.log("this is what goes in the cookie");
+                    console.log(result.body.success);
+                    let cookie = result.body.success;
+                    this.$cookie.set('idCookie',cookie.id,1);
+                    this.$cookie.set('tokenCookie',cookie.token,1);
+
+                    window.location.href = "http://localhost:3000/accountInfo";
+
                 })
                 .catch(err => {
-                    
+                    console.log("error");
                 });
             }
         },
