@@ -63,13 +63,14 @@ div.red { background: rgb(175, 17, 36) }
 
 div.gray { background: rgb(109, 109, 109) }
 
-.qty {
+input.qty {
     width: 40%;
     height: 25%;
     text-align: center;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 15px;
 }
 
 .chip {
@@ -78,22 +79,3 @@ div.gray { background: rgb(109, 109, 109) }
     top: 75%;
 }
 
-.chipRed {
-    left: 10px;
-}
-
-.chipOrange {
-    left: 90px;
-}
-
-.chipGreen {
-    left: 170px;
-}
-
-.chipBlue {
-    left: 250px;
-}
-
-.chipBlack {
-    left: 330px;
-}

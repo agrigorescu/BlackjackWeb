@@ -1,3 +1,4 @@
+"use strict";
 class Account {
     static showAccount(req, res) {
         res.render("account");

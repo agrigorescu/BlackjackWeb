@@ -1,3 +1,4 @@
+"use strict";
 class Homepage {
     static showHomepage(req, res) {
         res.render("homepage");

@@ -166,4 +166,27 @@ p{
 }
 
 #dropdown1, .miniMenu{
+<<<<<<< HEAD
     top: 259.906px;*/
+=======
+    top: 259.906px;
+*/
+#scoreboard{
+    position:absolute;
+    top:120px;
+    left:80px;
+    border: 2px solid black;
+    width:100px;
+    height:60px;
+}
+#myscore{
+    padding:3px;
+}
+#compscore{
+    padding:3px;
+}
+#miniMenu, #miniMenu2, #miniMenu3{
+    margin-top: -44%;
+}
+
+>>>>>>> ef94e2f5328d01ea41f20b5d2cca4ea87f94e2fb
