@@ -64,7 +64,7 @@
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
-                    this.$cookie.set('loginCookie',result.success,1);
+                    this.$cookie.set('loginCookie',success,1);
                 })
                 .catch(err => {
                     res.status(400).send({sucess:"Not done"});
