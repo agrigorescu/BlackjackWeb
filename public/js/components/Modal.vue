@@ -3,13 +3,6 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-
-          <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
-          </div>
-
           <div class="modal-body">
             <slot name="body">
               <div v-if="!formSubmitted">
@@ -41,6 +34,7 @@
         data: function () {
                 return {
                     friendEmail: '',
+                    showModal: false,
                     existingUserId: '',
                     formSubmitted: false
                 }

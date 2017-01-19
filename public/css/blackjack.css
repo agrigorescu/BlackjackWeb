@@ -70,10 +70,15 @@ h1, h2, h4, h5, h6{
 
 p{
     font-family: 'Abel', sans-serif;
+    color: #ffffff;
 }
 
 #blueChip{
     margin-top: -39%;
+}
+
+.label{
+    font-family: 'Abel', sans-serif;
 }
 /*end of font css*/
 
@@ -161,16 +166,7 @@ p{
 }
 /*end of the forms css*/
 
-/*#miniMenu, #miniMenu2, #miniMenu3{
-    margin-top: -44%;
-}
 
-#dropdown1, .miniMenu{
-<<<<<<< HEAD
-    top: 259.906px;*/
-=======
-    top: 259.906px;
-*/
 #scoreboard{
     position:absolute;
     top:120px;
@@ -185,8 +181,100 @@ p{
 #compscore{
     padding:3px;
 }
-#miniMenu, #miniMenu2, #miniMenu3{
+
+.input{
+    background-color: red;
+}
+/*#miniMenu, #miniMenu2, #miniMenu3{
     margin-top: -44%;
+}*/
+
+
+/*start new user page - register form section*/
+.input-field{
+    font-family: 'Abel', sans-serif;
 }
 
->>>>>>> ef94e2f5328d01ea41f20b5d2cca4ea87f94e2fb
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+    border-bottom: 2px solid #fffb8a;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 2px solid #fffb8a;
+    box-shadow: 0 2px 0 0 #fffb8a;
+    font-family: 'Abel', sans-serif;
+}
+
+.input-field input[type=email]:focus {
+    border-bottom: 2px solid #fffb8a;
+    box-shadow: 0 2px 0 0 #fffb8a;
+    font-family: 'Abel', sans-serif;
+}
+
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #fffb8a;
+    box-shadow: 0 2px 0 0 #fffb8a;
+    font-family: 'Abel', sans-serif;
+}
+
+/*button section*/
+.btn {
+    background-color: #272828;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.btn:active {
+    background-color: #272828;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.btn:hover {
+    background-color: #272828;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.btn:valid {
+    background-color: #272828;
+    font-family: 'Cinzel Decorative', cursive;
+}
+/*end of button css*/
+
+/*start of line css*/
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+   border-bottom: 1px solid #ffd48a !important;
+   box-shadow: 0 1px 0 0 #ffd48a !important;
+}
+/*end of line css*/
+/*end new user page - register form section*/
+/*----------------------------------------------------------------*/
+
+/*start of media querys */
+@media screen and (min-width: 1280px) {
+    #login{
+        margin-top: 64.5%;
+        margin-left: 32%;
+        list-style: none;
+        background-color: transparent;
+    }
+
+    #register{
+        margin-top: -3%;
+        margin-left: 62.9%;
+        list-style: none;
+        background-color: transparent;
+    }
+}
+/*end of media querys */
+/*----------------------------------------------------------------*/

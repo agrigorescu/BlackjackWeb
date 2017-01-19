@@ -13,12 +13,10 @@ const successController = require("../controllers/successController")
 router.post("/login", (req,res) => {
     res.status(201).send({sucess: "done"});
 });
+
 router.post("/registration", (req,res) => {
     res.status(201).send({success: "Done"});
 });
-// router.get('/success', (req, res) => {
-//     res.sendFile(`success.html`,{root:path.resolve('./public')});
-// });
 
 router.get('*', (req, res) => {
     res.sendFile(`index.html`,{root:path.resolve('./public')});
