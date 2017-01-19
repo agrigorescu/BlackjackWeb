@@ -1,7 +1,7 @@
 <template>
     <main-layout>
         <div class="row">
-            <form @submit.prevent="validateForm('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
+            <form @submit.prevent="validateBeforeSubmit('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
                 <legend>Form 2</legend>
                 <div class="column is-12">
                     <label class="label">Username</label>
@@ -24,7 +24,7 @@
 
                 </div>
                 <p class="control">
-                    <button class="button is-primary" type="submit" name="button" v-on:click="submit($event)">Log in</button>
+                    <button class="button is-primary" type="submit" name="button" v-on:click="submitForm($event)">Log in</button>
                     <button class="button is-danger" type="button" name="button" @click="errors.clear('form-2')">Clear</button>
                 </p>
             </form>
@@ -51,17 +51,23 @@
             }
         },
         
-        methods: {
-            submit: function (event) {
-                event.preventDefault();
-                console.log({ data: { userName: this.username, password: this.password } });
+     methods: {
+            validateBeforeSubmit(e) {
+                this.$validator.validateAll();
+                if (!this.errors.any()) {
+                    this.submitForm()
+                }
+            },
+            submitForm() {
+                this.formSubmitted = true;
+                console.log({data:{username:this.username,password:this.password}});
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/login',params:{username:this.username,password:this.password}})
                 .then(result => {
                     //store token and ID
                     this.$cookie.set('loginCookie',result.success,1);
                 })
                 .catch(err => {
-                    
+                    res.status(400).send({sucess:"Not done"});
                 });
             }
         },

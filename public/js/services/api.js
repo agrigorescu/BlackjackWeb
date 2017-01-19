@@ -14,7 +14,7 @@ class ApiService {
 
                 switch (obj.method) {
                     case "POST":
-                        Vue.http.post(obj.path, obj.params, {headers: {"x-access-token": '', "x-access-username":''}}).then((result) => {
+                        Vue.http.post(obj.path, obj.params).then((result) => {
                             resolve(result);
                         }, (err) => {
                             reject(err);
