@@ -167,8 +167,6 @@ class Game{
         // arr is only spliting each individual card that is dealt
         // cards is accumulative array of cards without being split
         let arr = cards[counter-1].toString().split('');
-        console.log("card:");
-        let sum = 0;
         if(arr.length === 3){
             score+=10;
             scoreArray.push(score);
@@ -185,7 +183,7 @@ class Game{
             score+= parseInt(arr[0]);
             scoreArray.push(score);
         }
-        sum = scoreArray.reduce((a, b) => a + b, 0);
+        let sum = scoreArray.reduce((a, b) => a + b, 0);
         return sum;
     }
     static reset(){
