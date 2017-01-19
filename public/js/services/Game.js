@@ -150,7 +150,9 @@ class Game{
             console.log("computer at deal:  " + computerScoreDeal);
             console.log("player at deal: " + playerScore);
             if(computerScoreDeal > playerScore){
-                console.log("computer wins at deal");
+                // console.log("computer wins at deal");
+                // return;
+                this.dealerLogic(playerScore, computerScore, compCards);
                 return;
             }
             let dealerBoxes = ["#2", "#3", "#4"];
