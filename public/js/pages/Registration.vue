@@ -89,7 +89,7 @@
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/register',params:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}})
                 .then(result => {
                     console.log("data sent");
-                    window.location.href = "http://localhost:3000/login";
+                    window.location.href = "http://blackjackwebtest.herokuapp.com/login";
                 })
                 .catch(err => {
                     console.log("error");
