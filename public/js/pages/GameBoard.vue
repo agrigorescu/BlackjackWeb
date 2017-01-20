@@ -12,6 +12,13 @@
                 <div class="box" id="3">3</div>
                 <div class="box" id="4">4</div>
             </div>
+            <div class="row" id="player">
+                <div class="box" id="5">5</div>
+                <div class="box" id="6">6</div>
+                <div class="box" id="7">7</div>
+                <div class="box" id="8">8</div>
+                <div class="box" id="9">9</div>
+            </div>
             <!--<div class="row">
              <div id="gameBoard">
                 <div id="computer">
@@ -126,6 +133,9 @@
         },
         mounted: function () {
             //all the jquery
+            let img = new Image();
+            img.src ="card_images/Kh.png";
+            $("#0").css("background-image", 'url(' +img.src+ ')');
             Game.play(deck);
         },
         methods: {
