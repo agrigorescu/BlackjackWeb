@@ -55,14 +55,14 @@
                 <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" class="newGame">NEW GAME</button>
             </div>
+            <div id="gamebuttons">
+                <button type="input" id="stick" class="stick" disabled>STICK</button>
+                <button type="input" id="twist" disabled>TWIST</button>
+                <button type="input" id="newGame" class="newGame">DEAL</button>
+                <button type="input" id="reset">RESET</button>
+            </div>
             <!--<div class="row">
 
-                <div id="gamebuttons">
-                    <button type="input" id="stick" class="stick" disabled>STICK</button>
-                    <button type="input" id="twist" disabled>TWIST</button>
-                    <button type="input" id="newGame" class="newGame">NEW GAME</button>
-                    <button type="input" id="reset">RESET</button>
-                </div>
             </div>
             <div class="container bettingBoard">
                     <div class="row">
