@@ -5,7 +5,14 @@
 
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
-            <div class="row">
+            <div class="row" id="computer">   
+                <div class="box" id="0">0</div>
+                <div class="box" id="1">1</div>
+                <div class="box" id="2">2</div>
+                <div class="box" id="3">3</div>
+                <div class="box" id="4">4</div>
+            </div>
+            <!--<div class="row">
              <div id="gameBoard">
                 <div id="computer">
                     <p>computer / dealer</p>
@@ -103,7 +110,7 @@
                     <div id="myscore">me: 1</div>
                     <div id="compscore">dealer: 2</div>
                 </div>
-            </div>
+            </div>-->
             </div>
         <!--end of the game board-->
     </main-layout>

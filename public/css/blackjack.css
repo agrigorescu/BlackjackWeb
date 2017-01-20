@@ -71,6 +71,12 @@ nav{
     background-color: transparent
 }
 
+#computer{ 
+    position: relative;
+    z-index: 15;
+    margin-top: 13%;
+    margin-left: 14%;
+}
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
 }*/
@@ -123,6 +129,7 @@ p{
 #gameBoard{
     position: fixed;
     z-index: 0;
+    margin-top: 4.5%;
 }
 /*end of images css*/
 
@@ -137,8 +144,8 @@ p{
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 15%;
-    height: 200px;
+    width: 12%; /* use to be 15%*/
+    height: 140px; /* use to be 200%*/
 }
 
 #accountInfo{
