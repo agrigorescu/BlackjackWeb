@@ -50,7 +50,7 @@
                 <div class="box" id="8">8</div>
                 <div class="box" id="9">9</div>
             </div>
-            <div class="row" id="gameButtons">
+            <div class="row" id="gameButtons" style="position:absolute">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
                 <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" class="newGame">DEAL</button>
