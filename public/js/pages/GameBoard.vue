@@ -28,6 +28,7 @@
                     <button type="input" id="stick" class="stick" disabled>STICK</button>
                     <button type="input" id="twist" disabled>TWIST</button>
                     <button type="input" id="newGame" class="newGame">NEW GAME</button>
+                    <button type="input" id="reset">RESET</button>
                 </div>
             </div>
             <div class="container bettingBoard">
@@ -113,14 +114,13 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     const Game = require("../services/Game");
-    let deck = Game.generateDeck();
     export default {
         components: {
             MainLayout
         },
         mounted: function () {
             //all the jquery
-            Game.play(deck);
+            Game.play();
         },
         methods: {
             selectBet: function (val){              
