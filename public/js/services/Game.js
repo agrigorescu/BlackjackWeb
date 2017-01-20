@@ -32,6 +32,7 @@ class Game{
     }
     static shuffle(deck){   // cards are shuffled and dealt & spliced from deck - NOT random allocation
         let m = deck.length;
+        let n = 0;
         let currentElement; 
         let index;
         // do randomization process 5 times to shuffle thoroughly
@@ -51,39 +52,39 @@ class Game{
     static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, computerCards, dealerDealtCards){
         // the 4 card holder id's for cards to be dealt to start
         let dealID = ["#0", "#1", "#5", "#6"];
-            let counter1 = 0;
-            let counter2 = 0;
-            var compCurrScore = 0;
-            var myCurrScore = 0;
-            // after deal enable stick and twist buttons
-            $("#stick").prop("disabled", false);
-            $("#twist").prop("disabled", false);
-            for(let j=0; j<2; j++){
-                counter1++;
-                if(j===0){
-                    $(dealID[j]).html(imgArray[0]);
-                }else{
-                    let img = new Image();
-                    img.src = "/../../card_images/blank.jpg";
-                    dealerDealtCards.push(imgArray[0]);
-                    $(dealID[j]).html(img);                    
-                }
-                computerCards.push(deck[0]);
-                console.log(computerCards);
-                imgArray.splice(0, 1);
-                deck.splice(0, 1);
-                compCurrScore = this.score(computerCards, counter1, compScoreArray, compScore, "dealer");
+        let counter1 = 0;
+        let counter2 = 0;
+        var compCurrScore = 0;
+        var myCurrScore = 0;
+        // after deal enable stick and twist buttons
+        $("#stick").prop("disabled", false);
+        $("#twist").prop("disabled", false);
+        for(let j=0; j<2; j++){
+            counter1++;
+            if(j===0){
+                $(dealID[j]).html(imgArray[0]);
+            }else{
+                let img = new Image();
+                img.src = "/../../card_images/blank.jpg";
+                dealerDealtCards.push(imgArray[0]);
+                $(dealID[j]).html(img);                    
             }
-            for(let j=0; j<2; j++){
-                counter2++;
-                $(dealID[j+2]).html(imgArray[0]);
-                myCards.push(deck[0]);
-                imgArray.splice(0, 1);
-                deck.splice(0, 1);
-                myCurrScore = this.score(myCards, counter2, myScoreArray, myScore, "player");
-            }
-            console.log("dealt computer hand " + compCurrScore);
-            console.log("dealt player hand " + myCurrScore);
+            computerCards.push(deck[0]);
+            console.log(computerCards);
+            imgArray.splice(0, 1);
+            deck.splice(0, 1);
+            compCurrScore = this.score(computerCards, counter1, compScoreArray, compScore, "dealer");
+        }
+        for(let j=0; j<2; j++){
+            counter2++;
+            $(dealID[j+2]).html(imgArray[0]);
+            myCards.push(deck[0]);
+            imgArray.splice(0, 1);
+            deck.splice(0, 1);
+            myCurrScore = this.score(myCards, counter2, myScoreArray, myScore, "player");
+        }
+        console.log("dealt computer hand " + compCurrScore);
+        console.log("dealt player hand " + myCurrScore);
     }
     static dealCards(deck, imgArray, counter, cards, boxes){
         cards.push(deck[0]);
@@ -148,8 +149,6 @@ class Game{
     static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards){ 
         let playerScore = 0;
         let computerScoreDeal = 0;
-        // use recursion once score calculated i.e. < 17 || myScore -> twist
-        // let scoreArray = [];
         $("#stick").unbind().on("click", () => {
             $("#1").html(dealerDealtCards[0]);
             counter++;
@@ -162,10 +161,13 @@ class Game{
                 return;
             }
             $("#stick").prop("disabled", true); 
-            $("#twist").prop("disabled", true); 
+            $("#twist").prop("disabled", true);
+            if(computerScoreDeal > 17 && computerScoreDeal == playerScore){
+                console.log("DRAW!!");
+                $("#newGame").prop("disabled", true);
+            } 
             if(computerScoreDeal > playerScore){
                 console.log("computer wins at deal");
-                $("#newGame").prop("disabled", true);
              //   this.calcLoss();
                 return;
             }
@@ -211,6 +213,11 @@ class Game{
                 $(`#${j}`).html(img);
             }
         })
+    }
+    static init(){
+        $("#newGame").on("click", () => {
+            this.play();
+        });
     }
     static play(){
         // x-ScoreArrays' are for holding numbers of the scores
