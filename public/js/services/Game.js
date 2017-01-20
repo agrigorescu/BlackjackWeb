@@ -127,6 +127,7 @@ class Game{
             $("#newGame").prop("disabled", true);
            // this.calcWinnings();
             console.log("DEALER BUST!!!");
+            console.log("YOU WIN!!");
         }
         else if(compCurrScore < playerScore){
             console.log("less than player score hence twist");

@@ -2,7 +2,7 @@
     <main-layout>
         <!--start of the game board-->
 
-
+        
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="overide chipsStack">
@@ -53,16 +53,16 @@
             <div class="row" id="gameButtons">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
                 <button type="input" id="twist" disabled>TWIST</button>
-                <button type="input" id="newGame" class="newGame">NEW GAME</button>
-            </div>
-            <div id="gamebuttons">
-                <button type="input" id="stick" class="stick" disabled>STICK</button>
-                <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" class="newGame">DEAL</button>
                 <button type="input" id="reset">RESET</button>
             </div>
             <!--<div class="row">
-
+                <div style="position:absolute; top:10px" id="gamebuttons">
+                    <button type="input" id="stick" class="stick" disabled>STICK</button>
+                    <button type="input" id="twist" disabled>TWIST</button>
+                    <button type="input" id="newGame" class="newGame">DEAL</button>
+                    <button type="input" id="reset">RESET</button>
+                </div>
             </div>
             <div class="container bettingBoard">
                     <div class="row">
