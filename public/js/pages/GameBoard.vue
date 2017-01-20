@@ -2,12 +2,12 @@
     <main-layout>
         <!--start of the game board-->
 
-        
+        <button type="submit" id"redChip" v-on:click="printTest"></button>
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="overide chipsStack">
-                <div v-on:click="selectBet(5)" id="redChip" class="fish red">
-                    <div class="value">5p</div>
+                <div id="redChip" class="fish red">
+                    <button type="input" v-on:click="printTest">5p</button>
                 </div>
             </div>
             <div class="overide chipsStack">
@@ -103,6 +103,8 @@
                                     <div class="value">20p</div>
                                 </div>
                         </div>
+                      
+                      
                         <div class="col s4">
                             <div v-on:click="selectBet(50)" id="blueChip" class="fish blue">
                                 <div class="value">50p</div>
@@ -158,8 +160,12 @@
         },
         methods: {
             selectBet: function (val){              
-                Game.setBetAmount(val);
                 // Game.calcDraw();
+                console.log(val);
+            },
+            printTest: function(){
+
+                console.log("helo");
             }
         }
     }

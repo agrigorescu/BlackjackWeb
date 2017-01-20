@@ -11,7 +11,132 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 class Game{
-    static generateDeck(){
+    static chipManagement(){
+        let zIndex = 0;
+        let height = 0;
+        let chipArray = [];
+        let $counter = 0;
+        let $bank = 500;
+        $("#double").click(function(){
+            if($counter == 0){
+                return;
+            }
+            else {
+                $counter *= 2;
+                $bank - counter;
+            }
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#resetChip").click(function(){
+            //Empty all of the chips in the chipStack div
+            height = 0;
+            $bank = 500;
+            $counter = 0;
+            $('.chipStack').empty();
+            $("#redChip").show();
+            $("#blueChip").show();
+            $("#greenChip").show();
+            $("#blackChip").show();
+            $("#orangeChip").show();
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#redChip").click(function(){
+            console.log("red chip clicked");
+            $("#blueChip").hide();
+            $("#greenChip").hide();
+            $("#blackChip").hide();
+            $("#orangeChip").hide();
+            $('#redChip').clone().prependTo('.chipStack').addClass("chip").animate({
+                'z-index' : zIndex++,
+                'marginTop' : height-=5
+            });
+            $counter += 0.05;
+            $bank -= 0.05;
+            $('.chipStackBoard').css({
+                position: "absolute",
+            });
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#blueChip").click(function(){
+            $("#redChip").hide();
+            $("#greenChip").hide();
+            $("#blackChip").hide();
+            $("#orangeChip").hide();
+            $('#blueChip').clone().appendTo('.chipStack').addClass("chip").animate({
+                'z-index' : zIndex++,
+                'margin-top' : height-=5
+            });
+            $counter += 0.50;
+            $bank -= 0.50;
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#orangeChip").click(function(){
+            $("#blueChip").hide();
+            $("#greenChip").hide();
+            $("#blackChip").hide();
+            $("#redChip").hide();
+            $('#orangeChip').clone().appendTo('.chipStack').addClass("chip").animate({
+                'z-index' : zIndex++,
+                'margin-top' : height-=5
+            });
+            $counter += 0.10;
+            $bank -= 0.10;
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#blackChip").click(function(){
+            $("#blueChip").hide();
+            $("#greenChip").hide();
+            $("#redChip").hide();
+            $("#orangeChip").hide();
+            $('#blackChip').clone().appendTo('.chipStack').addClass("chip").animate({
+                'z-index' : zIndex++,
+                'margin-top' : height-=5
+            });
+            $counter += 1;
+            $bank -= 1;
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+        $("#greenChip").click(function(){
+            $("#blueChip").hide();
+            $("#redChip").hide();
+            $("#blackChip").hide();
+            $("#orangeChip").hide();
+            $('#greenChip').clone().appendTo('.chipStack').addClass("chip").animate({
+                'z-index' : zIndex++,
+                'margin-top' : height-=5
+            });
+            $counter += 0.20;
+            $bank -= 0.20;
+            $('#quantity').val($counter.toFixed(2));
+            $('#bank').val($bank.toFixed(2));
+        });
+    }
+    static calcWinnings(betAmount, bankAmount){
+       bankAmount += betAmount * betAmount;
+       console.log(bankAmount);
+      //return parseFloat($('#quantity').val(bankAmount));
+    }
+    static calcLoss(betAmount, bankAmount){
+         bankAmount -= betAmount;
+         console.log(bankAmount);
+         return bankAmount;
+         //return parseFloat($('#quantity').val(bankAmount));
+    }
+    static setBetAmount(betAmount){
+         console.log(betAmount);
+         //$("#quantity").html(betAmount);
+         return betAmount;
+     }
+     static getBankAmount(){
+         console.log("A");
+     }
+     static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
         const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
@@ -240,6 +365,7 @@ class Game{
         this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
         this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
         this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
+        this.chipManagement();
         this.resetBoard();  
     }
 }
