@@ -7,6 +7,17 @@ div.container.bettingBoard {
     position: relative;
 }
 
+div.overide {
+    position: fixed;
+}
+
+div.chipsStack {
+    /*position: relative;*/
+    z-index: 15;
+    margin-top: 3%;
+    margin-left: -8%;
+}
+
 div.container.chipStackBoard {
     background: rgba(0, 0, 0, 0.85);
     border-radius: 25px;
@@ -23,7 +34,7 @@ label {
 }
 
 div.fish {
-    float: left;
+    position: relative;
     width: 70px;
     height: 70px;
     margin: 10px;
@@ -45,13 +56,14 @@ div.fish div {
 	text-shadow: 0.1em 0.2em 0.07em rgb(82, 82, 82);
 }
 
-div.orange { background: rgb(223, 99, 1) }
+div.orange { margin-top: 83%; background: rgb(223, 99, 1) }
 
-div.green { background: rgb(75, 158, 0) }
+div.green { margin-top: 173%; background: rgb(75, 158, 0) }
 
-div.blue { background: rgb(4, 83, 145) }
+div.blue { margin-top: 268%; background: rgb(4, 83, 145) }
 
 div.black {
+    margin-top: 363%;
     background: rgb(36, 36, 36);
     color: #eee;
     box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
@@ -60,9 +72,9 @@ div.black {
     border: 10px dotted #ccc;
 }
 
-div.red { background: rgb(175, 17, 36) }
+div.red { margin-top: -4%; background: rgb(175, 17, 36) }
 
-div.gray { background: rgb(109, 109, 109) }
+div.gray { margin-top: 454%; background: rgb(109, 109, 109) }
 
 input.qty {
     width: 40%;
