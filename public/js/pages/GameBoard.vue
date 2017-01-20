@@ -154,14 +154,7 @@
         },
         mounted: function () {
             //all the jquery
-<<<<<<< HEAD
-            let img = new Image();
-            img.src ="card_images/Kh.png";
-            $("#0").css("background-image", 'url(' +img.src+ ')');
-            Game.play(deck);
-=======
             Game.init();
->>>>>>> raf
         },
         methods: {
             selectBet: function (val){              
