@@ -132,7 +132,10 @@ p{
 #homeBackground{
     width: 100%;
 }
-
+#gameButtons{
+    position:absolute;
+    color:red;
+}
 #gameBoard{
     position: fixed;
     z-index: 0;

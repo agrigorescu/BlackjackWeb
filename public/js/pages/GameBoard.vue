@@ -50,11 +50,11 @@
                 <div class="box" id="8">8</div>
                 <div class="box" id="9">9</div>
             </div>
-            <div class="row" id="gameButtons" style="position:absolute">
+            <div class="row" id="gameButtons">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
                 <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" class="newGame">DEAL</button>
-                <button type="input" id="reset">RESET</button>
+                <button type="input" id="reset" disabled>RESET</button>
             </div>
             <!--<div class="row">
                 <div style="position:absolute; top:10px" id="gamebuttons">

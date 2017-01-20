@@ -57,6 +57,7 @@ class Game{
         var compCurrScore = 0;
         var myCurrScore = 0;
         // after deal enable stick and twist buttons
+        $("#reset").prop("disabled", false);
         $("#stick").prop("disabled", false);
         $("#twist").prop("disabled", false);
         for(let j=0; j<2; j++){
