@@ -61,12 +61,13 @@
                     <button type="input" id="stick" class="stick" disabled>STICK</button>
                     <button type="input" id="twist" disabled>TWIST</button>
                     <button type="input" id="newGame" class="newGame">NEW GAME</button>
+                    <button type="input" id="reset">RESET</button>
                 </div>
             </div>
             <div class="container bettingBoard">
                     <div class="row">
                         <div class="col s12">
-                            <form id='myform' method='POST' action='#'>
+                            <form id='myform'>
                                 <div>
                                     <label for="bank">Your Amount</label>
                                     <input class='qty' id="bank" type='text' name='bank' />
@@ -75,6 +76,7 @@
                                     <label for="quantity">Bet Amount</label>
                                     <input class='qty' id="quantity" type='text' name='quantity' />
                                 </div>
+                                <input type="submit" value="Submit">    
                             </form>
                         </div>
                     </div>
@@ -146,17 +148,20 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     const Game = require("../services/Game");
-    let deck = Game.generateDeck();
     export default {
         components: {
             MainLayout
         },
         mounted: function () {
             //all the jquery
+<<<<<<< HEAD
             let img = new Image();
             img.src ="card_images/Kh.png";
             $("#0").css("background-image", 'url(' +img.src+ ')');
             Game.play(deck);
+=======
+            Game.init();
+>>>>>>> raf
         },
         methods: {
             selectBet: function (val){              

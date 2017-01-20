@@ -32,12 +32,13 @@ class Game{
     }
     static shuffle(deck){   // cards are shuffled and dealt & spliced from deck - NOT random allocation
         let m = deck.length;
+        let n = 0;
         let currentElement; 
         let index;
         // do randomization process 5 times to shuffle thoroughly
-        for(let j=0; j<5; j++){
+        for(let j=0; j<100; j++){
             // While there remain elements to shuffle…
-            while(m>0){
+            while(m){
                 // Pick random element --> lim [0, m-1]
                 index = Math.floor(Math.random() * m--);
                 // store shuffled/random element at the end of the array
@@ -48,37 +49,42 @@ class Game{
         }
         return deck;
     }
-    static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards){
+    static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, computerCards, dealerDealtCards){
         // the 4 card holder id's for cards to be dealt to start
+        let dealID = ["#0", "#1", "#5", "#6"];
         let counter1 = 0;
         let counter2 = 0;
         var compCurrScore = 0;
         var myCurrScore = 0;
-        let dealID = ["#0", "#1", "#5", "#6"];
-        $("#newGame").on("click", (e) => {
-            // after deal enable stick and twist buttons
-            $("#stick").prop("disabled", false);
-            $("#twist").prop("disabled", false);
-            e.preventDefault();
-            for(let j=0; j<2; j++){
-                counter1++;
+        // after deal enable stick and twist buttons
+        $("#stick").prop("disabled", false);
+        $("#twist").prop("disabled", false);
+        for(let j=0; j<2; j++){
+            counter1++;
+            if(j===0){
                 $(dealID[j]).html(imgArray[0]);
-                compCards.push(deck[0]);
-                imgArray.splice(0, 1);
-                deck.splice(0, 1);
-                compCurrScore = this.score(compCards, counter1, compScoreArray, compScore, "dealer");
+            }else{
+                let img = new Image();
+                img.src = "/../../card_images/blank.jpg";
+                dealerDealtCards.push(imgArray[0]);
+                $(dealID[j]).html(img);                    
             }
-            for(let j=0; j<2; j++){
-                counter2++;
-                $(dealID[j+2]).html(imgArray[0]);
-                myCards.push(deck[0]);
-                imgArray.splice(0, 1);
-                deck.splice(0, 1);
-                myCurrScore = this.score(myCards, counter2, myScoreArray, myScore, "player");
-            }
-            console.log("dealt computer hand " + compCurrScore);
-            console.log("dealt player hand " + myCurrScore);
-        });
+            computerCards.push(deck[0]);
+            console.log(computerCards);
+            imgArray.splice(0, 1);
+            deck.splice(0, 1);
+            compCurrScore = this.score(computerCards, counter1, compScoreArray, compScore, "dealer");
+        }
+        for(let j=0; j<2; j++){
+            counter2++;
+            $(dealID[j+2]).html(imgArray[0]);
+            myCards.push(deck[0]);
+            imgArray.splice(0, 1);
+            deck.splice(0, 1);
+            myCurrScore = this.score(myCards, counter2, myScoreArray, myScore, "player");
+        }
+        console.log("dealt computer hand " + compCurrScore);
+        console.log("dealt player hand " + myCurrScore);
     }
     static dealCards(deck, imgArray, counter, cards, boxes){
         cards.push(deck[0]);
@@ -89,7 +95,7 @@ class Game{
     static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards){
         // let scoreArray = [];
         // the remaining 3 card holders left for player
-        $("#twist").on("click", () => {
+        $("#twist").unbind().on("click", () => {
             counter++
             let playerBoxes = ["#7", "#8", "#9"];
             this.dealCards(deck, imgArray, counter, myCards, playerBoxes);
@@ -107,12 +113,19 @@ class Game{
         });
     }
     static dealerLogic(playerScore, compCurrScore, compCards){
-        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
+        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore < playerScore){
             console.log("dealer sticks on soft 17");
+            console.log("player wins")
+            $("#newGame").prop("disabled", true);
+        }
+        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore > playerScore){
+            console.log("dealer sticks on soft 17");
+            console.log("computer wins");
+            $("#newGame").prop("disabled", true);
         }
         if(compCurrScore > 21){
             $("#newGame").prop("disabled", true);
-            this.calcWinnings();
+           // this.calcWinnings();
             console.log("DEALER BUST!!!");
         }
         else if(compCurrScore < playerScore){
@@ -123,22 +136,21 @@ class Game{
             $("#stick").trigger("click");
         }else if(compCurrScore === playerScore){
             $("#newGame").prop("disabled", true);
-            this.calcDraw();
+          //  this.calcDraw();
             console.log("EQUAL SO DRAW!!");
         }else if(compCurrScore > playerScore){
             $("#newGame").prop("disabled", true);
-            this.calcLoss();
+          //  this.calcLoss();
             console.log("COMP WINS!!");
         }else{
             console.log("wtf you doing?");
         }
     }
-    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray){ 
+    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards){ 
         let playerScore = 0;
         let computerScoreDeal = 0;
-        // use recursion once score calculated i.e. < 17 || myScore -> twist
-        // let scoreArray = [];
-        $("#stick").on("click", () => {
+        $("#stick").unbind().on("click", () => {
+            $("#1").html(dealerDealtCards[0]);
             counter++;
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
             computerScoreDeal = compScoreArray.reduce((a,b) => a + b, 0);
@@ -149,12 +161,14 @@ class Game{
                 return;
             }
             $("#stick").prop("disabled", true); 
-            $("#twist").prop("disabled", true); 
-            console.log("computer at deal:  " + computerScoreDeal);
-            console.log("player at deal: " + playerScore);
+            $("#twist").prop("disabled", true);
+            if(computerScoreDeal > 17 && computerScoreDeal == playerScore){
+                console.log("DRAW!!");
+                $("#newGame").prop("disabled", true);
+            } 
             if(computerScoreDeal > playerScore){
                 console.log("computer wins at deal");
-                this.calcLoss();
+             //   this.calcLoss();
                 return;
             }
             let dealerBoxes = ["#2", "#3", "#4"];
@@ -190,74 +204,41 @@ class Game{
         let sum = scoreArray.reduce((a, b) => a + b, 0);
         return sum;
     }
-    static reset(){
+    static resetBoard(){
         $("#reset").click(() => {
             $("#newGame").prop("disabled", false);
             for(let j=0; j<10; j++){
                 let img = new Image();
-                img.src = `../card_images/blank.jpg`;
+                img.src = `../../card_images/blank.jpg`;
                 $(`#${j}`).html(img);
             }
-            // myScoreArray = 0;
-            // compScoreArray = 0;
-            // myCards = 0; 
-            // compCards = 0;
-            // myScore = 0;
-            // compScore = 0;
-            // counter = 0;
-            // computerScore = 0;
-            // playerScore = 0;
-            // imgArray = 0;
-            this.play();
-           // }
         })
     }
-    static calcWinnings(betAmount, bankAmount){
-        bankAmount += betAmount * betAmount;
-        console.log(bankAmount);
-        //return parseFloat($('#quantity').val(bankAmount));
-    }
-
-    static calcLoss(betAmount, bankAmount){
-        bankAmount -= betAmount;
-        console.log(bankAmount);
-        return bankAmount;
-        //return parseFloat($('#quantity').val(bankAmount));
-    }
-    static calcDraw(betAmount, bankAmount){
-        betAmount = betAmount;
-        console.log(betAmount);
-        //return $('#quantity').val(betAmount).toFixed(2);
-    }
-    static setBetAmount(betAmount){
-        console.log(betAmount);
-        //$("#qunatity").html(betAmount);
-        return betAmount;
-    }
-    static getBankAmount(){
-        return parseFloat($('#bank').val());
+    static init(){
+        $("#newGame").on("click", () => {
+            this.play();
+        });
     }
     static play(){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
-        let betAmount = this.setBetAmount();
-        let bankAmount = this.getBankAmount();
-        let imgArray = [];
-        let deck = this.generateDeck();
+        var dealerDealtCards = [];
+        var myScoreArray = [];
+        var compScoreArray = [];
+        var myCards = [];
+        var compCards = [];
+        var imgArray = [];
+        var myScore = 0;    
+        var compScore = 0;
+        var counter = 0;
+        var deck = this.generateDeck();
         this.shuffle(deck);
         imgArray = this.createImagesArray(deck);
-        let myScoreArray = [];
-        let compScoreArray = [];
-        let myCards = [];
-        let compCards = [];
-        let myScore = 0;
-        let compScore = 0;
-        let counter = 0;
-        this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards);
+        this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
         this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
-        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray);
-        this.reset();
+        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
+        this.resetBoard();  
     }
 }
 module.exports = Game;
