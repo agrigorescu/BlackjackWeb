@@ -213,7 +213,6 @@ class Game{
                 img.src = `../../card_images/blank.jpg`;
                 $(`#${j}`).html(img);
             }
-            //this.play();
         })
     }
     static play(){
