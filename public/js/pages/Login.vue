@@ -1,6 +1,6 @@
 <template>
     <main-layout>     
-        <div class="row container" id="title">
+        <div class="row container" id="titleLogin">
             <div class="row">
                 <form @submit.prevent="validateBeforeSubmit('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
                     <div class="column is-12">

@@ -1,6 +1,6 @@
 <template>
     <main-layout>
-        <div class="row container" id="title">
+        <div class="row container" id="titleRegister">
             <div class="row">
                 <div v-if="!formSubmitted">
                     <form @submit.prevent="validateBeforeSubmit">
