@@ -32,6 +32,9 @@
                 .then(result => {
                     res.status(201).send({success: "Done"});
                     //store token and ID
+                    let cookie = result.body.success;
+                    this.$cookie.set('idCookie',cookie.id,1);
+                    this.$cookie.set('tokenCookie',cookie.token,1);
                 })
                 .catch(err => {
                     res.status(400).send({sucess:"Not done"});
