@@ -50,7 +50,6 @@ class Game{
     }
     static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, computerCards, dealerDealtCards){
         // the 4 card holder id's for cards to be dealt to start
-        console.log(deck);
         let dealID = ["#0", "#1", "#5", "#6"];
             let counter1 = 0;
             let counter2 = 0;
