@@ -2,7 +2,7 @@
     <main-layout>
         <!--start of the game board-->
 
-
+        
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="overide chipsStack">
@@ -53,20 +53,21 @@
             <div class="row" id="gameButtons">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
                 <button type="input" id="twist" disabled>TWIST</button>
-                <button type="input" id="newGame" class="newGame">NEW GAME</button>
+                <button type="input" id="newGame" class="newGame">DEAL</button>
+                <button type="input" id="reset">RESET</button>
             </div>
             <!--<div class="row">
-
-                <div id="gamebuttons">
+                <div style="position:absolute; top:10px" id="gamebuttons">
                     <button type="input" id="stick" class="stick" disabled>STICK</button>
                     <button type="input" id="twist" disabled>TWIST</button>
-                    <button type="input" id="newGame" class="newGame">NEW GAME</button>
+                    <button type="input" id="newGame" class="newGame">DEAL</button>
+                    <button type="input" id="reset">RESET</button>
                 </div>
             </div>
             <div class="container bettingBoard">
                     <div class="row">
                         <div class="col s12">
-                            <form id='myform' method='POST' action='#'>
+                            <form id='myform'>
                                 <div>
                                     <label for="bank">Your Amount</label>
                                     <input class='qty' id="bank" type='text' name='bank' />
@@ -75,6 +76,7 @@
                                     <label for="quantity">Bet Amount</label>
                                     <input class='qty' id="quantity" type='text' name='quantity' />
                                 </div>
+                                <input type="submit" value="Submit">    
                             </form>
                         </div>
                     </div>
@@ -146,17 +148,13 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     const Game = require("../services/Game");
-    let deck = Game.generateDeck();
     export default {
         components: {
             MainLayout
         },
         mounted: function () {
             //all the jquery
-            let img = new Image();
-            img.src ="card_images/Kh.png";
-            $("#0").css("background-image", 'url(' +img.src+ ')');
-            Game.play(deck);
+            Game.init();
         },
         methods: {
             selectBet: function (val){              
