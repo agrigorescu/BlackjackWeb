@@ -21,9 +21,9 @@ router.post("/registration", (req,res) => {
 router.get('*', (req, res) => {
     res.sendFile(`index.html`,{root:path.resolve('./public')});
 });
-// router.post("/success/:username/:token", (req,res) => {
-//     res.status(201).send({success: "Done"});
-// });
+router.post("/success", (req,res) => {
+    res.status(201).send({success: "Done"});
+});
 router.get("/", homepageController.showHomepage);
 
 module.exports = router;
