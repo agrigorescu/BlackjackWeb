@@ -79,7 +79,6 @@ class Game{
                 counter2++;
                 $(dealID[j+2]).html(imgArray[0]);
                 myCards.push(deck[0]);
-                console.log("my cards "  + myCards);
                 imgArray.splice(0, 1);
                 deck.splice(0, 1);
                 myCurrScore = this.score(myCards, counter2, myScoreArray, myScore, "player");
@@ -96,7 +95,7 @@ class Game{
     static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards){
         // let scoreArray = [];
         // the remaining 3 card holders left for player
-        $("#twist").on("click", () => {
+        $("#twist").unbind().on("click", () => {
             counter++
             let playerBoxes = ["#7", "#8", "#9"];
             this.dealCards(deck, imgArray, counter, myCards, playerBoxes);
@@ -152,7 +151,7 @@ class Game{
         let computerScoreDeal = 0;
         // use recursion once score calculated i.e. < 17 || myScore -> twist
         // let scoreArray = [];
-        $("#stick").on("click", () => {
+        $("#stick").unbind().on("click", () => {
             $("#1").html(dealerDealtCards[0]);
             counter++;
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
@@ -182,7 +181,6 @@ class Game{
         });
     }
     static score(cards, counter, scoreArray, score, player){
-        console.log("scoreArray " + scoreArray);
         // arr is only spliting each individual card that is dealt
         // cards is accumulative array of cards without being split
         let arr = cards[counter-1].toString().split('');
@@ -219,25 +217,22 @@ class Game{
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
-        $("#newGame").on("click", (e) => {
-            var dealerDealtCards = [];
-            var myScoreArray = [];
-            var compScoreArray = [];
-            var myCards = [];
-            var compCards = [];
-            var myScore = 0;
-            var compScore = 0;
-            var counter = 0;
-            e.preventDefault();
-            var imgArray = [];
-            var deck = this.generateDeck();
-            this.shuffle(deck);
-            imgArray = this.createImagesArray(deck);
-            this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
-            this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
-            this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
-        })
-        this.resetBoard();
+        var dealerDealtCards = [];
+        var myScoreArray = [];
+        var compScoreArray = [];
+        var myCards = [];
+        var compCards = [];
+        var imgArray = [];
+        var myScore = 0;    
+        var compScore = 0;
+        var counter = 0;
+        var deck = this.generateDeck();
+        this.shuffle(deck);
+        imgArray = this.createImagesArray(deck);
+        this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
+        this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
+        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
+        this.resetBoard();  
     }
 }
 module.exports = Game;

@@ -120,7 +120,9 @@
         },
         mounted: function () {
             //all the jquery
-            Game.play();
+            $("#newGame").on("click", () => {
+                Game.play();
+            })
         },
         methods: {
             selectBet: function (val){              
