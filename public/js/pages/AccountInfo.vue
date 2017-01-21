@@ -1,6 +1,6 @@
 <template>
     <main-layout>
-        <!--start of the game board-->
+        <!--start of the account info page-->
         <div class="row container" id="title">
             <div id="row">
                 <h2>{{fullName}}'s Account</h2>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div>
-                    <input v-if="clickInviteFriend" v-model="friendEmail" type="number" placeholder="Friend Email"> <button class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
+                    <input v-if="clickInviteFriend" v-model="friendEmail" type="number" placeholder="Friend Email" data-vv-rules="required|email"> <button class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
                 </div>
 
                 <div class="col s6">
@@ -44,16 +44,20 @@
                     <img src="img/logo.png" alt="some text">
                 </div>
 
-                <!--end of the game board-->
+                <!--end of the account info page-->
     </main-layout>
 </template>
 
 <script>
+
     import MainLayout from '../layouts/Main.vue'
     const api = require("../services/api");
 
     let idCookie, tokenCookie;
 
+    /*
+    * Stripe handler for adding a card
+    */
     let addCardHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -74,6 +78,9 @@
         }
     });
 
+    /*
+    * Stripe handler for adding money
+    */
     let addMoneyHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -93,6 +100,9 @@
         }
     });
 
+    /*
+    * Stripe handler for withdrawing money
+    */
     let withdrawMoneyHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -131,10 +141,15 @@
                 stripeToken: {},
                 blackjackIdCookie: idCookie,
                 blackjackTokenCookie: tokenCookie,
-                clickInviteFriend: false
+                clickInviteFriend: false,
+                friendEmail: '',
+                existingUserId: ''
             }
         },
         methods: {
+            /*
+            * Adding a card to the db
+            */
             stripeAddCardClick: function () {
                 addCardHandler.open({
                     name: 'BlackJack',
@@ -142,34 +157,54 @@
                     panelLabel: 'Add card'
                 });
             },
-            showInputForBalance: function() {
+
+            /*
+            * This method makes the input field for adding money visible
+            */
+            showInputForBalance: function () {
                 console.log("show input for balance");
                 this.seenAdd = true;
             },
+
+            /*
+            * Adding money to the user's balance
+            */
             stripeAddMoneyClick: function () {
                 console.log("add money function");
                 addMoneyHandler.open({
                     name: 'BlackJack',
                     description: "It's in the game",
                     currency: 'gbp',
-                    amount: this.addBalance*100,
+                    amount: this.addBalance * 100,
                     panelLabel: 'Add money'
                 })
             },
-            showInputForWithdrawl: function() {
+
+            /*
+            * This method makes the input field for withdrawing money visible
+            */
+            showInputForWithdrawl: function () {
                 console.log("show input for withdrawl");
                 this.seenWithdraw = true;
             },
+
+            /*
+            * Withdrawing money from the balance
+            */
             stripeWithdrawMoneyClick: function () {
                 console.log("withdraw money function");
                 withdrawMoneyHandler.open({
                     name: 'BlackJack',
                     description: "It's in the game",
                     currency: 'gbp',
-                    amount: this.withdrawBalance*100,
+                    amount: this.withdrawBalance * 100,
                     panelLabel: 'Withdraw money'
                 })
             },
+
+            /*
+            * Sends a request to delete the user's account
+            */
             deleteAccount: function () {
                 api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie, blackjackTokenCookie: this.blackjackTokenCookie } })
                     .then(result => {
@@ -179,32 +214,53 @@
                         console.log("error");
                     });
             },
-            inviteFriendField: function() {
+
+            /* 
+            * This method makes the input field for inviting a friend visible
+            */
+            inviteFriendField: function () {
                 console.log("invite friend field");
                 this.clickInviteFriend = true;
             },
-            inviteFriend: function() {
-                
+
+            /*
+            * Send a request to the db to send and email invite to a friend
+            */
+            inviteFriend: function () {
+                this.existingUserId = this.$cookie.get('idCookie');
+                console.log(this.existingUserId);
+                console.log({ data: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } });
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } })
+                    .then(result => {
+                        console.log("send data");
+                    })
+                    .catch(err => {
+                        console.log("error");
+                    });
             }
         },
+
+        /*
+        * Getting the user's info from the db before showing the page
+        */
         beforeMount: function () {
             console.log('Mounting');
             idCookie = this.$cookie.get('blackjackIdCookie');
             console.log("cookie id" + idCookie);
             tokenCookie = this.$cookie.get('blackjackTokenCookie');
             console.log("cookie token" + tokenCookie);
-            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/accountinfo'})
-                    .then(result => {
-                        //store token and ID
-                        console.log("data received");
-                        this.fullName = result.body.fullName;
-                        this.username = result.body.username;
-                        this.email = result.body.email;
-                        this.balance = result.body.balance;
-                    })
-                    .catch(err => {
-                        console.log("error");
-                    });
+            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/accountinfo' })
+                .then(result => {
+                    console.log("data received");
+                    //displaying the information from the db
+                    this.fullName = result.body.fullName;
+                    this.username = result.body.username;
+                    this.email = result.body.email;
+                    this.balance = result.body.balance;
+                })
+                .catch(err => {
+                    console.log("error");
+                });
         }
     }
 
