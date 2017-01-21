@@ -76,8 +76,7 @@
                         this.$cookie.set('blackjackIdCookie', cookie.id, 1);
                         this.$cookie.set('blackjackTokenCookie', cookie.token, 1);
                         //redirecting to the account info page
-                        window.location.href = "http://localhost:3000/accountInfo";
-
+                        window.location.href = "http://blackjackwebtest.herokuapp.com/accountinfo";
                     })
                     .catch(err => {
                         console.log("error");

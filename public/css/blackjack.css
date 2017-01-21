@@ -75,7 +75,14 @@ nav{
     position: relative;
     z-index: 15;
     margin-top: 13%;
-    margin-left: 14%;
+    margin-left: 19%;
+}
+
+#player{ 
+    position: relative;
+    z-index: 15;
+    margin-top: 24%;
+    margin-left: 19%;
 }
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
@@ -144,8 +151,8 @@ p{
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 12%; /* use to be 15%*/
-    height: 140px; /* use to be 200%*/
+    width: 10.93%; /* use to be 15%*/
+    height: 130px; /* use to be 200%*/
 }
 
 #accountInfo{
@@ -272,6 +279,9 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 .btn:valid {
     background-color: #272828;
     font-family: 'Cinzel Decorative', cursive;
+}
+#0{
+    background-image: url("/Users/Tech-A36/Desktop/BlackjackWeb/public/card_images/Kh.png");
 }
 /*end of button css*/
 

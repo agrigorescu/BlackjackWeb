@@ -3,7 +3,6 @@ export default {
     '/registration': 'Registration',
     '/login':'Login',
     '/play': 'GameBoard',
-    '/accountinfo':'AccountInfo',
-    '/cardregistration':'CardRegistration'
-    // '/success?:username&:token': 'Success'
+    '/success': 'Success',
+    '/accountinfo':'AccountInfo'
 }

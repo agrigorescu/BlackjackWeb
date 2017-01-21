@@ -96,7 +96,7 @@
                 .then(result => {
                     console.log("data sent");
                     //redirecting to the login page
-                    window.location.href = "http://localhost:3000/login";
+                    window.location.href = "http://blackjackwebtest.herokuapp.com/login";
                 })
                 .catch(err => {
                     console.log("error");

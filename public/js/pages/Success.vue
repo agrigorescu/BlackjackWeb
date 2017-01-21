@@ -30,11 +30,11 @@
                 let olekObj = this.getUrlParameters();
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/accountvalidation',params:{username:olekObj.username,token:olekObj.token}})
                 .then(result => {
-                    res.status(201).send({success: "Done"});
+                    console.log("data sent");
                     //store token and ID
                 })
                 .catch(err => {
-                    res.status(400).send({sucess:"Not done"});
+                    console.log("did not send");
                 });
             },
             getUrlParameters: function (url) {
