@@ -55,9 +55,9 @@
 
     let idCookie, tokenCookie;
 
-    /*
-    * Stripe handler for adding a card
-    */
+    /**  
+     * Stripe handler for adding a card
+     * */
     let addCardHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -78,9 +78,9 @@
         }
     });
 
-    /*
-    * Stripe handler for adding money
-    */
+    /**
+     * Stripe handler for adding money
+     * */
     let addMoneyHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -100,9 +100,9 @@
         }
     });
 
-    /*
-    * Stripe handler for withdrawing money
-    */
+    /**
+     *  Stripe handler for withdrawing money
+     * */
     let withdrawMoneyHandler = StripeCheckout.configure({
         key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
@@ -147,9 +147,9 @@
             }
         },
         methods: {
-            /*
-            * Adding a card to the db
-            */
+            /**
+             * Adding a card to the db
+             * */
             stripeAddCardClick: function () {
                 addCardHandler.open({
                     name: 'BlackJack',
@@ -158,17 +158,17 @@
                 });
             },
 
-            /*
-            * This method makes the input field for adding money visible
-            */
+            /**
+             * This method makes the input field for adding money visible
+             * */
             showInputForBalance: function () {
                 console.log("show input for balance");
                 this.seenAdd = true;
             },
 
-            /*
-            * Adding money to the user's balance
-            */
+            /**
+             * Adding money to the user's balance
+             * */
             stripeAddMoneyClick: function () {
                 console.log("add money function");
                 addMoneyHandler.open({
@@ -180,17 +180,17 @@
                 })
             },
 
-            /*
-            * This method makes the input field for withdrawing money visible
-            */
+            /**
+             * This method makes the input field for withdrawing money visible
+             * */
             showInputForWithdrawl: function () {
                 console.log("show input for withdrawl");
                 this.seenWithdraw = true;
             },
 
-            /*
-            * Withdrawing money from the balance
-            */
+            /**
+             * Withdrawing money from the balance
+             * */
             stripeWithdrawMoneyClick: function () {
                 console.log("withdraw money function");
                 withdrawMoneyHandler.open({
@@ -202,9 +202,9 @@
                 })
             },
 
-            /*
-            * Sends a request to delete the user's account
-            */
+            /**
+             * Sends a request to delete the user's account
+             * */
             deleteAccount: function () {
                 api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie, blackjackTokenCookie: this.blackjackTokenCookie } })
                     .then(result => {
@@ -215,17 +215,17 @@
                     });
             },
 
-            /* 
-            * This method makes the input field for inviting a friend visible
-            */
+            /**
+             * This method makes the input field for inviting a friend visible
+             * */
             inviteFriendField: function () {
                 console.log("invite friend field");
                 this.clickInviteFriend = true;
             },
 
-            /*
-            * Send a request to the db to send and email invite to a friend
-            */
+            /**
+             * Send a request to the db to send and email invite to a friend
+             * */
             inviteFriend: function () {
                 this.existingUserId = this.$cookie.get('idCookie');
                 console.log(this.existingUserId);
@@ -240,9 +240,9 @@
             }
         },
 
-        /*
-        * Getting the user's info from the db before showing the page
-        */
+        /**
+         * Getting the user's info from the db before showing the page
+         * */
         beforeMount: function () {
             console.log('Mounting');
             idCookie = this.$cookie.get('blackjackIdCookie');
