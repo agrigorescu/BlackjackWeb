@@ -2,6 +2,8 @@
 body {
     font-family: 'Abel', sans-serif;
     background-color: #186a39;
+    color: #ffffff;
+    z-index: -5;
 }
 /*end of body css*/
 /*----------------------------------------------------------------*/
@@ -22,6 +24,11 @@ body {
     
 }
 
+nav{
+    position: fixed;
+    z-index: 100;
+}
+
 
 #homeBackground{ /*code for background image*/
     position: fixed;
@@ -34,10 +41,17 @@ body {
     padding-bottom: 23%;
 }
 
+#titleLogin{
+    margin-top: 14%;
+}
+
+#titleRegister{
+    margin-top: 3%;
+}
 
 #login{
-    margin-top: 63.5%;
-    margin-left: 32%;
+    /*margin-top: 63.5%;
+    margin-left: 32%;*/
     list-style: none;
     background-color: transparent;
 }
@@ -47,8 +61,8 @@ body {
 }
 
 #register{
-    margin-top: -3%;
-    margin-left: 61.5%;
+    /*margin-top: -3%;
+    margin-left: 61.5%;*/
     list-style: none;
     background-color: transparent;
 }
@@ -56,6 +70,16 @@ body {
 .container, #register{
     background-color: transparent
 }
+
+#computer{ 
+    position: relative;
+    z-index: 15;
+    margin-top: 13%;
+    margin-left: 14%;
+}
+/*.row, .homeChips{
+    display: inline; this line of code breaks the row container!!!!!
+}*/
 /*end of layout components css*/
 
 /*----------------------------------------------------------------*/
@@ -65,6 +89,8 @@ h1, h2, h4, h5, h6{
     text-align: center;
     font-family: 'Cinzel Decorative', cursive;
     color: #ffffff;
+    position: absolute;
+    z-index: 5;
 }
 
 
@@ -95,6 +121,16 @@ p{
     padding-top: 1%;
     margin-left: 1%;
 }
+
+#homeBackground{
+    width: 100%;
+}
+
+#gameBoard{
+    position: fixed;
+    z-index: 0;
+    margin-top: 4.5%;
+}
 /*end of images css*/
 
 /*----------------------------------------------------------------*/
@@ -108,8 +144,8 @@ p{
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 15%;
-    height: 200px;
+    width: 12%; /* use to be 15%*/
+    height: 140px; /* use to be 200%*/
 }
 
 #accountInfo{

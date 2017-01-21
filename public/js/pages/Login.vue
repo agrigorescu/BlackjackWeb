@@ -1,6 +1,6 @@
 <template>
     <main-layout>     
-        <div class="row container" id="title">
+        <div class="row container" id="titleLogin">
             <div class="row">
                 <form @submit.prevent="validateBeforeSubmit('form-2')" class="columns column is-multiline is-12" data-vv-scope="form-2">
                     <div class="column is-12">
@@ -67,8 +67,8 @@
                     console.log("this is what goes in the cookie");
                     console.log(result.body.success);
                     let cookie = result.body.success;
-                    this.$cookie.set('idCookie',cookie.id,1);
-                    this.$cookie.set('tokenCookie',cookie.token,1);
+                    this.$cookie.set('blackjackIdCookie',cookie.id,1);
+                    this.$cookie.set('blackjackTokenCookie',cookie.token,1);
                     window.location.href = "http://localhost:3000/accountInfo";
 
                 })
