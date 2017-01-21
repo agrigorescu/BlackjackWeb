@@ -21,9 +21,14 @@
                     </div>
                 </div>
 
+                <div>
+                    <input v-if="clickInviteFriend" v-model="friendEmail" type="number" placeholder="Friend Email"> <button class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
+                </div>
+
                 <div class="col s6">
                     <div id="accountMenu">
                         <button v-on:click="stripeAddCardClick()" class="btn waves-effect waves-light miniMenu" id="customButton">Add Card</button>
+                        <button v-on:click="inviteFriendField()" class="btn waves-effect waves-light miniMenu" id="miniMenu2">Invite Friends</button>
                         <button v-on:click="deleteAccount()" class="btn waves-effect waves-light miniMenu" id="miniMenu4">Delete Account</button>
 
                     </div>
@@ -80,7 +85,6 @@
             console.log(this.blackjackIdCookie);
             api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/stripeaddmoney', params: { blackjackIdCookie: this.blackjackIdCookie, stripeToken: this.stripeToken.id, amount: this.amount } })
                 .then(result => {
-                    //store token and ID
                     console.log("data sent");
                 })
                 .catch(err => {
@@ -126,7 +130,8 @@
                 seenWithdraw: false,
                 stripeToken: {},
                 blackjackIdCookie: idCookie,
-                blackjackTokenCookie: tokenCookie
+                blackjackTokenCookie: tokenCookie,
+                clickInviteFriend: false
             }
         },
         methods: {
@@ -173,6 +178,13 @@
                     .catch(err => {
                         console.log("error");
                     });
+            },
+            inviteFriendField: function() {
+                console.log("invite friend field");
+                this.clickInviteFriend = true;
+            },
+            inviteFriend: function() {
+                
             }
         },
         beforeMount: function () {
