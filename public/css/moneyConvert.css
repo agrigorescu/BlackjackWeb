@@ -10,7 +10,6 @@ div.container.bettingBoard {
 div.overide {
     position: fixed;
 }
-
 div.chipsStack {
     /*position: relative;*/
     z-index: 15;
@@ -91,4 +90,3 @@ input.qty {
     z-index: auto;
     top: 75%;
 }
-

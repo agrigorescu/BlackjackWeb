@@ -48,8 +48,8 @@ class Game{
             $("#greenChip").hide();
             $("#blackChip").hide();
             $("#orangeChip").hide();
-            $('#redChip').clone().prependTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex++,
+            $('#redChip').clone().prependTo('.chipsStack').addClass("chip").animate({
+                'z-index' : zIndex--,
                 'marginTop' : height-=5
             });
             $counter += 0.05;
@@ -65,8 +65,8 @@ class Game{
             $("#greenChip").hide();
             $("#blackChip").hide();
             $("#orangeChip").hide();
-            $('#blueChip').clone().appendTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex++,
+            $('#blueChip').clone().appendTo('.chipsStack').addClass("chip").animate({
+                'z-index' : zIndex--,
                 'margin-top' : height-=5
             });
             $counter += 0.50;
@@ -79,8 +79,8 @@ class Game{
             $("#greenChip").hide();
             $("#blackChip").hide();
             $("#redChip").hide();
-            $('#orangeChip').clone().appendTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex++,
+            $('#orangeChip').clone().appendTo('.chipsStack').addClass("chip").animate({
+                'z-index' : zIndex--,
                 'margin-top' : height-=5
             });
             $counter += 0.10;
@@ -93,8 +93,8 @@ class Game{
             $("#greenChip").hide();
             $("#redChip").hide();
             $("#orangeChip").hide();
-            $('#blackChip').clone().appendTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex++,
+            $('#blackChip').clone().appendTo('.chipsStack').addClass("chip").animate({
+                'z-index' : zIndex--,
                 'margin-top' : height-=5
             });
             $counter += 1;
@@ -108,7 +108,7 @@ class Game{
             $("#blackChip").hide();
             $("#orangeChip").hide();
             $('#greenChip').clone().appendTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex++,
+                'z-index' : zIndex--,
                 'margin-top' : height-=5
             });
             $counter += 0.20;
@@ -117,25 +117,6 @@ class Game{
             $('#bank').val($bank.toFixed(2));
         });
     }
-    static calcWinnings(betAmount, bankAmount){
-       bankAmount += betAmount * betAmount;
-       console.log(bankAmount);
-      //return parseFloat($('#quantity').val(bankAmount));
-    }
-    static calcLoss(betAmount, bankAmount){
-         bankAmount -= betAmount;
-         console.log(bankAmount);
-         return bankAmount;
-         //return parseFloat($('#quantity').val(bankAmount));
-    }
-    static setBetAmount(betAmount){
-         console.log(betAmount);
-         //$("#quantity").html(betAmount);
-         return betAmount;
-     }
-     static getBankAmount(){
-         console.log("A");
-     }
      static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
@@ -218,7 +199,7 @@ class Game{
         imgArray.splice(0, 1);
         deck.splice(0, 1);
     }
-    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards){
+    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards, betAmount){
         // let scoreArray = [];
         // the remaining 3 card holders left for player
         $("#twist").unbind().on("click", () => {
@@ -235,7 +216,6 @@ class Game{
                 console.log("player is BUST");
                 return;
             }
-            console.log("player score: " + myCurrScore);
         });
     }
     static dealerLogic(playerScore, compCurrScore, compCards){
@@ -281,8 +261,6 @@ class Game{
             counter++;
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
             computerScoreDeal = compScoreArray.reduce((a,b) => a + b, 0);
-            console.log("comp cards: ");
-            console.log(compCards);
             if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
                 this.dealerLogic(playerScore, computerScore, compCards);
                 return;
@@ -341,12 +319,87 @@ class Game{
             }
         })
     }
-    static init(){
+    static init(betVal){
         $("#newGame").on("click", () => {
-            this.play();
+            this.play(betVal);
         });
     }
-    static play(){
+    static submitBet(bank, newBank){
+        bank = 500;
+        newBank = 500;
+        $("#submitBet").unbind().on("click", (e) => {
+            let betVal = $("#betVal").val();
+            e.preventDefault();
+            newBank -= betVal;
+            $("#newGame").prop("disabled", false);
+            $("#five").prop("disabled", true);
+            $("#ten").prop("disabled", true);
+            $("#twenty").prop("disabled", true);
+            $("#fifty").prop("disabled", true);
+            $("#hundred").prop("disabled", true);
+            $("#bank").html(newBank);
+            console.log(betVal);
+            this.init(betVal);
+        })
+    }
+    static cancelBet(bank, newBank){
+        bank = 500;
+        newBank = 500;
+        $("#cancel").unbind().on("click", (e) => {
+            $("#submitBet")[0].reset();
+            $("#five").prop("disabled", false);
+            $("#ten").prop("disabled", false);
+            $("#twenty").prop("disabled", false);
+            $("#fifty").prop("disabled", false);
+            $("#hundred").prop("disabled", false);
+            $("#bank").html(bank);
+            this.chipControl(0);
+            this.submitBet(bank, newBank);
+        })
+    }   
+    static chipControl(value){
+        $("#five").unbind().on("click", () => {
+            value += 5;
+            $("#ten").prop("disabled", true);
+            $("#twenty").prop("disabled", true);
+            $("#fifty").prop("disabled", true);
+            $("#hundred").prop("disabled", true);
+            $("#betVal").val(value);
+        })
+        $("#ten").unbind().on("click", () => {
+            value += 10;
+            $("#five").prop("disabled", true);
+            $("#twenty").prop("disabled", true);
+            $("#fifty").prop("disabled", true);
+            $("#hundred").prop("disabled", true);
+            $("#betVal").val(value);
+        })
+        $("#twenty").unbind().on("click", () => {
+            value += 20;
+            $("#five").prop("disabled", true);
+            $("#ten").prop("disabled", true);
+            $("#fifty").prop("disabled", true);
+            $("#hundred").prop("disabled", true);
+            $("#betVal").val(value);
+        })
+        $("#fifty").unbind().on("click", () => {
+            value += 50;
+            $("#five").prop("disabled", true);
+            $("#ten").prop("disabled", true);
+            $("#twenty").prop("disabled", true);
+            $("#hundred").prop("disabled", true);
+            $("#betVal").val(value);
+        })
+        $("#hundred").unbind().on("click", () => {
+            value += 100;
+            $("#five").prop("disabled", true);
+            $("#ten").prop("disabled", true);
+            $("#twenty").prop("disabled", true);
+            $("#fifty").prop("disabled", true);
+            $("#betVal").val(value);
+        })
+    }
+    static play(betVal){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
@@ -367,6 +420,7 @@ class Game{
         this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
         this.chipManagement();
         this.resetBoard();  
+        console.log("bet value: " + betVal)
     }
 }
 module.exports = Game;
