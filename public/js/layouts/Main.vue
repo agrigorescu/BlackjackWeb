@@ -9,7 +9,7 @@
                     <li><v-link href="/login">Login</v-link></li>
                     <li><v-link href="/registration">Registration</v-link></li>
                     <li><v-link href="/play">Play</v-link></li>
-                    <li><v-link href="/accountinfo">Account Info</v-link></li>
+                    <li><v-link href="/accountinfo">Account</v-link></li>
                     <li><v-link href="/logout">Logout</v-link></li>
                     <!--<li><v-link href="/success?:username&:token">Success</v-link></li>-->
 

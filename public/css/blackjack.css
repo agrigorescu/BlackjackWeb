@@ -80,7 +80,7 @@ nav .nav-wrapper {
     position: relative;
     z-index: 15;
     margin-top: 13%;
-    margin-left: 19%;
+    /*margin-left: 5%;*/
 }
 
 #player{ 
@@ -112,7 +112,7 @@ p{
 }
 
 #blueChip{
-    margin-top: -39%;
+    /*margin-top: 5%;*/
 }
 
 .label{
@@ -123,14 +123,22 @@ p{
     text-align: center;
     margin-top: 8%;
 }
+
+p #404Message{
+    margin-top: 15%;
+}
 /*end of font css*/
 
 /*----------------------------------------------------------------*/
 
 /*start of images css*/
 #imgLogo{
-    margin-left: 32%;
-    margin-top: 5%;
+    margin-left: 36%;
+    /*margin-top: 5%;*/
+}
+
+#littleLogo{
+    width: 45%;
 }
 
 #whiteLogo{
@@ -169,11 +177,13 @@ p{
 }
 
 #accountInfo{
-    margin-left: 4%;
+    margin-left: 0%;
+    margin-top: 2%;
 }
 
 #accountMenu{
-    margin-left: 11%;
+    margin-left: 22%;
+    margin-top: 10%;
 }
 
 .boxinfo{
@@ -192,15 +202,19 @@ p{
     line-height: 2vw;
 }
 
+.btn, .waves-effect waves-light miniMenu{
+    margin-top: 3%;
+}
+
 #playButton{
-    width: 40%;
+    width: 100%;
     /*background-color: #a43934;*/
     padding: 3%;
     float: right;
     text-align: center;
     border-radius: 12%;
     margin-top: 2%;
-    margin-right: 4%;
+    /*margin-right: 4%;*/
 
 }
 
