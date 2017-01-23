@@ -7,13 +7,17 @@ div.container.bettingBoard {
     position: relative;
 }
 
-div.overide {
+/*div.overide {
     position: fixed;
+<<<<<<< HEAD
 }
+=======
+}*/
+
+>>>>>>> master
 div.chipsStack {
-    /*position: relative;*/
-    z-index: 15;
-    margin-top: 3%;
+    z-index: 9015;
+    margin-top: -1%;
     margin-left: -8%;
 }
 
@@ -23,7 +27,7 @@ div.container.chipStackBoard {
     padding: 20px;
     width: 45%;
     height: 50%;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 label {
@@ -33,7 +37,6 @@ label {
 }
 
 div.fish {
-    position: relative;
     width: 70px;
     height: 70px;
     margin: 10px;
@@ -44,6 +47,7 @@ div.fish {
     -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
     -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
     border: 10px dotted #fff;
+    position: relative;
 }
 
 div.fish div {
@@ -55,14 +59,17 @@ div.fish div {
 	text-shadow: 0.1em 0.2em 0.07em rgb(82, 82, 82);
 }
 
-div.orange { margin-top: 83%; background: rgb(223, 99, 1) }
+div.red { position: fixed; margin-top: 4%; background: rgb(175, 17, 36) }
 
-div.green { margin-top: 173%; background: rgb(75, 158, 0) }
+div.orange { position: fixed; margin-top: 10%; background: rgb(223, 99, 1) }
 
-div.blue { margin-top: 268%; background: rgb(4, 83, 145) }
+div.green { position: fixed; margin-top: 16%; background: rgb(75, 158, 0) }
+
+div.blue {  position: fixed; margin-top: 22%; background: rgb(4, 83, 145) }
 
 div.black {
-    margin-top: 363%;
+    position: fixed;
+    margin-top: 28%;
     background: rgb(36, 36, 36);
     color: #eee;
     box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
@@ -71,9 +78,7 @@ div.black {
     border: 10px dotted #ccc;
 }
 
-div.red { margin-top: -4%; background: rgb(175, 17, 36) }
-
-div.gray { margin-top: 454%; background: rgb(109, 109, 109) }
+div.gray { position: fixed; margin-top: 34%; background: rgb(109, 109, 109) }
 
 input.qty {
     width: 40%;
