@@ -66,7 +66,7 @@
             this.stripeToken = token;
             console.log(this.stripeToken);
             console.log(this.blackjackIdCookie);
-            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/payment', params: { _id: this.blackjackIdCookie, cardToken: this.stripeToken } })
+            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/payment', params: { id: this.blackjackIdCookie, cardToken: this.stripeToken } })
                 .then(result => {
                     console.log("data sent");
                 })
@@ -79,48 +79,48 @@
     /**
      * Stripe handler for adding money
      * */
-    let addMoneyHandler = StripeCheckout.configure({
-        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
-        image: './img/logofavicon.png',
-        locale: 'auto',
-        token: function (token) {
-            console.log(token);
-            this.stripeToken = token;
-            console.log(this.stripeToken);
-            console.log(this.blackjackIdCookie);
-            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { _id: this.blackjackIdCookie, cardToken: this.stripeToken, amount: this.amount } })
-                .then(result => {
-                    console.log("data sent");
-                    this.seenAdd = false;
-                })
-                .catch(err => {
-                    console.log("error");
-                });
-        }
-    });
+    // let addMoneyHandler = StripeCheckout.configure({
+    //     key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+    //     image: './img/logofavicon.png',
+    //     locale: 'auto',
+    //     token: function (token) {
+    //         console.log(token);
+    //         this.stripeToken = token;
+    //         console.log(this.stripeToken);
+    //         console.log(this.blackjackIdCookie);
+    //         api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: this.blackjackIdCookie, cardToken: this.stripeToken, amount: this.amount } })
+    //             .then(result => {
+    //                 console.log("data sent");
+    //                 this.seenAdd = false;
+    //             })
+    //             .catch(err => {
+    //                 console.log("error");
+    //             });
+    //     }
+    // });
 
     /**
      *  Stripe handler for withdrawing money
      * */
-    let withdrawMoneyHandler = StripeCheckout.configure({
-        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
-        image: './img/logofavicon.png',
-        locale: 'auto',
-        token: function (token) {
-            console.log(token);
-            this.stripeToken = token;
-            console.log(this.stripeToken);
-            console.log(this.blackjackIdCookie);
-            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { _id: this.blackjackIdCookie, cardToken: this.stripeToken, amount: this.amount } })
-                .then(result => {
-                    console.log("data sent");
-                    this.seenWithdraw = false;
-                })
-                .catch(err => {
-                    console.log("error");
-                });
-        }
-    });
+    // let withdrawMoneyHandler = StripeCheckout.configure({
+    //     key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+    //     image: './img/logofavicon.png',
+    //     locale: 'auto',
+    //     token: function (token) {
+    //         console.log(token);
+    //         this.stripeToken = token;
+    //         console.log(this.stripeToken);
+    //         console.log(this.blackjackIdCookie);
+    //         api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: this.blackjackIdCookie, cardToken: this.stripeToken, amount: this.amount } })
+    //             .then(result => {
+    //                 console.log("data sent");
+    //                 this.seenWithdraw = false;
+    //             })
+    //             .catch(err => {
+    //                 console.log("error");
+    //             });
+    //     }
+    // });
 
 
 
@@ -172,22 +172,30 @@
              * Adding money to the user's balance
              * */
             stripeAddMoneyClick: function () {
-                console.log("add money function");
-                addMoneyHandler.open({
-                    name: 'BlackJack',
-                    description: "It's in the game",
-                    currency: 'gbp',
-                    amount: this.addBalance * 100,
-                    panelLabel: 'Add money'
-                });
-                api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: {_id: this.blackjackIdCookie} })
+                // console.log("add money function");
+                // addMoneyHandler.open({
+                //     name: 'BlackJack',
+                //     description: "It's in the game",
+                //     currency: 'gbp',
+                //     amount: this.addBalance * 100,
+                //     panelLabel: 'Add money'
+                // });
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: this.blackjackIdCookie, amount: this.amount } })
                     .then(result => {
-                        console.log("data received");
-                        //retrieve the information from the db
-                        this.fullName = result.body.fullName;
-                        this.username = result.body.username;
-                        this.email = result.body.email;
-                        this.balance = result.body.balance;
+                        console.log("data sent");
+                        this.seenAdd = false;
+                        api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { id: this.blackjackIdCookie } })
+                            .then(result => {
+                                console.log("data received");
+                                //retrieve the information from the db
+                                this.fullName = result.body.fullName;
+                                this.username = result.body.username;
+                                this.email = result.body.email;
+                                this.balance = result.body.balance;
+                            })
+                            .catch(err => {
+                                console.log("error");
+                            });
                     })
                     .catch(err => {
                         console.log("error");
@@ -207,35 +215,47 @@
              * Withdrawing money from the balance
              * */
             stripeWithdrawMoneyClick: function () {
-                console.log("withdraw money function");
-                withdrawMoneyHandler.open({
-                    name: 'BlackJack',
-                    description: "It's in the game",
-                    currency: 'gbp',
-                    amount: this.withdrawBalance * 100,
-                    panelLabel: 'Withdraw money'
-                });
-                api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: {_id: this.blackjackIdCookie} }) 
+                // console.log("withdraw money function");
+                // withdrawMoneyHandler.open({
+                //     name: 'BlackJack',
+                //     description: "It's in the game",
+                //     currency: 'gbp',
+                //     amount: this.withdrawBalance * 100,
+                //     panelLabel: 'Withdraw money'
+                // });
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: this.blackjackIdCookie, cardToken: this.stripeToken, amount: this.amount } })
                     .then(result => {
-                        console.log("data received");
-                        //retrieve the information from the db
-                        this.fullName = result.body.fullName;
-                        this.username = result.body.username;
-                        this.email = result.body.email;
-                        this.balance = result.body.balance;
+                        console.log("data sent");
+                        this.seenWithdraw = false;
+                        api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { id: this.blackjackIdCookie, amount: this.amount } })
+                            .then(result => {
+                                console.log("data received");
+                                //retrieve the information from the db
+                                this.fullName = result.body.fullName;
+                                this.username = result.body.username;
+                                this.email = result.body.email;
+                                this.balance = result.body.balance;
+                            })
+                            .catch(err => {
+                                console.log("error");
+                            });
                     })
                     .catch(err => {
                         console.log("error");
                     });
+
             },
 
             /**
              * Sends a request to delete the user's account
              * */
             deleteAccount: function () {
-                api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie, blackjackTokenCookie: this.blackjackTokenCookie } })
+                api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie } })
                     .then(result => {
                         console.log("data sent");
+                        //delete cookie
+                        this.$cookie.delete('blackjackIdCookie');
+                        console.log("cookie has been deleted");
                     })
                     .catch(err => {
                         console.log("error");
@@ -277,7 +297,7 @@
             console.log("cookie id" + idCookie);
             tokenCookie = this.$cookie.get('blackjackTokenCookie');
             console.log("cookie token" + tokenCookie);
-            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: {_id: this.blackjackIdCookie} })
+            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { _id: this.blackjackIdCookie } })
                 .then(result => {
                     console.log("data received");
                     //displaying the information from the db

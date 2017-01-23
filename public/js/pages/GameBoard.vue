@@ -1,66 +1,55 @@
 <template>
     <main-layout>
         <!--start of the game board-->
-
-        <div id="moneyManager">
-            <div id="myBalance">Balance: £10</div>
-            <div id="currentBet">dealer: £2</div>
-            <div id="winnings">Winnings: 2</div>
-        </div>
-
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
-            <div class="overide chipsStack">
+            <div class="chipsStack overide">
                 <div v-on:click="selectBet(5)" id="redChip" class="fish red">
                     <div class="value">5p</div>
                 </div>
             </div>
-            <div class="overide chipsStack">
+            <div class="chipsStack">
                 <div v-on:click="selectBet(10)" id="orangeChip" class="fish orange">
                     <div class="value">10p</div>
                 </div>
             </div>
-            <div class="overide chipsStack">
+            <div class="chipsStack">
                 <div v-on:click="selectBet(20)" id="greenChip" class="fish green">
                     <div class="value">20p</div>                
                 </div>
             </div>
-            <div class="overide chipsStack">
-                <div v-on:click="selectBet(50)" id="greenChip" class="fish blue">
+            <div class="chipsStack">
+                <div v-on:click="selectBet(50)" id="blueChip" class="fish blue">
                     <div class="value">50p</div>                
                 </div>
             </div>
-            <div class="overide chipsStack">
+            <div class="chipsStack">
                 <div v-on:click="selectBet(100)" id="blackChip" class="fish black">
                     <div class="value">£1</div>  
                 </div>
             </div>
-            <div class="overide chipsStack">
+            <div class="chipsStack">
                 <div id="resetChip" class="fish gray">
                     <div>Reset</div>
                 </div>
             </div>
 
-            <div class="row" id="computer">   
-                <div class="box" id="0">0</div>
-                <div class="box" id="1">1</div>
-                <div class="box" id="2">2</div>
-                <div class="box" id="3">3</div>
-                <div class="box" id="4">4</div>
-            </div>
-
-            <div class="row" id="message">
-                <div id="messageBox">
-                    <h3>this is a message</h3>
+            <div class="container">
+                <div class="computer">   
+                    <div class="box" id="card0">0</div>
+                    <div class="box" id="card1">1</div>
+                    <div class="box" id="card2">2</div>
+                    <div class="box" id="card3">3</div>
+                    <div class="box" id="card4">4</div>
                 </div>
-            </div>
+                <div class="player">
+                    <div class="box" id="card5">5</div>
+                    <div class="box" id="card6">6</div>
+                    <div class="box" id="card7">7</div>
+                    <div class="box" id="card8">8</div>
+                    <div class="box" id="card9">9</div>
+                </div>
 
-            <div class="row" id="player">
-                <div class="box" id="5">5</div>
-                <div class="box" id="6">6</div>
-                <div class="box" id="7">7</div>
-                <div class="box" id="8">8</div>
-                <div class="box" id="9">9</div>
             </div>
             <div class="row" id="gameButtons">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
@@ -169,8 +158,9 @@
             Game.init();
         },
         methods: {
-            selectBet: function (val){              
-                Game.setBetAmount(val);
+            selectBet: function (val){
+                console.log(val);            
+                //Game.setBetAmount(val);
                 // Game.calcDraw();
             }
         }
