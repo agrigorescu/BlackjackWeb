@@ -1,7 +1,7 @@
 <template>
     <main-layout>
            <h2> Confirmation of registration!! </h2>
-           <button class="btn waves-effect waves-light right" type="submit" name="action" v-on:click="submit($event)" href="/">Back to homepage</button>
+           <button class="btn waves-effect waves-light right" style="top: 200px" type="submit" name="action" v-on:click="submit($event)" href="/">Back to homepage</button>
     </main-layout>
 </template>
 
@@ -23,18 +23,18 @@
                 formSubmitted: false
             }
         },
-        // submitting the post request to the back end API
         methods: {
+            // submitting the post request to the back end API
             submit: function (event) {
                 event.preventDefault();
                 let olekObj = this.getUrlParameters();
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/accountvalidation',params:{username:olekObj.username,token:olekObj.token}})
                 .then(result => {
-                    res.status(201).send({success: "Done"});
+                    console.log("data sent");
                     //store token and ID
                 })
                 .catch(err => {
-                    res.status(400).send({sucess:"Not done"});
+                    console.log("did not send");
                 });
             },
             getUrlParameters: function (url) {

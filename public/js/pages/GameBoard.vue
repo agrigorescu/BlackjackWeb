@@ -2,7 +2,12 @@
     <main-layout>
         <!--start of the game board-->
 
-        
+        <div id="moneyManager">
+            <div id="myBalance">Balance: £10</div>
+            <div id="currentBet">dealer: £2</div>
+            <div id="winnings">Winnings: 2</div>
+        </div>
+
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="chipsStack overide">
@@ -51,6 +56,7 @@
                     <div class="box" id="card8">8</div>
                     <div class="box" id="card9">9</div>
                 </div>
+
             </div>
             <div class="row" id="gameButtons">
                 <button type="input" id="stick" class="stick" disabled>STICK</button>
