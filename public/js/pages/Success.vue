@@ -23,8 +23,8 @@
                 formSubmitted: false
             }
         },
-        // submitting the post request to the back end API
         methods: {
+            // submitting the post request to the back end API
             submit: function (event) {
                 event.preventDefault();
                 let olekObj = this.getUrlParameters();

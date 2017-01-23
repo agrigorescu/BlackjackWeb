@@ -39,7 +39,7 @@ class ApiService {
                         });
                         break;
                     case "DELETE":
-                        Vue.http.delete(obj.path).then((result) => {
+                        Vue.http.delete(obj.path, obj.params).then((result) => {
                           
                             resolve(result);
                         }, (err) => {

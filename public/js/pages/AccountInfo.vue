@@ -1,21 +1,21 @@
 <template>
     <main-layout>
-        <!--start of the game board-->
+        <!--start of the account info page-->
         <div class="row container" id="title">
             <div id="row">
-                <h2>'Username''s Account</h2>
+                <h2>{{fullName}}'s Account</h2>
                 <div class="col s6">
                     <div id="accountInfo">
                         <div class="boxinfo" id="computer">
-                            <h5>"Username"'s Account</h5>
+                            <h5>{{ fullName }}'s Account</h5>
                             <ul>
-                                <li>Name: Test</li>
-                                <li>Username: Test01</li>
-                                <li>Email: test01@test.com</li>
-                                <li>Games played: 45</li>
-                                <li>Games won: 30</li>
-                                <li>Games lost: 15</li>
-                                <li>Bio - say something about yourself</li>
+                                <li>Name: {{ fullName }}</li>
+                                <li>Username: {{ username}}</li>
+                                <li>Email: {{ email }}</li>
+                                <li>Balance: {{ balance }} <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()">Add balance</button>
+                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForWithdrawl()">Withdraw balance</button></li>
+                                <li v-if="seenAdd"> <input v-model="addBalance" type="number" placeholder="Add amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeAddMoneyClick()">Add balance</button></li>
+                                <li v-if="seenWithdraw"> <input v-model="withdrawBalance" type="number" placeholder="Withdraw amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeWithdrawMoneyClick()">Withdraw balance</button></li>
                             </ul>
                         </div>
                     </div>
@@ -23,19 +23,9 @@
 
                 <div class="col s6">
                     <div id="accountMenu">
-
-                        <!-- Dropdown Trigger -->
-                        <a class='dropdown-button btn' id="miniMenu" href='#' data-activates='dropdown1'>Drop Me!</a>
-                        <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a id="show-modal" @click="showModal = true">Show Modal</a></li>
-                        </ul>
-                        <button class="btn waves-effect waves-light miniMenu" id="miniMenu2" type="edit">Edit</button>
-                        <button class="btn waves-effect waves-light miniMenu" id="miniMenu3" type="other">Other</button>
+                        <button v-on:click="stripeAddCardClick()" class="btn waves-effect waves-light miniMenu" id="customButton">Add Card</button>
+                        <button v-on:click="inviteFriendField()" class="btn waves-effect waves-light miniMenu" id="miniMenu2">Invite Friends</button>
+                        <button v-on:click="deleteAccount()" class="btn waves-effect waves-light miniMenu" id="miniMenu4">Delete Account</button>
 
                     </div>
                 </div>
@@ -46,53 +36,234 @@
                     </a>
                 </div>
 
+                <div>
+                    <input v-if="clickInviteFriend" v-model="friendEmail" type="email" placeholder="Friend Email" data-vv-rules="required|email"> <button v-if="clickInviteFriend" class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
+                </div>
+
                 <div class="col s12" id="imgLogo">
                     <img src="img/logo.png" alt="some text">
                 </div>
 
-                <!--end of the game board-->
-
-                <!--add the modal structure-->
-                <modal v-if="showModal" @close="showModal = false">
-                    <!--you can use custom content here to overwrite default content-->
-                    <h3 slot="header">custom header</h3>
-                </modal>
+                <!--end of the account info page-->
     </main-layout>
 </template>
 
 <script>
+
     import MainLayout from '../layouts/Main.vue'
-    import Modal from '../components/Modal.vue'
+    const api = require("../services/api");
 
-        const api = require("../services/api");
-        export default {
-            components: {
-                MainLayout,
-                Modal
-            },
-            data: function () {
-                return {
-                    showModal: false
-                }
-            },
-            methods: {
-                openDropdown() {
-                        $('.dropdown-button').dropdown({
-                            inDuration: 300,
-                            outDuration: 225,
-                            constrain_width: false, // Does not change width of dropdown to that of the activator
-                            hover: true, // Activate on hover
-                            gutter: 0, // Spacing from edge
-                            belowOrigin: false, // Displays dropdown below the button
-                            alignment: 'left' // Displays dropdown with edge aligned to the left of button
-                        }
-                        );
-                    }
-            },
-            beforeMount: function () {
-                console.log('Mounting');
+    let idCookie, tokenCookie;
 
-            }
+    /**  
+     * Stripe handler for adding a card
+     * */
+    let addCardHandler = StripeCheckout.configure({
+        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+        image: './img/logofavicon.png',
+        locale: 'auto',
+        token: function (token) {
+            console.log(token);
+            this.stripeToken = token;
+            console.log(this.stripeToken);
+            console.log(this.blackjackIdCookie);
+            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/stripe', params: { blackjackIdCookie: this.blackjackIdCookie, stripeToken: this.stripeToken.id } })
+                .then(result => {
+                    console.log("data sent");
+                })
+                .catch(err => {
+                    console.log("error");
+                });
         }
+    });
+
+    /**
+     * Stripe handler for adding money
+     * */
+    let addMoneyHandler = StripeCheckout.configure({
+        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+        image: './img/logofavicon.png',
+        locale: 'auto',
+        token: function (token) {
+            console.log(token);
+            this.stripeToken = token;
+            console.log(this.stripeToken);
+            console.log(this.blackjackIdCookie);
+            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/stripeaddmoney', params: { blackjackIdCookie: this.blackjackIdCookie, stripeToken: this.stripeToken.id, amount: this.amount } })
+                .then(result => {
+                    console.log("data sent");
+                    this.seenAdd = false;
+                })
+                .catch(err => {
+                    console.log("error");
+                });
+        }
+    });
+
+    /**
+     *  Stripe handler for withdrawing money
+     * */
+    let withdrawMoneyHandler = StripeCheckout.configure({
+        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+        image: './img/logofavicon.png',
+        locale: 'auto',
+        token: function (token) {
+            console.log(token);
+            this.stripeToken = token;
+            console.log(this.stripeToken);
+            console.log(this.blackjackIdCookie);
+            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/stripeaddmoney', params: { blackjackIdCookie: this.blackjackIdCookie, stripeToken: this.stripeToken.id, amount: this.amount } })
+                .then(result => {
+                    console.log("data sent");
+                    this.seenWithdraw = false;
+                })
+                .catch(err => {
+                    console.log("error");
+                });
+        }
+    });
+
+
+
+    export default {
+        components: {
+            MainLayout
+        },
+        data: function () {
+            return {
+                fullName: '',
+                email: '',
+                username: '',
+                balance: '',
+                addBalance: '',
+                withdrawBalance: '',
+                seenAdd: false,
+                seenWithdraw: false,
+                stripeToken: {},
+                blackjackIdCookie: idCookie,
+                blackjackTokenCookie: tokenCookie,
+                clickInviteFriend: false,
+                friendEmail: '',
+                existingUserId: ''
+            }
+        },
+        methods: {
+            /**
+             * Adding a card to the db
+             * */
+            stripeAddCardClick: function () {
+                addCardHandler.open({
+                    name: 'BlackJack',
+                    description: "It's in the game",
+                    panelLabel: 'Add card'
+                });
+            },
+
+            /**
+             * This method makes the input field for adding money visible
+             * */
+            showInputForBalance: function () {
+                console.log("show input for balance");
+                this.seenAdd = true;
+            },
+
+            /**
+             * Adding money to the user's balance
+             * */
+            stripeAddMoneyClick: function () {
+                console.log("add money function");
+                addMoneyHandler.open({
+                    name: 'BlackJack',
+                    description: "It's in the game",
+                    currency: 'gbp',
+                    amount: this.addBalance * 100,
+                    panelLabel: 'Add money'
+                })
+            },
+
+            /**
+             * This method makes the input field for withdrawing money visible
+             * */
+            showInputForWithdrawl: function () {
+                console.log("show input for withdrawl");
+                this.seenWithdraw = true;
+            },
+
+            /**
+             * Withdrawing money from the balance
+             * */
+            stripeWithdrawMoneyClick: function () {
+                console.log("withdraw money function");
+                withdrawMoneyHandler.open({
+                    name: 'BlackJack',
+                    description: "It's in the game",
+                    currency: 'gbp',
+                    amount: this.withdrawBalance * 100,
+                    panelLabel: 'Withdraw money'
+                })
+            },
+
+            /**
+             * Sends a request to delete the user's account
+             * */
+            deleteAccount: function () {
+                api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie, blackjackTokenCookie: this.blackjackTokenCookie } })
+                    .then(result => {
+                        console.log("data sent");
+                    })
+                    .catch(err => {
+                        console.log("error");
+                    });
+            },
+
+            /**
+             * This method makes the input field for inviting a friend visible
+             * */
+            inviteFriendField: function () {
+                console.log("invite friend field");
+                this.clickInviteFriend = true;
+            },
+
+            /**
+             * Send a request to the db to send and email invite to a friend
+             * */
+            inviteFriend: function () {
+                this.existingUserId = this.$cookie.get('idCookie');
+                console.log(this.existingUserId);
+                console.log({ data: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } });
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } })
+                    .then(result => {
+                        console.log("send data");
+                        this.clickInviteFriend = false;
+                    })
+                    .catch(err => {
+                        console.log("error");
+                    });
+            }
+        },
+
+        /**
+         * Getting the user's info from the db before showing the page
+         * */
+        beforeMount: function () {
+            console.log('Mounting');
+            idCookie = this.$cookie.get('blackjackIdCookie');
+            console.log("cookie id" + idCookie);
+            tokenCookie = this.$cookie.get('blackjackTokenCookie');
+            console.log("cookie token" + tokenCookie);
+            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/accountinfo' })
+                .then(result => {
+                    console.log("data received");
+                    //displaying the information from the db
+                    this.fullName = result.body.fullName;
+                    this.username = result.body.username;
+                    this.email = result.body.email;
+                    this.balance = result.body.balance;
+                })
+                .catch(err => {
+                    console.log("error");
+                });
+        }
+    }
 
 </script>

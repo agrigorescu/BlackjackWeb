@@ -72,23 +72,30 @@
                 username: '',
                 password: '',
                 dob: '',
-                formSubmitted: false,
-
+                formSubmitted: false
             }
         },
         methods: {
+            /**
+             * Validating the form before submitting
+             * */
             validateBeforeSubmit(e) {
                 this.$validator.validateAll();
                 if (!this.errors.any()) {
                     this.submitForm()
                 }
             },
+
+            /**
+             * Submitting the form to the db
+             * */
             submitForm() {
                 this.formSubmitted = true;
                 console.log({data:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}});
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/register',params:{fullName:this.fullName, email:this.email,username:this.username,password:this.password,dob:this.dob}})
                 .then(result => {
                     console.log("data sent");
+                    //redirecting to the login page
                     window.location.href = "http://blackjackwebtest.herokuapp.com/login";
                 })
                 .catch(err => {
