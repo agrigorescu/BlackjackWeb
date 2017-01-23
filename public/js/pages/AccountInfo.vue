@@ -194,6 +194,8 @@
                             .then(result => {
                                 console.log("data received");
                                 //retrieve the information from the db
+                                console.log("result is");
+                                console.log(result);
                                 this.fullName = result.body.fullName;
                                 this.username = result.body.username;
                                 this.email = result.body.email;
@@ -306,11 +308,14 @@
             api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`  })
                 .then(result => {
                     console.log("data received");
+                    console.log("result is ");
+                    console.log(result);
+                    let account = result.body.success;
                     //displaying the information from the db
-                    this.fullName = result.body.fullName;
-                    this.username = result.body.username;
-                    this.email = result.body.email;
-                    this.balance = result.body.balance;
+                    this.fullName = account.fullName;
+                    this.username = account.username;
+                    this.email = account.email;
+                    this.balance = account.balance;
                 })
                 .catch(err => {
                     console.log("error");
