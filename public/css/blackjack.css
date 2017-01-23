@@ -20,7 +20,7 @@ body {
 
 .nav-wrapper{
     background-color: #272828;
-    /*position: fixed;*/  
+    /*position: fixed;  */
 }
 
 nav .nav-wrapper {
@@ -30,7 +30,7 @@ nav .nav-wrapper {
 }
 
 nav{
-    position: fixed;
+    /*position: fixed;*/
     z-index: 100;
 }
 
@@ -38,7 +38,7 @@ nav{
 #homeBackground{ /*code for background image*/
     position: fixed;
     z-index: -100;
-    margin-top: 4.5%;
+    /*margin-top: 4.5%;*/
 }
 
 #title{
@@ -161,7 +161,7 @@ p #404Message{
 #gameBoard{
     position: fixed;
     z-index: 0;
-    margin-top: 4.5%;
+    /*margin-top: 4.5%;*/
 }
 
 #gameButtons {

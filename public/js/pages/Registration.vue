@@ -38,10 +38,10 @@
                             </div>
                         </div>
 
-
+                        <!--<label class="label">Date of birth</label>-->
+                        <label class="label">Date of birth: {{ dob }}</label>
                         <div class="row">
                             <div class="input-field col s12">
-                                <p>Date of birth: {{ dob }}</p>
                                 <input v-model="dob" id="dob" type="date" class="datepicker validate">
                             </div>
                         </div>
