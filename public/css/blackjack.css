@@ -20,14 +20,19 @@ body {
 
 .nav-wrapper{
     background-color: #272828;
-    /*position: fixed;*/
-    
+    /*position: fixed;*/  
 }
 
-nav{
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    z-index: 200;
+}
+
+/*nav{
     position: fixed;
     z-index: 100;
-}
+}*/
 
 
 #homeBackground{ /*code for background image*/
@@ -47,6 +52,10 @@ nav{
 
 #titleRegister{
     margin-top: 3%;
+}
+
+.cardStack {
+    position: absolute;
 }
 
 #login{
@@ -71,18 +80,18 @@ nav{
     background-color: transparent
 }
 
-#computer{ 
+.computer{ 
     position: relative;
     z-index: 15;
-    margin-top: 13%;
-    margin-left: 19%;
+    margin-top: -6%;
+    margin-left: 1%;
 }
 
-#player{ 
+.player{ 
     position: relative;
     z-index: 15;
     margin-top: 24%;
-    margin-left: 19%;
+    margin-left: 1%;
 }
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
@@ -106,12 +115,14 @@ p{
     color: #ffffff;
 }
 
-#blueChip{
-    margin-top: -39%;
-}
 
 .label{
     font-family: 'Abel', sans-serif;
+}
+
+#404{
+    text-align: center;
+    margin-top: 8%;
 }
 /*end of font css*/
 
@@ -131,16 +142,19 @@ p{
 
 #homeBackground{
     width: 100%;
+    position: inherit;
+    /*margin-top: 2.5%;*/
 }
 
 #gameBoard{
     position: fixed;
     z-index: 0;
-    margin-top: 4.5%;
+    /*margin-top: 4.5%;*/
 }
 /*end of images css*/
 
 /*----------------------------------------------------------------*/
+
 
 /*start of placeholder boxes css*/
 
@@ -151,7 +165,7 @@ p{
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 10.93%; /* use to be 15%*/
+    width: 5.93%; /* use to be 15%*/
     height: 130px; /* use to be 200%*/
 }
 
@@ -190,7 +204,16 @@ p{
     margin-right: 4%;
 
 }
-/*start of placeholder boxes css*/
+
+#message{
+    position: fixed;
+    background-color: #1a462b;
+    margin-left: 25.5%;
+    width: 20vw;
+    text-align: center;
+    border: 2px dashed white;
+}
+/*end of placeholder boxes css*/
 
 
 /*----------------------------------------------------------------*/
@@ -198,6 +221,14 @@ p{
 /*start of button css*/
 .btn{
     background-color: #272828;
+}
+
+#loginChip{
+    width: 20%;
+}
+
+#registerChip{
+    width: 34%;
 }
 /*end of button css*/
 
@@ -209,29 +240,32 @@ p{
 }
 /*end of the forms css*/
 
-
-#scoreboard{
+/*start of sidebar css*/
+#moneyManager{
     position:absolute;
     top:120px;
-    left:80px;
-    border: 2px solid black;
+    left:7%;
+    border: 2px dashed white;
     width:100px;
-    height:60px;
+    z-index: 100;
 }
-#myscore{
+#myBalance{
     padding:3px;
 }
-#compscore{
+#currentBet{
     padding:3px;
+}
+
+#winnings{
+    padding: 3px;
 }
 
 .input{
     background-color: red;
 }
-/*#miniMenu, #miniMenu2, #miniMenu3{
-    margin-top: -44%;
-}*/
+/*end of sidebar css*/
 
+/*----------------------------------------------------------------*/
 
 /*start new user page - register form section*/
 .input-field{
@@ -309,18 +343,73 @@ textarea.materialize-textarea:focus:not([readonly]) {
 /*start of media querys */
 @media screen and (min-width: 1280px) {
     #login{
-        margin-top: 64.5%;
-        margin-left: 32%;
+        margin-top: -27.5%;
+        margin-left: 27%;
         list-style: none;
         background-color: transparent;
     }
 
     #register{
-        margin-top: -3%;
-        margin-left: 62.9%;
+        margin-top: -15.3%;
+        margin-left: 55.9%;
         list-style: none;
         background-color: transparent;
     }
 }
 /*end of media querys */
 /*----------------------------------------------------------------*/
+
+#card0 {
+    position: fixed;
+    margin-left: 1%;
+}
+
+#card1 {
+    position: fixed;
+    margin-left: 10%
+}
+
+#card2 {
+    position: fixed;
+    margin-left: 19%
+}
+
+#card3 {
+    position: fixed;
+    margin-left: 28%
+}
+
+#card4 {
+    position: fixed;
+    margin-left: 37%
+}
+
+#card5 {
+    position: fixed;
+    margin-left: 1%;
+    margin-top: 29%;
+}
+
+#card6 {
+    position: fixed;
+    margin-left: 10%;
+    margin-top: 29%;
+}
+
+#card7 {
+    position: fixed;
+    margin-left: 19%;
+    margin-top: 29%;
+}
+
+#card8 {
+    position: fixed;
+    margin-left: 28%;
+    margin-top: 29%;
+}
+
+#card9 {
+    position: fixed;
+    margin-left: 37%;
+    margin-top: 29%;
+}
