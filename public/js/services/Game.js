@@ -129,8 +129,10 @@ class Game{
         newBank +=  parseInt((betVal)*2);
         if(playerScore === 21){
             $("#bank").html(newBankNatural);
+            this.submitBet(0, newBankNatural);
         }else{
             $("#bank").html(newBank);
+            this.submitBet(0, newBank);
         }
     }
     // at the point this function is called, player has already stuck - playerScore is fixed
@@ -240,8 +242,8 @@ class Game{
     }
     static submitBet(bank, newBank){
         $("#submitBet").unbind().on("click", (e) => {
-            let betVal = $("#betVal").val();
-            console.log("bet value : " + betVal);
+            let betVal = $("#betVal").html();
+            console.log("the bet value : " + betVal);
             e.preventDefault();
             newBank -= betVal;
             $("#newGame").prop("disabled", false);
@@ -251,7 +253,7 @@ class Game{
             $("#fifty").prop("disabled", true);
             $("#hundred").prop("disabled", true);
             $("#bank").html(newBank);
-            console.log(betVal);
+            console.log("newBank " + newBank);
             this.init(betVal, newBank);
         })
     }
@@ -267,10 +269,10 @@ class Game{
         let chipScore = [5, 10, 20, 50, 100];
         for(let j=0; j<5; j++){
             $(chipArray[j]).unbind().on("click", () => {
-                value+= chipScore[j];
+                value+= chipScore[j]/100;
                 this.disableChips();
                 $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
-                $("#betVal").val(value);
+                $("#betVal").html(value);
             })
         }
     }

@@ -58,21 +58,18 @@
                 <button type="input" id="twenty">20p</button>
                 <button type="input" id="fifty">50p</button>
                 <button type="input" id="hundred">£1</button>
-                <form id="submitBet">
-                    <input id="betVal" type="text">
-                    <input type="submit" value="Place Bet">
-                </form>
-                <h3>Bank :  £ <span id="bank">500</span></h3>
+                <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
+                <button type="input" id="submitBet">Submit Bet</button>
+                <h3 style="padding:30px">Bank :  £ <span id="bank">20</span></h3>
             </div>
-        
-            </div>
+        </div>
 <!--end of the game board-->
 
     </main-layout>
 </template>
 <script>
-    let bank = 500;
-    let newBank = 500;
+    let bank = 20;
+    let newBank = 20;
     import MainLayout from '../layouts/Main.vue'
     const Game = require("../services/Game");
     export default {
@@ -83,7 +80,6 @@
             // the game can only be initiated inside submitBet when bet is placed
             Game.submitBet(bank, newBank);
             Game.chipControl(0);
-            
         },
         methods: {
             selectBet: function (val){              
