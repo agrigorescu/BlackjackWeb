@@ -158,7 +158,10 @@ p #404Message{
     position: inherit;
     /*margin-top: 2.5%;*/
 }
-
+#gameButtons{
+    position:absolute;
+    color:red;
+}
 #gameBoard{
     position: fixed;
     z-index: 0;
