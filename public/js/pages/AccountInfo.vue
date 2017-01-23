@@ -4,14 +4,25 @@
         <div class="row container" id="title">
             <div id="row">
                 <h2>{{fullName}}'s Account</h2>
-                <div class="col s6">
+
+                <div class="col s12">
+                    <div id="accountMenu">
+                        <button v-on:click="stripeAddCardClick()" class="btn waves-effect waves-light miniMenu" id="customButton">Add Card</button>
+                        <button v-on:click="inviteFriendField()" class="btn waves-effect waves-light miniMenu" id="miniMenu2">Invite Friends</button>
+                        <button v-on:click="deleteAccount()" class="btn waves-effect waves-light miniMenu" id="miniMenu4">Delete Account</button>
+
+                    </div>
+                </div>
+
+                <div class="col s12">
                     <div id="accountInfo">
-                        <div class="boxinfo" id="computer">
+                        <div class="boxinfo" id="info">
                             <ul>
                                 <li>Name: {{ fullName }}</li>
                                 <li>Username: {{ username}}</li>
                                 <li>Email: {{ email }}</li>
-                                <li>Balance: {{ balance }} <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
+                                <li>Balance: {{ balance }}</li>
+                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
                                 <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForWithdrawl()" v-if="seenBalance">Withdraw balance</button></li>
                                 <li v-if="seenAdd"> <input v-model="addBalance" type="number" placeholder="Add amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeAddMoneyClick()">Add balance</button></li>
                                 <li v-if="seenWithdraw"> <input v-model="withdrawBalance" type="number" placeholder="Withdraw amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeWithdrawMoneyClick()">Withdraw balance</button></li>
@@ -20,27 +31,22 @@
                     </div>
                 </div>
 
-                <div class="col s6">
-                    <div id="accountMenu">
-                        <button v-on:click="stripeAddCardClick()" class="btn waves-effect waves-light miniMenu" id="customButton">Add Card</button>
-                        <button v-on:click="inviteFriendField()" class="btn waves-effect waves-light miniMenu" id="miniMenu2">Invite Friends</button>
-                        <button v-on:click="deleteAccount()" class="btn waves-effect waves-light miniMenu" id="miniMenu4">Delete Account</button>
-
-                    </div>
-                </div>
-                <div id="playButton">
-                    <img src="img/blueChip.png" alt="some text">
-                    <a href="/play">
-                        <h2 id="blueChip">PLAY</h2>
-                    </a>
-                </div>
-
                 <div>
                     <input v-if="clickInviteFriend" v-model="friendEmail" type="email" placeholder="Friend Email" data-vv-rules="required|email"> <button v-if="clickInviteFriend" class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
                 </div>
 
-                <div class="col s12" id="imgLogo">
-                    <img src="img/logo.png" alt="some text">
+                <div class="col s12">
+                    <div id="playButton">
+                        <a href="/play">
+                            <img id="blueChip" src="img/playChip.png" alt="some text">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col s12">
+                    <div id="imgLogo">
+                        <img id="littleLogo" src="img/logo.png" alt="some text">
+                    </div>
                 </div>
 
                 <!--end of the account info page-->

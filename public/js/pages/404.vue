@@ -1,7 +1,7 @@
 <template>
     <main-layout>
         <div class="row container" id="404">
-            <p>Page not found. Your results clicking that link may vary. That's why we call it testing in production.</p>
+            <p id="404Message">Page not found. Your results clicking that link may vary. That's why we call it testing in production.</p>
         </div>
     </main-layout>
 </template>
