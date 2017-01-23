@@ -6,12 +6,12 @@
 // ***** DEALER TWISTS FOR < 17 ***** //
 // ***** 2 ACES ON DEAL = 12    ***** //
 //----------------------------------- //
+// currently if player goes bust dealer wins automatically //
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
-
 class Game{
-    static generateDeck(){
+     static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
         const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
@@ -51,12 +51,13 @@ class Game{
     }
     static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, computerCards, dealerDealtCards){
         // the 4 card holder id's for cards to be dealt to start
-        let dealID = ["#0", "#1", "#5", "#6"];
+        let dealID = ["#card0", "#card1", "#card5", "#card6"];
         let counter1 = 0;
         let counter2 = 0;
         var compCurrScore = 0;
         var myCurrScore = 0;
         // after deal enable stick and twist buttons
+        $("#reset").prop("disabled", false);
         $("#stick").prop("disabled", false);
         $("#twist").prop("disabled", false);
         for(let j=0; j<2; j++){
@@ -97,39 +98,76 @@ class Game{
         // the remaining 3 card holders left for player
         $("#twist").unbind().on("click", () => {
             counter++
-            let playerBoxes = ["#7", "#8", "#9"];
+            let playerBoxes = ["#card7", "#card8", "#card9"];
             this.dealCards(deck, imgArray, counter, myCards, playerBoxes);
             if(counter-1 < 3){
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
             }
             if(myCurrScore > 21){
-                $("#stick").prop("disabled", true);
-                $("#twist").prop("disabled", true);
-                $("#newGame").prop("disabled", true);
-                console.log("player is BUST");
+                this.loseStateReset();
+                console.log("YOUR BUST, COMPUTER WINS");
                 return;
             }
-            console.log("player score: " + myCurrScore);
         });
     }
-    static dealerLogic(playerScore, compCurrScore, compCards){
-        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore < playerScore){
-            console.log("dealer sticks on soft 17");
-            console.log("player wins")
-            $("#newGame").prop("disabled", true);
+    static loseStateReset(){
+        this.chipControl(0);
+        $("#five").prop("disabled", true);
+        $("#ten").prop("disabled", true);
+        $("#twenty").prop("disabled", true);
+        $("#fifty").prop("disabled", true);
+        $("#hundred").prop("disabled", true);
+        $("#stick").prop("disabled", true);
+        $("#twist").prop("disabled", true);
+        $("#newGame").prop("disabled", true);
+        $("#submitBet").prop("disabled", true);
+        $("#betVal").html("");
+    }
+    static enableChips(){
+        $("#five").prop("disabled", false);
+        $("#ten").prop("disabled", false);
+        $("#twenty").prop("disabled", false);
+        $("#fifty").prop("disabled", false);
+        $("#hundred").prop("disabled", false);
+        $("#submitBet").prop("disabled", false);
+    }
+    static winStateReset(betVal, bank, playerScore){
+        this.loseStateReset();
+        let newBankNatural = bank;
+        let newBank = bank;
+        newBankNatural +=  parseInt((betVal)*2.5);
+        newBank +=  parseInt((betVal)*2);
+        if(playerScore === 21){
+            $("#bank").html(newBankNatural);
+            this.submitBet(0, newBankNatural);
+        }else{
+            $("#bank").html(newBank);
+            this.submitBet(0, newBank);
         }
-        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore > playerScore){
-            console.log("dealer sticks on soft 17");
-            console.log("computer wins");
+    }
+    static drawStateReset(betVal, bank){
+        let newBank = bank + betVal;
+        this.submitBet(0, newBank);
+    }
+    // at the point this function is called, player has already stuck - playerScore is fixed
+    static dealerLogic(playerScore, compCurrScore, compCards, betVal, bank){
+        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
+            if(compCurrScore < playerScore){
+                console.log("dealer sticks on soft 17");
+                console.log("player wins");
+                this.winStateReset(betVal, bank, playerScore);
+                $("#newGame").prop("disabled", true);
+            }else if(compCurrScore > playerScore){
+                this.lostStateReset();
+                console.log("dealer sticks on soft 17");
+                console.log("computer wins");
+                $("#newGame").prop("disabled", true);
+            }
+        }else if(compCurrScore > 21){
             $("#newGame").prop("disabled", true);
-        }
-        if(compCurrScore > 21){
-            $("#newGame").prop("disabled", true);
-           // this.calcWinnings();
-            console.log("DEALER BUST!!!");
-            console.log("YOU WIN!!");
-        }
-        else if(compCurrScore < playerScore){
+            console.log("DEALER BUST, YOU WIN!!");
+            this.winStateReset(betVal, bank, playerScore);
+        }else if(compCurrScore < playerScore){
             console.log("less than player score hence twist");
             $("#stick").trigger("click");
         }else if(compCurrScore < 17){
@@ -137,49 +175,47 @@ class Game{
             $("#stick").trigger("click");
         }else if(compCurrScore === playerScore){
             $("#newGame").prop("disabled", true);
-          //  this.calcDraw();
             console.log("EQUAL SO DRAW!!");
         }else if(compCurrScore > playerScore){
+            this.loseStateReset();
             $("#newGame").prop("disabled", true);
-          //  this.calcLoss();
             console.log("COMP WINS!!");
         }else{
             console.log("wtf you doing?");
         }
     }
-    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards){ 
+    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards, betVal, bank){ 
         let playerScore = 0;
         let computerScoreDeal = 0;
         $("#stick").unbind().on("click", () => {
             $("#1").html(dealerDealtCards[0]);
+            $("#stick").prop("disabled", true); 
+            $("#twist").prop("disabled", true);
             counter++;
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
             computerScoreDeal = compScoreArray.reduce((a,b) => a + b, 0);
-            console.log("comp cards: ");
-            console.log(compCards);
             if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
-                this.dealerLogic(playerScore, computerScore, compCards);
+                this.dealerLogic(playerScore, computerScore, compCards, betVal, bank);
                 return;
             }
-            $("#stick").prop("disabled", true); 
-            $("#twist").prop("disabled", true);
             if(computerScoreDeal > 17 && computerScoreDeal == playerScore){
                 console.log("DRAW!!");
                 $("#newGame").prop("disabled", true);
+                return;
             } 
             if(computerScoreDeal > playerScore){
                 console.log("computer wins at deal");
-             //   this.calcLoss();
+                this.loseStateReset();
                 return;
             }
-            let dealerBoxes = ["#2", "#3", "#4"];
+            let dealerBoxes = ["#card2", "#card3", "#card4"];
             this.dealCards(deck, imgArray, counter, compCards, dealerBoxes);
             if(counter-1 < 3){  // only deal 3 cards
                 var compCurrScore = this.score(compCards, counter+2, compScoreArray, compScore, "dealer");
             }
             let computerScore = compScoreArray.reduce((a, b) => a + b, 0);
             console.log("computer score " + computerScore);
-            this.dealerLogic(playerScore, computerScore, compCards);
+            this.dealerLogic(playerScore, computerScore, compCards, betVal, bank);
         });
     }
     static score(cards, counter, scoreArray, score, player){
@@ -206,21 +242,71 @@ class Game{
         return sum;
     }
     static resetBoard(){
-        $("#reset").click(() => {
-            $("#newGame").prop("disabled", false);
+        $("#reset").on("click", () => { 
             for(let j=0; j<10; j++){
                 let img = new Image();
                 img.src = `../../card_images/blank.jpg`;
                 $(`#${j}`).html(img);
             }
+            this.enableChips();
         })
     }
-    static init(){
-        $("#newGame").on("click", () => {
-            this.play();
+    static init(betVal, bank){
+        $("#newGame").unbind().on("click", () => {
+            this.play(betVal, bank);
         });
     }
-    static play(){
+    static submitBet(bank, newBank){
+        $("#submitBet").unbind().on("click", (e) => {
+            $("#newGame").prop("disabled", false);
+            this.disableChips();
+            let betVal = $("#betVal").html();
+            console.log("the bet value : " + betVal);
+            e.preventDefault();
+            newBank -= betVal;
+            $("#bank").html(newBank);
+            console.log("newBank " + newBank);
+            this.init(betVal, newBank);
+        })
+    }
+    static disableChips(){
+        $("#five").prop("disabled", true);
+        $("#ten").prop("disabled", true);
+        $("#twenty").prop("disabled", true);
+        $("#fifty").prop("disabled", true);
+        $("#hundred").prop("disabled", true);
+        // if bet cancelled previous bet needs to be destroyed
+    }
+    static withdrawFunds(){
+        $("#withdraw").on("click", (e) => {
+            e.preventDefault();
+            this.disableChips();
+            let amount = $("#bank").html();
+            console.log("amount to sent to bank: " + amount);
+            $("#bank").html(0);
+            this.chipControl(0);
+        })
+    }
+    static printWithdrawFunds(amount){
+        return amount;
+    }
+    static setFunds(balance){
+        $("#bank").html(balance);
+    }
+    static chipControl(value){
+        let chipArray = ["#five", "#ten", "#twenty", "#fifty", "#hundred"];
+        let chipScore = [5, 10, 20, 50, 100];
+        for(let j=0; j<5; j++){
+            $(chipArray[j]).unbind().on("click", () => {
+                value+= chipScore[j]/100;
+                this.disableChips();
+                $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
+                $("#submitBet").prop("disabled", false);
+                $("#betVal").html(value);
+            })
+        }
+    }
+    static play(betVal, bank){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
@@ -238,7 +324,7 @@ class Game{
         imgArray = this.createImagesArray(deck);
         this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
         this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
-        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
+        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards, betVal, bank);
         this.resetBoard();  
     }
 }
