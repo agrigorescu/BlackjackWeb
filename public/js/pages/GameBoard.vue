@@ -91,7 +91,7 @@
         },
         methods: {
             getBalance: function(){
-                let bank = $("#bank").html();
+                bank = $("#bank").html();
                 console.log("balance: " + bank);
                 $("#bank").html("");
                 api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
