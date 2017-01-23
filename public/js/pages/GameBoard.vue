@@ -73,8 +73,8 @@
 </template>
 <script>
     let idCookie;
-    var bank =0;
-    var newBank = bank;
+    let bank =0;
+    let newBank = bank;
     let balance = [];
     let newFunds = [];
     import MainLayout from '../layouts/Main.vue'
@@ -108,7 +108,7 @@
         },
         beforeMount: function() {
             idCookie = this.$cookie.get('blackjackIdCookie');
-            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`  })
+            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
                 .then(result => {
                     console.log("data received");
                     console.log("result is ");
@@ -124,5 +124,4 @@
                 });
         }
     }
-    
 </script>
