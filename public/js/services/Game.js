@@ -188,7 +188,7 @@ class Game{
         let playerScore = 0;
         let computerScoreDeal = 0;
         $("#stick").unbind().on("click", () => {
-            $("#1").html(dealerDealtCards[0]);
+            $("#card1").html(dealerDealtCards[0]);
             $("#stick").prop("disabled", true); 
             $("#twist").prop("disabled", true);
             counter++;
@@ -297,14 +297,16 @@ class Game{
         let chipArray = ["#five", "#ten", "#twenty", "#fifty", "#hundred"];
         let chipScore = [5, 10, 20, 50, 100];
         for(let j=0; j<5; j++){
-            $(chipArray[j]).unbind().on("click", () => {
-                value+= chipScore[j]/100;
-                this.disableChips();
-                $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
-                $("#submitBet").prop("disabled", false);
-                $("#betVal").html(value);
-            })
-        }
+           $(chipArray[j]).unbind().on("click", () => {
+               value +=  chipScore[j]
+               let output = value/100;
+               console.log("output: " + output);
+               this.disableChips();
+               $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
+               $("#submitBet").prop("disabled", false);
+               $("#betVal").html(output);
+           })
+       }
     }
     static play(betVal, bank){
         // x-ScoreArrays' are for holding numbers of the scores
