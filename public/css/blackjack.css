@@ -29,10 +29,10 @@ nav .nav-wrapper {
     z-index: 200;
 }
 
-/*nav{
+nav{
     position: fixed;
     z-index: 100;
-}*/
+}
 
 
 #homeBackground{ /*code for background image*/
@@ -83,20 +83,15 @@ nav .nav-wrapper {
 .computer{ 
     position: relative;
     z-index: 15;
-<<<<<<< HEAD
-    margin-top: -6%;
-    margin-left: 1%;
-=======
-    margin-top: 13%;
-    /*margin-left: 5%;*/
->>>>>>> pageDesign
+    margin-top: 25%;
+    margin-left: 3%;
 }
 
 .player{ 
     position: relative;
     z-index: 15;
-    margin-top: 24%;
-    margin-left: 1%;
+    margin-top: -8%;
+    margin-left: 3%;
 }
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
@@ -165,7 +160,11 @@ p #404Message{
 #gameBoard{
     position: fixed;
     z-index: 0;
-    /*margin-top: 4.5%;*/
+    margin-top: 4.5%;
+}
+
+#gameButtons {
+    position: relative;
 }
 /*end of images css*/
 

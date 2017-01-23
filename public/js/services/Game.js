@@ -17,7 +17,7 @@ class Game{
         const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
         const spades = ["As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks"];
         const oneDeck = $.merge($.merge(hearts, diamonds), $.merge(spades, clubs));
-        const deck = oneDeck;
+        const deck = oneDeck.concat(oneDeck).concat(oneDeck);
         return deck;
     }
     static createImagesArray(deck){
