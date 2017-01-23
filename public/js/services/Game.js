@@ -6,117 +6,11 @@
 // ***** DEALER TWISTS FOR < 17 ***** //
 // ***** 2 ACES ON DEAL = 12    ***** //
 //----------------------------------- //
+// currently if player goes bust dealer wins automatically //
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
-
 class Game{
-    static chipManagement(){
-        let zIndex = 0;
-        let height = 0;
-        let chipArray = [];
-        let $counter = 0;
-        let $bank = 500;
-        $("#double").click(function(){
-            if($counter == 0){
-                return;
-            }
-            else {
-                $counter *= 2;
-                $bank - counter;
-            }
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#resetChip").click(function(){
-            //Empty all of the chips in the chipStack div
-            height = 0;
-            $bank = 500;
-            $counter = 0;
-            $('.chipStack').empty();
-            $("#redChip").show();
-            $("#blueChip").show();
-            $("#greenChip").show();
-            $("#blackChip").show();
-            $("#orangeChip").show();
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#redChip").click(function(){
-            console.log("red chip clicked");
-            $("#blueChip").hide();
-            $("#greenChip").hide();
-            $("#blackChip").hide();
-            $("#orangeChip").hide();
-            $('#redChip').clone().prependTo('.chipsStack').addClass("chip").animate({
-                'z-index' : zIndex--,
-                'marginTop' : height-=5
-            });
-            $counter += 0.05;
-            $bank -= 0.05;
-            $('.chipStackBoard').css({
-                position: "absolute",
-            });
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#blueChip").click(function(){
-            $("#redChip").hide();
-            $("#greenChip").hide();
-            $("#blackChip").hide();
-            $("#orangeChip").hide();
-            $('#blueChip').clone().appendTo('.chipsStack').addClass("chip").animate({
-                'z-index' : zIndex--,
-                'margin-top' : height-=5
-            });
-            $counter += 0.50;
-            $bank -= 0.50;
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#orangeChip").click(function(){
-            $("#blueChip").hide();
-            $("#greenChip").hide();
-            $("#blackChip").hide();
-            $("#redChip").hide();
-            $('#orangeChip').clone().appendTo('.chipsStack').addClass("chip").animate({
-                'z-index' : zIndex--,
-                'margin-top' : height-=5
-            });
-            $counter += 0.10;
-            $bank -= 0.10;
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#blackChip").click(function(){
-            $("#blueChip").hide();
-            $("#greenChip").hide();
-            $("#redChip").hide();
-            $("#orangeChip").hide();
-            $('#blackChip').clone().appendTo('.chipsStack').addClass("chip").animate({
-                'z-index' : zIndex--,
-                'margin-top' : height-=5
-            });
-            $counter += 1;
-            $bank -= 1;
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-        $("#greenChip").click(function(){
-            $("#blueChip").hide();
-            $("#redChip").hide();
-            $("#blackChip").hide();
-            $("#orangeChip").hide();
-            $('#greenChip').clone().appendTo('.chipStack').addClass("chip").animate({
-                'z-index' : zIndex--,
-                'margin-top' : height-=5
-            });
-            $counter += 0.20;
-            $bank -= 0.20;
-            $('#quantity').val($counter.toFixed(2));
-            $('#bank').val($bank.toFixed(2));
-        });
-    }
      static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
@@ -199,7 +93,7 @@ class Game{
         imgArray.splice(0, 1);
         deck.splice(0, 1);
     }
-    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards, betAmount){
+    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards){
         // let scoreArray = [];
         // the remaining 3 card holders left for player
         $("#twist").unbind().on("click", () => {
@@ -210,32 +104,54 @@ class Game{
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
             }
             if(myCurrScore > 21){
-                $("#stick").prop("disabled", true);
-                $("#twist").prop("disabled", true);
-                $("#newGame").prop("disabled", true);
-                console.log("player is BUST");
+                this.loseStateReset();
+                console.log("YOUR BUST, COMPUTER WINS");
                 return;
             }
         });
     }
-    static dealerLogic(playerScore, compCurrScore, compCards){
-        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore < playerScore){
-            console.log("dealer sticks on soft 17");
-            console.log("player wins")
-            $("#newGame").prop("disabled", true);
+    static loseStateReset(){
+        this.chipControl(0);
+        $("#five").prop("disabled", false);
+        $("#ten").prop("disabled", false);
+        $("#twenty").prop("disabled", false);
+        $("#fifty").prop("disabled", false);
+        $("#hundred").prop("disabled", false);
+        $("#stick").prop("disabled", true);
+        $("#twist").prop("disabled", true);
+        $("#newGame").prop("disabled", true);
+    }
+    static winStateReset(betVal, bank, playerScore){
+        this.loseStateReset();
+        let newBankNatural = bank;
+        let newBank = bank;
+        newBankNatural +=  parseInt((betVal)*2.5);
+        newBank +=  parseInt((betVal)*2);
+        if(playerScore === 21){
+            $("#bank").html(newBankNatural);
+        }else{
+            $("#bank").html(newBank);
         }
-        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6" && compCurrScore > playerScore){
-            console.log("dealer sticks on soft 17");
-            console.log("computer wins");
+    }
+    // at the point this function is called, player has already stuck - playerScore is fixed
+    static dealerLogic(playerScore, compCurrScore, compCards, betVal, bank){
+        if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
+            if(compCurrScore < playerScore){
+                console.log("dealer sticks on soft 17");
+                console.log("player wins");
+                this.winStateReset(betVal, bank, playerScore);
+                $("#newGame").prop("disabled", true);
+            }else if(compCurrScore > playerScore){
+                this.lostStateReset();
+                console.log("dealer sticks on soft 17");
+                console.log("computer wins");
+                $("#newGame").prop("disabled", true);
+            }
+        }else if(compCurrScore > 21){
             $("#newGame").prop("disabled", true);
-        }
-        if(compCurrScore > 21){
-            $("#newGame").prop("disabled", true);
-           // this.calcWinnings();
-            console.log("DEALER BUST!!!");
-            console.log("YOU WIN!!");
-        }
-        else if(compCurrScore < playerScore){
+            console.log("DEALER BUST, YOU WIN!!");
+            this.winStateReset(betVal, bank, playerScore);
+        }else if(compCurrScore < playerScore){
             console.log("less than player score hence twist");
             $("#stick").trigger("click");
         }else if(compCurrScore < 17){
@@ -243,30 +159,29 @@ class Game{
             $("#stick").trigger("click");
         }else if(compCurrScore === playerScore){
             $("#newGame").prop("disabled", true);
-          //  this.calcDraw();
             console.log("EQUAL SO DRAW!!");
         }else if(compCurrScore > playerScore){
+            this.loseStateReset();
             $("#newGame").prop("disabled", true);
-          //  this.calcLoss();
             console.log("COMP WINS!!");
         }else{
             console.log("wtf you doing?");
         }
     }
-    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards){ 
+    static dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, playerScoreArray, dealerDealtCards, betVal, bank){ 
         let playerScore = 0;
         let computerScoreDeal = 0;
         $("#stick").unbind().on("click", () => {
             $("#1").html(dealerDealtCards[0]);
+            $("#stick").prop("disabled", true); 
+            $("#twist").prop("disabled", true);
             counter++;
             playerScore = playerScoreArray.reduce((a,b) => a + b, 0);
             computerScoreDeal = compScoreArray.reduce((a,b) => a + b, 0);
             if(compCards[0].split('')[0] == "A" && compCards[1].split('')[0] == "6"){
-                this.dealerLogic(playerScore, computerScore, compCards);
+                this.dealerLogic(playerScore, computerScore, compCards, betVal, bank);
                 return;
             }
-            $("#stick").prop("disabled", true); 
-            $("#twist").prop("disabled", true);
             if(computerScoreDeal > 17 && computerScoreDeal == playerScore){
                 console.log("DRAW!!");
                 $("#newGame").prop("disabled", true);
@@ -283,7 +198,7 @@ class Game{
             }
             let computerScore = compScoreArray.reduce((a, b) => a + b, 0);
             console.log("computer score " + computerScore);
-            this.dealerLogic(playerScore, computerScore, compCards);
+            this.dealerLogic(playerScore, computerScore, compCards, betVal, bank);
         });
     }
     static score(cards, counter, scoreArray, score, player){
@@ -310,8 +225,7 @@ class Game{
         return sum;
     }
     static resetBoard(){
-        $("#reset").click(() => {
-            $("#newGame").prop("disabled", false);
+        $("#reset").on("click", () => { 
             for(let j=0; j<10; j++){
                 let img = new Image();
                 img.src = `../../card_images/blank.jpg`;
@@ -319,16 +233,15 @@ class Game{
             }
         })
     }
-    static init(betVal){
-        $("#newGame").on("click", () => {
-            this.play(betVal);
+    static init(betVal, bank){
+        $("#newGame").unbind().on("click", () => {
+            this.play(betVal, bank);
         });
     }
     static submitBet(bank, newBank){
-        bank = 500;
-        newBank = 500;
         $("#submitBet").unbind().on("click", (e) => {
             let betVal = $("#betVal").val();
+            console.log("bet value : " + betVal);
             e.preventDefault();
             newBank -= betVal;
             $("#newGame").prop("disabled", false);
@@ -339,67 +252,29 @@ class Game{
             $("#hundred").prop("disabled", true);
             $("#bank").html(newBank);
             console.log(betVal);
-            this.init(betVal);
+            this.init(betVal, newBank);
         })
     }
-    static cancelBet(bank, newBank){
-        bank = 500;
-        newBank = 500;
-        $("#cancel").unbind().on("click", (e) => {
-            $("#submitBet")[0].reset();
-            $("#five").prop("disabled", false);
-            $("#ten").prop("disabled", false);
-            $("#twenty").prop("disabled", false);
-            $("#fifty").prop("disabled", false);
-            $("#hundred").prop("disabled", false);
-            $("#bank").html(bank);
-            this.chipControl(0);
-            this.submitBet(bank, newBank);
-        })
-    }   
+    static disableChips(){
+        $("#five").prop("disabled", true);
+        $("#ten").prop("disabled", true);
+        $("#twenty").prop("disabled", true);
+        $("#fifty").prop("disabled", true);
+        $("#hundred").prop("disabled", true);
+    }
     static chipControl(value){
-        $("#five").unbind().on("click", () => {
-            value += 5;
-            $("#ten").prop("disabled", true);
-            $("#twenty").prop("disabled", true);
-            $("#fifty").prop("disabled", true);
-            $("#hundred").prop("disabled", true);
-            $("#betVal").val(value);
-        })
-        $("#ten").unbind().on("click", () => {
-            value += 10;
-            $("#five").prop("disabled", true);
-            $("#twenty").prop("disabled", true);
-            $("#fifty").prop("disabled", true);
-            $("#hundred").prop("disabled", true);
-            $("#betVal").val(value);
-        })
-        $("#twenty").unbind().on("click", () => {
-            value += 20;
-            $("#five").prop("disabled", true);
-            $("#ten").prop("disabled", true);
-            $("#fifty").prop("disabled", true);
-            $("#hundred").prop("disabled", true);
-            $("#betVal").val(value);
-        })
-        $("#fifty").unbind().on("click", () => {
-            value += 50;
-            $("#five").prop("disabled", true);
-            $("#ten").prop("disabled", true);
-            $("#twenty").prop("disabled", true);
-            $("#hundred").prop("disabled", true);
-            $("#betVal").val(value);
-        })
-        $("#hundred").unbind().on("click", () => {
-            value += 100;
-            $("#five").prop("disabled", true);
-            $("#ten").prop("disabled", true);
-            $("#twenty").prop("disabled", true);
-            $("#fifty").prop("disabled", true);
-            $("#betVal").val(value);
-        })
+        let chipArray = ["#five", "#ten", "#twenty", "#fifty", "#hundred"];
+        let chipScore = [5, 10, 20, 50, 100];
+        for(let j=0; j<5; j++){
+            $(chipArray[j]).unbind().on("click", () => {
+                value+= chipScore[j];
+                this.disableChips();
+                $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
+                $("#betVal").val(value);
+            })
+        }
     }
-    static play(betVal){
+    static play(betVal, bank){
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
@@ -417,10 +292,8 @@ class Game{
         imgArray = this.createImagesArray(deck);
         this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
         this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
-        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards);
-        this.chipManagement();
+        this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards, betVal, bank);
         this.resetBoard();  
-        console.log("bet value: " + betVal)
     }
 }
 module.exports = Game;

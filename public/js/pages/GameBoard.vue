@@ -52,13 +52,12 @@
                 <button type="input" id="stick" disabled>STICK</button>
                 <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" class="newGame" disabled>DEAL</button>
-                <button type="input" id="reset" disabled>RESET</button><br><br>
+                <button type="input" id="reset" disabled>RESET CARDS</button><br><br>
                 <button type="input" id="five">5p</button>
                 <button type="input" id="ten">10p</button>
                 <button type="input" id="twenty">20p</button>
                 <button type="input" id="fifty">50p</button>
                 <button type="input" id="hundred">£1</button>
-                <button type="input" id="cancel">Cancel Bet</button>
                 <form id="submitBet">
                     <input id="betVal" type="text">
                     <input type="submit" value="Place Bet">
@@ -81,10 +80,9 @@
             MainLayout
         },
         mounted: function () {
-            //all the jquery
-            Game.submitBet();
+            // the game can only be initiated inside submitBet when bet is placed
+            Game.submitBet(bank, newBank);
             Game.chipControl(0);
-            Game.cancelBet(bank, newBank);
             
         },
         methods: {
