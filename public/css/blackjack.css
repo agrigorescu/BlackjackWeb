@@ -38,6 +38,7 @@ nav{
 #homeBackground{ /*code for background image*/
     position: fixed;
     z-index: -100;
+    margin-top: 4.5%;
 }
 
 #title{
