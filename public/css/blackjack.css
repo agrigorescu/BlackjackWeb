@@ -49,6 +49,10 @@ nav{
     margin-top: 3%;
 }
 
+.cardStack {
+    position: absolute;
+}
+
 #login{
     /*margin-top: 63.5%;
     margin-left: 32%;*/
@@ -71,18 +75,18 @@ nav{
     background-color: transparent
 }
 
-#computer{ 
+.computer{ 
     position: relative;
     z-index: 15;
-    margin-top: 13%;
-    margin-left: 19%;
+    margin-top: -6%;
+    margin-left: 1%;
 }
 
-#player{ 
+.player{ 
     position: relative;
     z-index: 15;
     margin-top: 24%;
-    margin-left: 19%;
+    margin-left: 1%;
 }
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
@@ -106,9 +110,6 @@ p{
     color: #ffffff;
 }
 
-#blueChip{
-    margin-top: -39%;
-}
 
 .label{
     font-family: 'Abel', sans-serif;
@@ -151,7 +152,7 @@ p{
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 10.93%; /* use to be 15%*/
+    width: 5.93%; /* use to be 15%*/
     height: 130px; /* use to be 200%*/
 }
 
@@ -324,3 +325,58 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 /*end of media querys */
 /*----------------------------------------------------------------*/
+
+#card0 {
+    position: fixed;
+    margin-left: 1%;
+}
+
+#card1 {
+    position: fixed;
+    margin-left: 10%
+}
+
+#card2 {
+    position: fixed;
+    margin-left: 19%
+}
+
+#card3 {
+    position: fixed;
+    margin-left: 28%
+}
+
+#card4 {
+    position: fixed;
+    margin-left: 37%
+}
+
+#card5 {
+    position: fixed;
+    margin-left: 1%;
+    margin-top: 29%;
+}
+
+#card6 {
+    position: fixed;
+    margin-left: 10%;
+    margin-top: 29%;
+}
+
+#card7 {
+    position: fixed;
+    margin-left: 19%;
+    margin-top: 29%;
+}
+
+#card8 {
+    position: fixed;
+    margin-left: 28%;
+    margin-top: 29%;
+}
+
+#card9 {
+    position: fixed;
+    margin-left: 37%;
+    margin-top: 29%;
+}
