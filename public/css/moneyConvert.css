@@ -24,7 +24,7 @@ div.container.chipStackBoard {
     padding: 20px;
     width: 45%;
     height: 50%;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 label {

@@ -9,8 +9,8 @@
 6 silly lifecycle blackjackweb-frontend@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle blackjackweb-frontend@1.0.0~start: blackjackweb-frontend@1.0.0
 8 verbose lifecycle blackjackweb-frontend@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle blackjackweb-frontend@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Tech-A36/Desktop/BlackjackWeb/node_modules/.bin:/usr/local/Cellar/node/7.2.1/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-10 verbose lifecycle blackjackweb-frontend@1.0.0~start: CWD: /Users/Tech-A36/Desktop/BlackjackWeb
+9 verbose lifecycle blackjackweb-frontend@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Tech-A32/Documents/BlackjackWeb/node_modules/.bin:/usr/local/Cellar/node/7.2.1/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+10 verbose lifecycle blackjackweb-frontend@1.0.0~start: CWD: /Users/Tech-A32/Documents/BlackjackWeb
 11 silly lifecycle blackjackweb-frontend@1.0.0~start: Args: [ '-c', 'node app.js' ]
 12 silly lifecycle blackjackweb-frontend@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle blackjackweb-frontend@1.0.0~start: Failed to exec start script
@@ -25,7 +25,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:885:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid blackjackweb-frontend@1.0.0
-16 verbose cwd /Users/Tech-A36/Desktop/BlackjackWeb
+16 verbose cwd /Users/Tech-A32/Documents/BlackjackWeb
 17 error Darwin 15.6.0
 18 error argv "/usr/local/Cellar/node/7.2.1/bin/node" "/usr/local/bin/npm" "start"
 19 error node v7.2.1
