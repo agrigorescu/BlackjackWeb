@@ -244,9 +244,11 @@ class Game{
     static resetBoard(){
         $("#reset").on("click", () => { 
             for(let j=0; j<10; j++){
+                let id = `#card${j}`;
+                console.log("id: " + id);
                 let img = new Image();
                 img.src = `../../card_images/blank.jpg`;
-                $(`#${j}`).html(img);
+                $(id).html(img);
             }
             this.enableChips();
         })
