@@ -62,7 +62,7 @@
                 <button type="input" id="hundred">£1</button>
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
-                <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
+                <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
                 <button v-on:click="getBalance()">Withdraw Funds</button>
                 <button v-on:click="addFunds()">Add Funds</button>
             </div>
@@ -72,11 +72,13 @@
     </main-layout>
 </template>
 <script>
-    let bank = 20;
-    let newBank = 20;
+    let idCookie;
+    var bank =0;
+    var newBank = bank;
     let balance = [];
     let newFunds = [];
     import MainLayout from '../layouts/Main.vue'
+    const api = require("../services/api");
     const Game = require("../services/Game");
     export default {
         components: {
@@ -89,17 +91,38 @@
         },
         methods: {
             getBalance: function(){
-                // balance = $("#bank").html();
-                balance.push($("#bank").html());
-                console.log("balance: " + $("#bank").html());
+                let bank = $("#bank").html();
+                console.log("balance: " + bank);
                 $("#bank").html("");
-            },
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
+                .then(result => {
+                    console.log("data sent");
+                })
+                .catch(err => {
+                    console.log("error");
+                });
+            },  
             printBalance: function(){
                 console.log("balance: " + balance);
-            },
-            addFunds: function(){
-                
             }
+        },
+        beforeMount: function() {
+            idCookie = this.$cookie.get('blackjackIdCookie');
+            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`  })
+                .then(result => {
+                    console.log("data received");
+                    console.log("result is ");
+                    console.log(result);
+                    let account = result.body.success;
+                    //displaying the information from the db
+                    bank = account.balance;
+                    console.log("balance: " + bank);
+                    $("#bank").html(bank);
+                })
+                .catch(err => {
+                    console.log("error");
+                });
         }
     }
+    
 </script>

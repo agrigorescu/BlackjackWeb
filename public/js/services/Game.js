@@ -263,6 +263,7 @@ class Game{
             let betVal = $("#betVal").html();
             console.log("the bet value : " + betVal);
             e.preventDefault();
+            // pass the new bank value into init() which starts game process
             newBank -= betVal;
             $("#bank").html(newBank);
             console.log("newBank " + newBank);
@@ -298,11 +299,13 @@ class Game{
         let chipScore = [5, 10, 20, 50, 100];
         for(let j=0; j<5; j++){
             $(chipArray[j]).unbind().on("click", () => {
-                value+= chipScore[j]/100;
+                value +=  chipScore[j];  
+                let output = value/100;     // do this because JS can't do BODMAS
+                console.log("output: " + output);
                 this.disableChips();
                 $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
                 $("#submitBet").prop("disabled", false);
-                $("#betVal").html(value);
+                $("#betVal").html(output);
             })
         }
     }
