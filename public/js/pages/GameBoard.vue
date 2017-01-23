@@ -1,16 +1,9 @@
 <template>
     <main-layout>
         <!--start of the game board-->
-
-        <div id="moneyManager">
-            <div id="myBalance">Balance: £10</div>
-            <div id="currentBet">dealer: £2</div>
-            <div id="winnings">Winnings: 2</div>
-        </div>
-
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
-            <div class="chipsStack overide">
+            <div class="chipsStack">
                 <div v-on:click="selectBet(5)" id="redChip" class="fish red">
                     <div class="value">5p</div>
                 </div>
@@ -64,15 +57,7 @@
                 <button type="input" id="newGame" class="newGame">DEAL</button>
                 <button type="input" id="reset">RESET</button>
             </div>
-            <!--<div class="row">
-                <div style="position:absolute; top:10px" id="gamebuttons">
-                    <button type="input" id="stick" class="stick" disabled>STICK</button>
-                    <button type="input" id="twist" disabled>TWIST</button>
-                    <button type="input" id="newGame" class="newGame">DEAL</button>
-                    <button type="input" id="reset">RESET</button>
-                </div>
-            </div>
-            <div class="container bettingBoard">
+            <!--<div class="container bettingBoard">
                     <div class="row">
                         <div class="col s12">
                             <form id='myform'>

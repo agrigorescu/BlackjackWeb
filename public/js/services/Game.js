@@ -17,7 +17,7 @@ class Game{
         const clubs = ["Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Ks"];
         const spades = ["As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks"];
         const oneDeck = $.merge($.merge(hearts, diamonds), $.merge(spades, clubs));
-        const deck = oneDeck;
+        const deck = oneDeck.concat(oneDeck).concat(oneDeck);
         return deck;
     }
     static createImagesArray(deck){
@@ -51,7 +51,7 @@ class Game{
     }
     static deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, computerCards, dealerDealtCards){
         // the 4 card holder id's for cards to be dealt to start
-        let dealID = ["#0", "#1", "#5", "#6"];
+        let dealID = ["#card0", "#card1", "#card5", "#card6"];
         let counter1 = 0;
         let counter2 = 0;
         var compCurrScore = 0;
@@ -97,7 +97,7 @@ class Game{
         // the remaining 3 card holders left for player
         $("#twist").unbind().on("click", () => {
             counter++
-            let playerBoxes = ["#7", "#8", "#9"];
+            let playerBoxes = ["#card7", "#card8", "#card9"];
             this.dealCards(deck, imgArray, counter, myCards, playerBoxes);
             if(counter-1 < 3){
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
@@ -172,7 +172,7 @@ class Game{
              //   this.calcLoss();
                 return;
             }
-            let dealerBoxes = ["#2", "#3", "#4"];
+            let dealerBoxes = ["#card2", "#card3", "#card4"];
             this.dealCards(deck, imgArray, counter, compCards, dealerBoxes);
             if(counter-1 < 3){  // only deal 3 cards
                 var compCurrScore = this.score(compCards, counter+2, compScoreArray, compScore, "dealer");
