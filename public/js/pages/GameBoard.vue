@@ -1,13 +1,6 @@
 <template>
     <main-layout>
         <!--start of the game board-->
-
-        <div id="moneyManager">
-            <div id="myBalance">Balance: £10</div>
-            <div id="currentBet">dealer: £2</div>
-            <div id="winnings">Winnings: 2</div>
-        </div>
-
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="chipsStack overide">
