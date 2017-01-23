@@ -5,27 +5,27 @@
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="chipsStack overide">
-                <div v-on:click="selectBet(5)" id="redChip" class="fish red">
+                <div id="redChip" class="fish red">
                     <div class="value">5p</div>
                 </div>
             </div>
             <div class="chipsStack">
-                <div v-on:click="selectBet(10)" id="orangeChip" class="fish orange">
+                <div id="orangeChip" class="fish orange">
                     <div class="value">10p</div>
                 </div>
             </div>
             <div class="chipsStack">
-                <div v-on:click="selectBet(20)" id="greenChip" class="fish green">
+                <div id="greenChip" class="fish green">
                     <div class="value">20p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-                <div v-on:click="selectBet(50)" id="blueChip" class="fish blue">
+                <div id="blueChip" class="fish blue">
                     <div class="value">50p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-                <div v-on:click="selectBet(100)" id="blackChip" class="fish black">
+                <div id="blackChip" class="fish black">
                     <div class="value">£1</div>  
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 console.log("balance: " + balance);
             },
             addFunds: function(){
-            
+                
             }
         }
     }
