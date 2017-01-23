@@ -210,6 +210,9 @@
                 api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie, blackjackTokenCookie: this.blackjackTokenCookie } })
                     .then(result => {
                         console.log("data sent");
+                        //delete cookie
+                        this.$cookie.delete('blackjackIdCookie');
+                        console.log("cookie has been deleted");
                     })
                     .catch(err => {
                         console.log("error");
