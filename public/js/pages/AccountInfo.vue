@@ -190,7 +190,7 @@
                     .then(result => {
                         console.log("data sent");
                         this.seenAdd = false;
-                        api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { id: this.blackjackIdCookie } })
+                        api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
                             .then(result => {
                                 console.log("data received");
                                 //retrieve the information from the db
@@ -233,7 +233,7 @@
                     .then(result => {
                         console.log("data sent");
                         this.seenWithdraw = false;
-                        api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { id: this.blackjackIdCookie, amount: this.amount } })
+                        api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
                             .then(result => {
                                 console.log("data received");
                                 //retrieve the information from the db
@@ -300,10 +300,10 @@
         beforeMount: function () {
             console.log('Mounting');
             idCookie = this.$cookie.get('blackjackIdCookie');
-            console.log("cookie id" + idCookie);
+            console.log("cookie id  " + idCookie);
             tokenCookie = this.$cookie.get('blackjackTokenCookie');
-            console.log("cookie token" + tokenCookie);
-            api.callApi({ method: 'GET', path: 'https://blackjackapi00.herokuapp.com/account', params: { _id: this.blackjackIdCookie } })
+            console.log("cookie token   " + tokenCookie);
+            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`  })
                 .then(result => {
                     console.log("data received");
                     //displaying the information from the db
