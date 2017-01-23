@@ -1,7 +1,11 @@
 <template>
     <main-layout>
         <!--start of the game board-->
-
+        <div id="moneyManager">
+            <div id="myBalance">Balance: £10</div>
+            <div id="currentBet">dealer: £2</div>
+            <div id="winnings">Winnings: 2</div>
+        </div>
 
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
@@ -43,6 +47,13 @@
                 <div class="box" id="3">3</div>
                 <div class="box" id="4">4</div>
             </div>
+
+            <div class="row" id="message">
+                <div id="messageBox">
+                    <h3>this is a message</h3>
+                </div>
+            </div>
+
             <div class="row" id="player">
                 <div class="box" id="5">5</div>
                 <div class="box" id="6">6</div>
