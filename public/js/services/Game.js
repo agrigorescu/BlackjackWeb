@@ -121,7 +121,9 @@ class Game{
         $("#twist").prop("disabled", true);
         $("#newGame").prop("disabled", true);
         $("#submitBet").prop("disabled", true);
+        $("#withdraw").prop("disabled", true);
         $("#betVal").html("");
+        
     }
     static enableChips(){
         $("#five").prop("disabled", false);
@@ -260,7 +262,8 @@ class Game{
     static submitBet(){
         $("#submitBet").unbind().on("click", (e) => {
             e.preventDefault();
-        let bank = parseInt($("#bank").html());
+            $("#withdraw").prop("disabled", true);
+            let bank = parseInt($("#bank").html());
             let betVal = parseInt($("#betVal").html());
             console.log("betVal: " + betVal);
             console.log("bank:  " + bank);
