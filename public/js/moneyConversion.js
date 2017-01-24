@@ -3,6 +3,7 @@ $(document).ready(function (){
     let zIndex = 0;
     let height = 0;
     let randomPos = Math.floor(Math.random()*15);
+    
     // $("#double").click(function(){
     //     if($counter == 0){
     //         return;
