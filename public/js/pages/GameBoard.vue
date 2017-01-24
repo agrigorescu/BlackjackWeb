@@ -63,7 +63,6 @@
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
                 <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
                 <button v-on:click="withdraw()">Withdraw Funds</button>
-                <button v-on:click="addFunds()">Add Funds</button>
             </div>
         </div>
 <!--end of the game board-->
@@ -79,9 +78,6 @@
 
 <script>
     let idCookie;
-    let bank =20;
-    let balance = [];
-    let newFunds = [];
     import MainLayout from '../layouts/Main.vue'
     const api = require("../services/api");
     const Game = require("../services/Game");
@@ -92,13 +88,14 @@
         mounted: function (){
             // the game can only be initiated inside submitBet when bet is placed
             $("#message").hide();
-            $("#bank").html(bank);
-            Game.submitBet(bank);
+            let bank  = parseInt($("#bank").html());
+            console.log("bank : " + bank);
+            Game.submitBet();
             Game.chipControl(0);
         },
         methods: {
             withdraw: function(){
-                bank = $("#bank").html();
+                let bank = $("#bank").html();
                 console.log("balance: " + bank);
                 $("#bank").html("");
                 api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
@@ -122,7 +119,7 @@
                     console.log(result);
                     let account = result.body.success;
                     //displaying the information from the db
-                    bank = account.balance;
+                    let bank = account.balance;
                     console.log("balance: " + bank);
                     $("#bank").html(bank);
                 })

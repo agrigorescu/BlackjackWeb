@@ -257,11 +257,13 @@ class Game{
             this.play(betVal, bank);
         });
     }
-    static submitBet(bank){
+    static submitBet(){
         $("#submitBet").unbind().on("click", (e) => {
             e.preventDefault();
-            let betVal = $("#betVal").html();
-            console.log(betVal + " " + bank)
+        let bank = parseInt($("#bank").html());
+            let betVal = parseInt($("#betVal").html());
+            console.log("betVal: " + betVal);
+            console.log("bank:  " + bank);
             // pass the new bank value into init() which starts game process
             if(bank < betVal){
                 setTimeout(() => { 
@@ -273,10 +275,8 @@ class Game{
             }else{
                 $("#newGame").prop("disabled", false);
                 this.disableChips();
-                console.log("the bet value : " + betVal);
                 bank -= betVal;
                 $("#bank").html(bank);
-                console.log("newBank " + bank);
                 this.init(betVal, bank);
             }
         })
