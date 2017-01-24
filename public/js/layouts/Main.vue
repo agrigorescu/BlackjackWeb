@@ -2,7 +2,9 @@
     <div>
         <nav>
             <div class="nav-wrapper">
-                <img id="whiteLogo" src="img/bjWhite.png" alt="some text">
+                <v-link href="/">
+                    <img id="whiteLogo" src="img/bjWhite.png" alt="some text">
+                </v-link>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     
                     <li><v-link href="/">Home</v-link></li>
