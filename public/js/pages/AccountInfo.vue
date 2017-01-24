@@ -187,7 +187,8 @@
                     //     amount: this.addBalance * 100,
                     //     panelLabel: 'Add money'
                     // });
-                    api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: idCookie, amount: this.amount } })
+                    console.log("adding balance " + this.addBalance);
+                    api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: idCookie, amount: this.addBalance } })
                         .then(result => {
                             console.log("data sent");
                             this.seenAdd = false;
@@ -231,7 +232,7 @@
                 //     amount: this.withdrawBalance * 100,
                 //     panelLabel: 'Withdraw money'
                 // });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: this.amount } })
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: this.withdrawBalance } })
                     .then(result => {
                         console.log("data sent");
                         this.seenWithdraw = false;
