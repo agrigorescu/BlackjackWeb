@@ -2,8 +2,9 @@ $(document).ready(function (){
     let tPos = 100;
     let zIndex = 0;
     let height = 0;
-    let randomPos = Math.floor(Math.random()*15);
-    
+    let randLeft = 0;
+    let randBot = 0;
+    let randomPos = 0;
     // $("#double").click(function(){
     //     if($counter == 0){
     //         return;
@@ -28,12 +29,9 @@ $(document).ready(function (){
     });
 
     $("#five").click(function(){
-        let randLeft = 25 - $(this).position().left + randomPos;
-        let randBot = -10 + parseInt($(this).css('marginTop')) + randomPos;
-        $("#ten").hide();
-        $("#twenty").hide();
-        $("#fifty").hide();
-        $("#hundred").hide();
+        randomPos = Math.floor(Math.random()*30);
+        randLeft = 45 - $(this).position().left + randomPos;
+        randBot = -30 + parseInt($(this).css('marginTop')) + randomPos;
         $(this)
             .clone()
             .appendTo('.chipStack')
@@ -44,49 +42,54 @@ $(document).ready(function (){
     });
 
     $("#ten").click(function(){
-        $("#twenty").hide();
-        $("#fifty").hide();
-        $("#hundred").hide();
-        $("#five").hide();
-        $('#ten').clone().appendTo('.chipStack').addClass("chip").animate({
-            'z-index' : zIndex++,
-            'margin-top' : height-=5
-        });
+        randomPos = Math.floor(Math.random()*45);
+        randLeft = 92 - $(this).position().left + randomPos;
+        randBot = -120 + parseInt($(this).css('marginTop')) + randomPos;
+        $(this)
+            .clone()
+            .appendTo('.chipStack')
+            .css('z-index', ++tPos).animate({
+                left : randLeft,
+                bottom : randBot
+            }, 500);
     });
 
     $("#twenty").click(function(){
-        $("#five").hide();
-        $("#ten").hide();
-        $("#fifty").hide();
-        $("#hundred").hide();
-        $('#twenty').clone().appendTo('.chipStack').addClass("chip").animate({
-            'z-index' : zIndex++,
-            'margin-top' : height-=5,
-
-        });
+        randomPos = Math.floor(Math.random()*45);
+        randLeft = 40 - $(this).position().left + randomPos;
+        randBot = -200 + parseInt($(this).css('marginTop')) + randomPos
+        $(this)
+            .clone()
+            .appendTo('.chipStack')
+            .css('z-index', ++tPos).animate({
+                left : randLeft,
+                bottom : randBot
+            }, 500);
     });
 
     $("#fifty").click(function(){
-        $("#five").hide();
-        $("#ten").hide();
-        $("#twenty").hide();
-        $("#hundred").hide();
-        $('#fifty').clone().appendTo('.chipStack').addClass("chip").animate({
-            'z-index' : zIndex++,
-            'margin-top' : height-=5
-        });
+        randomPos = Math.floor(Math.random()*35);
+        randLeft = 25 - $(this).position().left + randomPos;
+        randBot = -250 + parseInt($(this).css('marginTop')) + randomPos
+        $(this)
+            .clone()
+            .appendTo('.chipStack')
+            .css('z-index', ++tPos).animate({
+                left : randLeft,
+                bottom : randBot
+            }, 500);
     });
 
     $("#hundred").click(function(){
-        $("#five").hide();
-        $("#twenty").hide();
-        $("#fifty").hide();
-        $("#ten").hide();
-        $('#hundred').clone().appendTo('.chipStack').addClass("chip").animate({
-            'z-index' : zIndex++,
-            'margin-top' : height-=5
-        });
+        randomPos = Math.floor(Math.random()*45);
+        randLeft = 100 - $(this).position().left + randomPos;
+        randBot = -350 + parseInt($(this).css('marginTop')) + randomPos
+        $(this)
+            .clone()
+            .appendTo('.chipStack')
+            .css('z-index', ++tPos).animate({
+                left : randLeft,
+                bottom : randBot
+            }, 500);
     });
-
-  
 });
