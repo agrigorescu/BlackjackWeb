@@ -42,6 +42,11 @@
                     <div class="box" id="card3">3</div>
                     <div class="box" id="card4">4</div>
                 </div>
+                <div class="row" id="message">
+                    <div id="messageBox">
+                        <h3></h3>
+                    </div>
+                </div>
                 <div class="player">
                     <div class="box" id="card5">5</div>
                     <div class="box" id="card6">6</div>
@@ -63,18 +68,17 @@
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
                 <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
-                <button v-on:click="getBalance()">Withdraw Funds</button>
+                <button v-on:click="withdraw()">Withdraw Funds</button>
                 <button v-on:click="addFunds()">Add Funds</button>
             </div>
         </div>
 <!--end of the game board-->
-
     </main-layout>
 </template>
+
 <script>
     let idCookie;
-    let bank =0;
-    let newBank = bank;
+    let bank =20;
     let balance = [];
     let newFunds = [];
     import MainLayout from '../layouts/Main.vue'
@@ -86,11 +90,13 @@
         },
         mounted: function (){
             // the game can only be initiated inside submitBet when bet is placed
-            Game.submitBet(bank, newBank);
+            $("#message").hide();
+            $("#bank").html(bank);
+            Game.submitBet(bank);
             Game.chipControl(0);
         },
         methods: {
-            getBalance: function(){
+            withdraw: function(){
                 bank = $("#bank").html();
                 console.log("balance: " + bank);
                 $("#bank").html("");

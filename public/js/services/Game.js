@@ -139,15 +139,15 @@ class Game{
         newBank +=  parseInt((betVal)*2);
         if(playerScore === 21){
             $("#bank").html(newBankNatural);
-            this.submitBet(0, newBankNatural);
+            this.submitBet(newBankNatural);
         }else{
             $("#bank").html(newBank);
-            this.submitBet(0, newBank);
+            this.submitBet(newBank);
         }
     }
     static drawStateReset(betVal, bank){
         let newBank = bank + betVal;
-        this.submitBet(0, newBank);
+        this.submitBet(newBank);
     }
     // at the point this function is called, player has already stuck - playerScore is fixed
     static dealerLogic(playerScore, compCurrScore, compCards, betVal, bank){
@@ -245,7 +245,6 @@ class Game{
         $("#reset").on("click", () => { 
             for(let j=0; j<10; j++){
                 let id = `#card${j}`;
-                console.log("id: " + id);
                 let img = new Image();
                 img.src = `../../card_images/blank.jpg`;
                 $(id).html(img);
@@ -258,18 +257,28 @@ class Game{
             this.play(betVal, bank);
         });
     }
-    static submitBet(bank, newBank){
+    static submitBet(bank){
         $("#submitBet").unbind().on("click", (e) => {
-            $("#newGame").prop("disabled", false);
-            this.disableChips();
-            let betVal = $("#betVal").html();
-            console.log("the bet value : " + betVal);
             e.preventDefault();
+            let betVal = $("#betVal").html();
+            console.log(betVal + " " + bank)
             // pass the new bank value into init() which starts game process
-            newBank -= betVal;
-            $("#bank").html(newBank);
-            console.log("newBank " + newBank);
-            this.init(betVal, newBank);
+            if(bank < betVal){
+                setTimeout(() => { 
+                    $("#submitBet").prop("disabled", true);
+                    $("#message").show().html("Please add funds").delay(3000).fadeOut();
+                    $("#betVal").html(""); 
+                }, 100);
+                console.log("You have no funds, please top up on the accounts page.");
+            }else{
+                $("#newGame").prop("disabled", false);
+                this.disableChips();
+                console.log("the bet value : " + betVal);
+                bank -= betVal;
+                $("#bank").html(bank);
+                console.log("newBank " + bank);
+                this.init(betVal, bank);
+            }
         })
     }
     static disableChips(){
@@ -302,8 +311,8 @@ class Game{
         for(let j=0; j<5; j++){
             $(chipArray[j]).unbind().on("click", () => {
                 value +=  chipScore[j];  
-                let output = value/100;     // do this because JS can't do BODMAS
-                console.log("output: " + output);
+                let x = value/100;     // do this because JS cant do maths
+                let output = Math.round(x * 10) / 10 ;
                 this.disableChips();
                 $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
                 $("#submitBet").prop("disabled", false);
