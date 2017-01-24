@@ -9,7 +9,7 @@ div.container.bettingBoard {
 
 div.chipsStack {
     z-index: 9015;
-    margin-top: -5%;
+    margin-top: 11%;
     margin-left: -8%;
     position: relative;
 }
@@ -79,43 +79,63 @@ div.black {
 div.gray { position: absolute; margin-top: 40%; background: rgb(109, 109, 109) }
 
 #twist {
-    margin-left: 103%;
+    margin-left: 116%;
     position: absolute;
-    margin-top: 5%;
+    margin-top: 23%;
+    width: 22%;
 }
 
 #stick {
-    margin-left: 103%;
+    margin-left: 116%;
     position: absolute;
-    margin-top: 2%;
+    margin-top: 10%;
+    width: 22%;
 }
 
 #reset {
-    margin-left: 103%;
+    margin-left: 116%;
     position: absolute;
-    margin-top: 15%
+    margin-top: 60%;
+    width: 22%;
 }
 
 #newGame {
-    margin-left: 103%;
+    margin-left: 116%;
     position: absolute;
-    margin-top: 26%;
+    margin-top: 35%;
+    width: 22%;
 }
 
 #submitBet {
-    margin-left: 103%;
+    margin-left: 116%;
     position: absolute;
-    margin-top: 31%;
+    margin-top: 41%;
+    width: 22%;
 }
 
 #betting {
-    margin-left: 103%;
-    position: absolute;
-    margin-top: 21%;
+    margin-left: -32%;
+    position: relative;
+    margin-top: 0%;
 }
 
 #bank {
-    margin-left: 103%;
+    margin-left: 58%;
     position: absolute;
-    margin-top: 21%;
+    margin-top: -28%;
+}
+
+#withdraw{
+    margin-left: -37%;
+    margin-top: 1%;
+}
+
+#bankAmount{
+    margin-top: -14%;
+    margin-left: -35.5%;
+}
+
+#betValue{
+    margin-top: -4.5%;
+    margin-left: -3%;
 }

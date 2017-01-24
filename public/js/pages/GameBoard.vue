@@ -69,13 +69,13 @@
                         <button type="input" class="button btn waves-effect waves-light miniMenu" id="reset" disabled>RESET CARDS</button><br><br>
                     </div>
                     <div id="betting">
-                        <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
+                        <h5 id="betValue">Bet Value :  £ <span id="betVal"></span></h5>
                     </div>
                     <div>
                         <button type="input" class="button btn waves-effect waves-light" id="submitBet" disabled>Submit Bet</button>
                     </div>
                     <div>
-                        <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
+                        <h5 id="bankAmount">Bank :  £ <span id="bank">20</span></h5>
                     </div>
                     <div>
                         <button id="withdraw" class="button btn waves-effect waves-light" >Withdraw Funds</button>
