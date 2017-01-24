@@ -4,8 +4,9 @@
   "description": "###The Brief",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test",
-    "start": "node app.js"
+    "test": "mocha test", 
+    "start": "node app.js",
+    "selenium": "node webdriverTest.js"
   },
   "repository": {
     "type": "git",
