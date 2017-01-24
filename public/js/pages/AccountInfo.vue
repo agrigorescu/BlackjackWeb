@@ -263,7 +263,9 @@
                         console.log("data sent");
                         //delete cookie
                         this.$cookie.delete('blackjackIdCookie');
+                        this.$cookie.delete('blackjackTokenCookie');
                         console.log("cookie has been deleted");
+                        window.location.href = "http://blackjackwebtest.herokuapp.com/";
                     })
                     .catch(err => {
                         console.log("error");
