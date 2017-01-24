@@ -10,7 +10,53 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
+const api = require("../services/api");
 class Game{
+     static withdraw(){
+         $("#withdraw").on("click", () => {
+            let bank = $("#bank").html();
+            console.log("balance: " + bank);
+            $("#bank").html("");
+            idCookie = this.$cookie.get('blackjackIdCookie');
+            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
+            .then(result => {
+                console.log("data sent");
+            })
+            .catch(err => {
+                console.log("error");
+            });
+         })
+     }
+     static deductAtLose(lostBet){
+         // when we lose deduct value from bank in database
+         idCookie = this.$cookie.get('blackjackIdCookie');
+         api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: lostBet } })
+            .then(result => {
+                console.log("data sent");
+            })
+            .catch(err => {
+                console.log("error");
+            });
+     }
+     static addAtWin(betVal){
+        // when we win, we only need to add the betVal itself or 1.5*betVal for a natural 
+        // money has not been dynamically deducted from the database
+        newBankNatural +=  parseInt((betVal)*1.5);
+        newBank +=  parseInt((betVal));
+        if(playerScore === 21){
+            var winnings = newBankNatural;
+        }else{
+            var winnings = newBank;
+        }
+        idCookie = this.$cookie.get('blackjackIdCookie');
+        api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: idCookie, amount: winnings } })
+        .then(result => {
+            console.log("data sent");
+        })
+        .catch(err => {
+            console.log("error");
+        });
+     }
      static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
         const diamonds = ["Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"];
@@ -93,7 +139,7 @@ class Game{
         imgArray.splice(0, 1);
         deck.splice(0, 1);
     }
-    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards){
+    static playerTurn(deck, imgArray, counter, myScore, scoreArray, myCards, betVal){
         // let scoreArray = [];
         // the remaining 3 card holders left for player
         $("#twist").unbind().on("click", () => {
@@ -104,13 +150,14 @@ class Game{
                 var myCurrScore = this.score(myCards , counter+2, scoreArray, myScore, "player");
             }
             if(myCurrScore > 21){
-                this.loseStateReset();
+                this.loseStateReset(betVal);
                 console.log("YOUR BUST, COMPUTER WINS");
                 return;
             }
         });
     }
-    static loseStateReset(){
+    static loseStateReset(betVal){
+        this.deductAtLose(betVal);
         this.chipControl(0);
         $("#five").prop("disabled", true);
         $("#ten").prop("disabled", true);
@@ -132,7 +179,17 @@ class Game{
         $("#submitBet").prop("disabled", false);
     }
     static winStateReset(betVal, bank, playerScore){
-        this.loseStateReset();
+        this.addAtWin(betVal);
+        $("#five").prop("disabled", true);
+        $("#ten").prop("disabled", true);
+        $("#twenty").prop("disabled", true);
+        $("#fifty").prop("disabled", true);
+        $("#hundred").prop("disabled", true);
+        $("#stick").prop("disabled", true);
+        $("#twist").prop("disabled", true);
+        $("#newGame").prop("disabled", true);
+        $("#submitBet").prop("disabled", true);
+        $("#betVal").html("");
         let newBankNatural = bank;
         let newBank = bank;
         newBankNatural +=  parseInt((betVal)*2.5);
@@ -158,7 +215,7 @@ class Game{
                 this.winStateReset(betVal, bank, playerScore);
                 $("#newGame").prop("disabled", true);
             }else if(compCurrScore > playerScore){
-                this.lostStateReset();
+                this.lostStateReset(betVal);
                 console.log("dealer sticks on soft 17");
                 console.log("computer wins");
                 $("#newGame").prop("disabled", true);
@@ -177,7 +234,7 @@ class Game{
             $("#newGame").prop("disabled", true);
             console.log("EQUAL SO DRAW!!");
         }else if(compCurrScore > playerScore){
-            this.loseStateReset();
+            this.loseStateReset(betVal);
             $("#newGame").prop("disabled", true);
             console.log("COMP WINS!!");
         }else{
@@ -205,7 +262,7 @@ class Game{
             } 
             if(computerScoreDeal > playerScore){
                 console.log("computer wins at deal");
-                this.loseStateReset();
+                this.loseStateReset(betVal);
                 return;
             }
             let dealerBoxes = ["#card2", "#card3", "#card4"];
@@ -336,8 +393,9 @@ class Game{
         var deck = this.generateDeck();
         this.shuffle(deck);
         imgArray = this.createImagesArray(deck);
+        this.withdraw();
         this.deal(deck, imgArray, myScoreArray, compScoreArray, myScore, compScore, myCards, compCards, dealerDealtCards);
-        this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards);
+        this.playerTurn(deck, imgArray, counter, myScore, myScoreArray, myCards, betVal);
         this.dealerTurn(deck, imgArray, counter, compScore, compScoreArray, compCards, myScoreArray, dealerDealtCards, betVal, bank);
         this.resetBoard();  
     }

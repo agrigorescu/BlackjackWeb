@@ -62,7 +62,7 @@
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
                 <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
-                <button v-on:click="withdraw()">Withdraw Funds</button>
+                <button id="withdraw">Withdraw Funds</button>
             </div>
         </div>
 <!--end of the game board-->
@@ -75,7 +75,6 @@
         </div>
     </main-layout>
 </template>
-
 <script>
     let idCookie;
     import MainLayout from '../layouts/Main.vue'
@@ -94,21 +93,18 @@
             Game.chipControl(0);
         },
         methods: {
-            withdraw: function(){
-                let bank = $("#bank").html();
-                console.log("balance: " + bank);
-                $("#bank").html("");
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
-                .then(result => {
-                    console.log("data sent");
-                })
-                .catch(err => {
-                    console.log("error");
-                });
-            },  
-            printBalance: function(){
-                console.log("balance: " + balance);
-            }
+            // withdraw: function(){
+            //     let bank = $("#bank").html();
+            //     console.log("balance: " + bank);
+            //     $("#bank").html("");
+            //     api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
+            //     .then(result => {
+            //         console.log("data sent");
+            //     })
+            //     .catch(err => {
+            //         console.log("error");
+            //     });
+            // },  
         },
         beforeMount: function() {
             idCookie = this.$cookie.get('blackjackIdCookie');
