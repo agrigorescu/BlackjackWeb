@@ -93,6 +93,7 @@ nav{
     margin-top: -9%;
     margin-left: 3%;
 }
+
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
 }*/
@@ -114,7 +115,6 @@ p{
     font-family: 'Abel', sans-serif;
     color: #ffffff;
 }
-
 
 .label{
     font-family: 'Abel', sans-serif;
@@ -195,8 +195,19 @@ p #404Message{
     margin-top: 10%;
 }
 
-.boxinfo{
+#accountContent{
     background-color: #255b3a;
+    color: #ffffff;
+    /*border-radius: 12%;*/
+    border: 5px solid #ffffff;
+    padding: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    line-height: 170%;
+}
+
+.boxinfo{
+    /*background-color: #255b3a;*/
     color: #ffffff;
     font-family: 'Abel', sans-serif;
     /*margin-left: 2%;*/
@@ -207,7 +218,7 @@ p #404Message{
     width: 100%;
     padding: 4%;
     border-radius: 12%;
-    border: 5px solid #ffffff;
+    /*border: 5px solid #ffffff;*/
     line-height: 2vw;
 }
 
