@@ -10,7 +10,7 @@
               
                     
                     <li><v-link href="/">Home</v-link></li>
-                    <li><v-link href="/login">Login</v-link></li>
+                    <li id="loginLink"><v-link href="/login">Login</v-link></li>
                     <li><v-link href="/registration">Registration</v-link></li>
                     <li><v-link href="/play">Play</v-link></li>
                     <li><v-link href="/accountinfo">Account</v-link></li>
