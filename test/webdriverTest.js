@@ -4,6 +4,7 @@
 var webdriver = require('selenium-webdriver');
 var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
 
+
 function logTitle() {
 	browser.getTitle().then(function(title) {
 		console.log('Current Page Title: ' + title);
@@ -20,8 +21,11 @@ function handleFailure(err) {
 function closeBrowser() {
 	browser.quit();
 }
-browser.get('http://blackjackwebtest.herokuapp.com/');
+
+browser.navigate().to("http://blackjackwebtest.herokuapp.com");
+// browser.get('http://blackjackwebtest.herokuapp.com/');
 browser.findElement(webdriver.By.id('loginLink')).click();
 browser.findElement(webdriver.By.name('username')).sendKeys('jwb94');
 browser.findElement(webdriver.By.id('password')).sendKeys('password');
 browser.findElement(webdriver.By.name('button')).click();
+
