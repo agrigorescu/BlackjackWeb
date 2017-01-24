@@ -227,7 +227,8 @@
                 //     amount: this.withdrawBalance * 100,
                 //     panelLabel: 'Withdraw money'
                 // });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: this.amount } })
+                console.log(this.withdrawBalance);
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: this.withdrawBalance } })
                     .then(result => {
                         console.log("data sent");
                         this.seenWithdraw = false;
