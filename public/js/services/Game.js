@@ -27,8 +27,8 @@ class Game{
          })
      }
      static deductAtLose(lostBet, idCookie){
-         // when we lose deduct value from bank in database 
          console.log("bet amount:  + " + lostBet + "idCookie: " + idCookie);
+         // when we lose deduct value from bank in database 
          api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: lostBet } })
             .then(result => {
                 console.log("data sent");
@@ -38,10 +38,11 @@ class Game{
             });
      }
      static addAtWin(betVal, idCookie, playerScore){
-         console.log("bet amount:  + " + betVal + "idCookie: " + idCookie);
+        console.log("bet amount:  + " + betVal + "idCookie: " + idCookie);
         // when we win, we only need to add the betVal itself or 1.5*betVal for a natural 
         // money has not been dynamically deducted from the database
-        let newBankNatural =  parseInt((betVal)*1.5);
+        // the charge path adds onto current amount
+        let newBankNatural =  parseInt((betVal)*1.5); 
         let newBank =  parseInt((betVal));
         if(playerScore === 21){
             var winnings = newBankNatural;
@@ -54,7 +55,7 @@ class Game{
         })
         .catch(err => {
             console.log("error");
-        });
+        });         
      }
      static generateDeck(){
         const hearts = ["Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh"];
@@ -158,6 +159,7 @@ class Game{
     static loseStateReset(betVal, cookie){
         this.deductAtLose(betVal, cookie);
         this.chipControl(0);
+        $(".value").prop("disable", true);
         $("#five").prop("disabled", true);
         $("#ten").prop("disabled", true);
         $("#twenty").prop("disabled", true);
@@ -168,6 +170,7 @@ class Game{
         $("#newGame").prop("disabled", true);
         $("#submitBet").prop("disabled", true);
         $("#withdraw").prop("disabled", false);
+        $("#reset").prop("disabled", false);
         $("#betVal").html("");        
     }
     static enableChips(){
@@ -179,7 +182,8 @@ class Game{
         $("#submitBet").prop("disabled", false);
     }
     static winStateReset(betVal, bank, playerScore, cookie){
-        this.addAtWin(betVal, cookie, playerScore);
+        this.addAtWin(betVal, cookie);
+        $(".value").prop("disable", true);
         $("#five").prop("disabled", true);
         $("#ten").prop("disabled", true);
         $("#twenty").prop("disabled", true);
@@ -190,6 +194,7 @@ class Game{
         $("#newGame").prop("disabled", true);
         $("#submitBet").prop("disabled", true);
         $("#withdraw").prop("disabled", false);
+        $("#reset").prop("disabled", false);
         $("#betVal").html("");
         let newBankNatural = bank;
         let newBank = bank;
@@ -204,6 +209,20 @@ class Game{
         }
     }
     static drawStateReset(betVal, bank){
+        $(".value").prop("disable", true);
+        $("#five").prop("disabled", true);
+        $("#ten").prop("disabled", true);
+        $("#twenty").prop("disabled", true);
+        $("#fifty").prop("disabled", true);
+        $("#hundred").prop("disabled", true);
+        $("#stick").prop("disabled", true);
+        $("#twist").prop("disabled", true);
+        $("#newGame").prop("disabled", true);
+        $("#submitBet").prop("disabled", true);
+        $("#withdraw").prop("disabled", false);
+        $("#reset").prop("disabled", false);
+        $("#betVal").html("");
+        $("#bank").html(parseInt($("#bank").html + betVal));
         let newBank = bank + betVal;
         this.submitBet(newBank);
     }
@@ -214,15 +233,12 @@ class Game{
                 console.log("dealer sticks on soft 17");
                 console.log("player wins");
                 this.winStateReset(betVal, bank, playerScore, cookie);
-                $("#newGame").prop("disabled", true);
             }else if(compCurrScore > playerScore){
                 this.loseStateReset(betVal, cookie);
                 console.log("dealer sticks on soft 17");
                 console.log("computer wins");
-                $("#newGame").prop("disabled", true);
             }
         }else if(compCurrScore > 21){
-            $("#newGame").prop("disabled", true);
             console.log("DEALER BUST, YOU WIN!!");
             this.winStateReset(betVal, bank, playerScore, cookie);
         }else if(compCurrScore < playerScore){
@@ -232,11 +248,10 @@ class Game{
             console.log("less than 17 hence twist");
             $("#stick").trigger("click");
         }else if(compCurrScore === playerScore){
-            $("#newGame").prop("disabled", true);
             console.log("EQUAL SO DRAW!!");
+            this.drawStateReset(betVal, bank);
         }else if(compCurrScore > playerScore){
             this.loseStateReset(betVal, cookie);
-            $("#newGame").prop("disabled", true);
             console.log("COMP WINS!!");
         }else{
             console.log("wtf you doing?");
@@ -258,6 +273,7 @@ class Game{
             }
             if(computerScoreDeal > 17 && computerScoreDeal == playerScore){
                 console.log("DRAW!!");
+                this.drawStateReset(betVal, bank);
                 $("#newGame").prop("disabled", true);
                 return;
             } 
@@ -333,25 +349,17 @@ class Game{
                 console.log("You have no funds, please top up on the accounts page.");
             }else{
                 $("#newGame").prop("disabled", false);
-                this.disableChips();
+                $(".value").prop("disable", true);
                 bank -= betVal;
                 $("#bank").html(bank);
                 this.init(betVal, bank, cookie);
             }
         })
     }
-    static disableChips(){
-        $("#five").prop("disabled", true);
-        $("#ten").prop("disabled", true);
-        $("#twenty").prop("disabled", true);
-        $("#fifty").prop("disabled", true);
-        $("#hundred").prop("disabled", true);
-        // if bet cancelled previous bet needs to be destroyed
-    }
     static withdrawFunds(){
         $("#withdraw").on("click", (e) => {
             e.preventDefault();
-            this.disableChips();
+            $(".value").prop("disable", true);
             let amount = $("#bank").html();
             console.log("amount to sent to bank: " + amount);
             $("#bank").html(0);
@@ -371,8 +379,8 @@ class Game{
             $(chipArray[j]).unbind().on("click", () => {
                 value +=  chipScore[j];  
                 let x = value/100;     // do this because JS cant do maths
-                let output = Math.round(x * 10) / 10 ;
-                this.disableChips();
+                let output = Math.round(x * 100) / 100 ;
+                $(".value").prop("disable", true);
                 $(chipArray[j]).prop("disabled", false);   // disable chips except one clicked
                 $("#submitBet").prop("disabled", false);
                 $("#betVal").html(output);
