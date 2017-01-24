@@ -284,7 +284,7 @@
              * */
             inviteFriend: function () {
                 console.log({ data: { firendEmail: this.friendEmail, existingUserId: idCookie } });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: idCookie } })
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { friendEmail: this.friendEmail, existingUserId: idCookie } })
                     .then(result => {
                         console.log("send data");
                         this.clickInviteFriend = false;
