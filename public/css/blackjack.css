@@ -175,7 +175,11 @@ p #404Message{
 
 .box{
     /*background-color: pink;*/
-    background-image: url("../../card_images/blank.jpg");
+    /*background-image: url("../../card_images/blank.jpg");*/
+    border-style: solid;
+    border-width: 50%;
+    border-color: yellow;
+    border-radius: 15%; 
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
