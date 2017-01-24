@@ -4,27 +4,27 @@
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
             <div class="chipsStack">
-                <div  id="redChip" class="fish red">
+                <div id="five" class="fish red">
                     <div class="value">5p</div>
                 </div>
             </div>
             <div class="chipsStack">
-                <div id="orangeChip" class="fish orange">
+                <div id="ten" class="fish orange">
                     <div class="value">10p</div>
                 </div>
             </div>
             <div class="chipsStack">
-                <div  id="greenChip" class="fish green">
+                <div id="twenty" class="fish green">
                     <div class="value">20p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-                <div  id="blueChip" class="fish blue">
+                <div id="fifty" class="fish blue">
                     <div class="value">50p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-                <div  id="blackChip" class="fish black">
+                <div id="hundred" class="fish black">
                     <div class="value">£1</div>  
                 </div>
             </div>
@@ -35,18 +35,18 @@
             </div>
             <div class="container">
                 <div class="computer">   
-                    <div class="box" id="card0">0</div>
-                    <div class="box" id="card1">1</div>
-                    <div class="box" id="card2">2</div>
-                    <div class="box" id="card3">3</div>
-                    <div class="box" id="card4">4</div>
+                    <div class="box" id="card0"></div>
+                    <div class="box" id="card1"></div>
+                    <div class="box" id="card2"></div>
+                    <div class="box" id="card3"></div>
+                    <div class="box" id="card4"></div>
                 </div>
                 <div class="player">
-                    <div class="box" id="card5">5</div>
-                    <div class="box" id="card6">6</div>
-                    <div class="box" id="card7">7</div>
-                    <div class="box" id="card8">8</div>
-                    <div class="box" id="card9">9</div>
+                    <div class="box" id="card5"></div>
+                    <div class="box" id="card6"></div>
+                    <div class="box" id="card7"></div>
+                    <div class="box" id="card8"></div>
+                    <div class="box" id="card9"></div>
                 </div>
             </div>
             <div class="row" id="gameButtons">
@@ -54,11 +54,6 @@
                 <button type="input" id="twist" disabled>TWIST</button>
                 <button type="input" id="newGame" disabled>DEAL</button>
                 <button type="input" id="reset" disabled>RESET CARDS</button><br><br>
-                <button type="input" id="five">5p</button>
-                <button type="input" id="ten">10p</button>
-                <button type="input" id="twenty">20p</button>
-                <button type="input" id="fifty">50p</button>
-                <button type="input" id="hundred">£1</button>
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
                 <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
@@ -67,6 +62,13 @@
             </div>
         </div>
 <!--end of the game board-->
+
+            <div class="row">
+                <div class="col s12 chipStackBoard">
+                    <div class="col s12 chipStack"></div>
+                    </div> 
+            </div>
+        </div>
     </main-layout>
 </template>
 <script>
