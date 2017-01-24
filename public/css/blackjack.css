@@ -20,7 +20,7 @@ body {
 
 .nav-wrapper{
     background-color: #272828;
-    /*position: fixed;*/  
+    /*position: fixed;  */
 }
 
 nav .nav-wrapper {
@@ -30,7 +30,7 @@ nav .nav-wrapper {
 }
 
 nav{
-    position: fixed;
+    /*position: fixed;*/
     z-index: 100;
 }
 

@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="chipStackBoard">
                     <div class="chipStack"></div>
-                    </div> 
+                </div> 
             </div>
         </div>
     </main-layout>
