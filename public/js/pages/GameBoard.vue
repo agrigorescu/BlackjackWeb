@@ -54,15 +54,33 @@
                     <div class="box" id="card9"></div>
                 </div>
             </div>
-            <div class="row" id="gameButtons">
-                <button type="input" id="stick" disabled>STICK</button>
-                <button type="input" id="twist" disabled>TWIST</button>
-                <button type="input" id="newGame" disabled>DEAL</button>
-                <button type="input" id="reset" disabled>RESET CARDS</button><br><br>
-                <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
-                <button type="input" id="submitBet" disabled>Submit Bet</button>
-                <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
-                <button id="withdraw" v-on:click="withdraw()">Withdraw Funds</button>
+            <div class="container">
+                <div class="row" id="gameButtons">
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="stick" disabled>STICK</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="twist" disabled>TWIST</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="newGame" disabled>DEAL</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="reset" disabled>RESET CARDS</button><br><br>
+                    </div>
+                    <div id="betting">
+                        <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light" id="submitBet" disabled>Submit Bet</button>
+                    </div>
+                    <div>
+                        <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
+                    </div>
+                    <div>
+                        <button v-on:click="getBalance()" class="button btn waves-effect waves-light" >Withdraw Funds</button>
+                    </div>
+                </div>
             </div>
         </div>
 <!--end of the game board-->

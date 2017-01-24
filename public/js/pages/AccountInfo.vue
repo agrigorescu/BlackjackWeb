@@ -22,8 +22,8 @@
                                 <li>Username: {{ username}}</li>
                                 <li>Email: {{ email }}</li>
                                 <li>Balance: {{ balance }}</li>
-                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
-                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForWithdrawl()" v-if="seenBalance">Withdraw balance</button></li>
+                                <button class="button btn waves-effect waves-light" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
+                                <button class="button btn waves-effect waves-light" v-on:click="showInputForWithdrawl()" v-if="seenBalance">Withdraw balance</button></li>
                                 <li v-if="seenAdd"> <input v-model="addBalance" type="number" placeholder="Add amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeAddMoneyClick()">Add balance</button></li>
                                 <li v-if="seenWithdraw"> <input v-model="withdrawBalance" type="number" placeholder="Withdraw amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeWithdrawMoneyClick()">Withdraw balance</button></li>
                             </ul>
