@@ -64,7 +64,7 @@
      * Stripe handler for adding a card
      * */
     let addCardHandler = StripeCheckout.configure({
-        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
+        key: process.env.STRIPE,
         image: './img/logofavicon.png',
         locale: 'auto',
         token: function (token) {
@@ -72,7 +72,7 @@
             this.stripeToken = token.card;
             console.log(this.stripeToken.id);
             console.log(idCookie);
-            api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, source: this.stripeToken.id } })
+            api.callApi({ method: 'POST', path: 'http://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, source: this.stripeToken.id } })
                 .then(result => {
                     console.log("data sent");
                 })
@@ -222,7 +222,7 @@
              * Withdrawing money from the balance
              * */
             stripeWithdrawMoneyClick: function () {
-                // console.log("withdraw money function");
+                console.log("withdraw money function");
                 // withdrawMoneyHandler.open({
                 //     name: 'BlackJack',
                 //     description: "It's in the game",
@@ -258,7 +258,7 @@
              * Sends a request to delete the user's account
              * */
             deleteAccount: function () {
-                api.callApi({ method: 'DELETE', path: 'https://blackjackapi00.herokuapp.com/deleteaccount', params: { blackjackIdCookie: this.blackjackIdCookie } })
+                api.callApi({ method: 'DELETE', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`, params: { id: this.blackjackIdCookie } })
                     .then(result => {
                         console.log("data sent");
                         //delete cookie
