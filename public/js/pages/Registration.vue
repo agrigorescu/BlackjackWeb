@@ -7,7 +7,7 @@
                         <div class="column is-12">
                             <label class="label">User Name</label>
                             <p class="control has-icon has-icon-right">
-                                <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('username') }"
+                                <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha_dash|min:3" :class="{'input': true, 'is-danger': errors.has('username') }"
                                     type="text" placeholder="User Name">
                                 <i v-show="errors.has('username')" class="fa fa-warning"></i>
                                 <span v-show="errors.has('username')" class="help is-danger">{{ errors.first('username') }}</span>
@@ -16,7 +16,7 @@
                         <div class="column is-12">
                             <label class="label">Name</label>
                             <p class="control has-icon has-icon-right">
-                                <input name="fullName" v-model="fullName" v-validate.initial="fullName" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('fullName') }"
+                                <input name="fullName" v-model="fullName" v-validate.initial="fullName" data-vv-rules="required|alpha_spaces|min:3" :class="{'input': true, 'is-danger': errors.has('fullName') }"
                                     type="text" placeholder="Name">
                                 <i v-show="errors.has('fullName')" class="fa fa-warning"></i>
                                 <span v-show="errors.has('fullName')" class="help is-danger">{{ errors.first('fullName') }}</span>
@@ -38,10 +38,10 @@
                             </div>
                         </div>
 
-
+                        <!--<label class="label">Date of birth</label>-->
+                        <label class="label">Date of birth: {{ dob }}</label>
                         <div class="row">
                             <div class="input-field col s12">
-                                <p>Date of birth: {{ dob }}</p>
                                 <input v-model="dob" id="dob" type="date" class="datepicker validate">
                             </div>
                         </div>

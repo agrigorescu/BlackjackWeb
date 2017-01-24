@@ -6,7 +6,7 @@
                     <div class="column is-12">
                         <label class="label">Username</label>
                         <p class="control has-icon has-icon-right">
-                            <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha|min:3" :class="{'input': true, 'is-danger': errors.has('username', 'form-2') }"
+                            <input name="username" v-model="username" v-validate.initial="username" data-vv-rules="required|alpha_dash|min:3" :class="{'input': true, 'is-danger': errors.has('username', 'form-2') }"
                                 type="text" placeholder="Enter Username">
                             <i v-show="errors.has('username', 'form-2')" class="fa fa-warning"></i>
                             <span v-show="errors.has('username', 'form-2')" class="help is-danger">{{ errors.first('username', 'form-2') }}</span>

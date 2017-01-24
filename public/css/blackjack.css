@@ -9,18 +9,9 @@ body {
 /*----------------------------------------------------------------*/
 /*start of layout components css */
 
-
-/*.row, .container{
-    background-color: #000000;
-}*/
-
-/*nav{
-    position: fixed;
-}*/
-
 .nav-wrapper{
     background-color: #272828;
-    /*position: fixed;*/  
+    /*position: fixed;  */
 }
 
 nav .nav-wrapper {
@@ -29,15 +20,16 @@ nav .nav-wrapper {
     z-index: 200;
 }
 
-/*nav{
-    position: fixed;
+nav{
+    /*position: fixed;*/
     z-index: 100;
-}*/
+}
 
 
 #homeBackground{ /*code for background image*/
     position: fixed;
     z-index: -100;
+    /*margin-top: 4.5%;*/
 }
 
 #title{
@@ -83,20 +75,15 @@ nav .nav-wrapper {
 .computer{ 
     position: relative;
     z-index: 15;
-<<<<<<< HEAD
-    margin-top: -6%;
-    margin-left: 1%;
-=======
-    margin-top: 13%;
-    /*margin-left: 5%;*/
->>>>>>> pageDesign
+    margin-top: 25%;
+    margin-left: 3%;
 }
 
 .player{ 
     position: relative;
     z-index: 15;
-    margin-top: 24%;
-    margin-left: 1%;
+    margin-top: -8%;
+    margin-left: 3%;
 }
 /*.row, .homeChips{
     display: inline; this line of code breaks the row container!!!!!
@@ -167,6 +154,10 @@ p #404Message{
     z-index: 0;
     /*margin-top: 4.5%;*/
 }
+
+#gameButtons {
+    position: relative;
+}
 /*end of images css*/
 
 /*----------------------------------------------------------------*/
@@ -175,13 +166,14 @@ p #404Message{
 /*start of placeholder boxes css*/
 
 .box{
-    background-color: pink;
+    /*background-color: pink;*/
+    background-image: url("../../card_images/blank.jpg");
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block; 
-    width: 5.93%; /* use to be 15%*/
+    width: 6.45%; /* use to be 15%*/
     height: 130px; /* use to be 200%*/
 }
 
