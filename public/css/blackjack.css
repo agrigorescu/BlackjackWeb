@@ -39,7 +39,7 @@ nav{
 }
 
 #titleLogin{
-    margin-top: 14%;
+    margin-top: 11%;
 }
 
 #titleRegister{
@@ -109,7 +109,7 @@ p{
 
 
 #blueChip{
-    margin-top: 3%;
+    margin-top: 8%;
     margin-left: 22%;
 }
 
@@ -164,6 +164,7 @@ p #404Message{
 #gameButtons {
     position: relative;
 }
+
 /*end of images css*/
 
 /*----------------------------------------------------------------*/
@@ -196,7 +197,7 @@ p #404Message{
 #accountContent{
     background-color: #255b3a;
     color: #ffffff;
-    border-radius: 12%;
+    /*border-radius: 12%;*/
     border: 5px solid #ffffff;
     padding: 4%;
     margin-top: 2%;
@@ -215,7 +216,7 @@ p #404Message{
     display: inline-block; 
     width: 100%;
     padding: 4%;
-    border-radius: 12%;
+    /*border-radius: 12%;*/
     /*border: 5px solid #ffffff;*/
     line-height: 170%;
 }
