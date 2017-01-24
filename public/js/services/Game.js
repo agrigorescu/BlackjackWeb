@@ -41,8 +41,8 @@ class Game{
      static addAtWin(betVal){
         // when we win, we only need to add the betVal itself or 1.5*betVal for a natural 
         // money has not been dynamically deducted from the database
-        newBankNatural +=  parseInt((betVal)*1.5);
-        newBank +=  parseInt((betVal));
+        let newBankNatural =  parseInt((betVal)*1.5);
+        let newBank =  parseInt((betVal));
         if(playerScore === 21){
             var winnings = newBankNatural;
         }else{
