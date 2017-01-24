@@ -72,7 +72,7 @@
                         <h5 id="betValue">Bet Value :  £ <span id="betVal"></span></h5>
                     </div>
                     <div>
-                        <button type="input" class="button btn waves-effect waves-light" id="submitBet" disabled>Submit Bet</button>
+                        <button type="input" class="button btn waves-effect waves-light" id="submitBet" disabled>Place Bet</button>
                     </div>
                     <div>
                         <h5 id="bankAmount">Bank :  £ <span id="bank">20</span></h5>
