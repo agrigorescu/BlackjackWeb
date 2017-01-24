@@ -7,14 +7,11 @@ div.container.bettingBoard {
     position: relative;
 }
 
-/*div.overide {
-    position: fixed;
-}*/
-
 div.chipsStack {
     z-index: 9015;
-    margin-top: -1%;
+    margin-top: -3%;
     margin-left: -8%;
+    position: relative;
 }
 
 div.container.chipStackBoard {
@@ -55,17 +52,17 @@ div.fish div {
 	text-shadow: 0.1em 0.2em 0.07em rgb(82, 82, 82);
 }
 
-div.red { position: fixed; margin-top: 4%; background: rgb(175, 17, 36) }
+div.red { position: absolute; margin-top: 5%; background: rgb(175, 17, 36) }
 
-div.orange { position: fixed; margin-top: 10%; background: rgb(223, 99, 1) }
+div.orange { position: absolute; margin-top: 12%; background: rgb(223, 99, 1) }
 
-div.green { position: fixed; margin-top: 16%; background: rgb(75, 158, 0) }
+div.green { position: absolute; margin-top: 19%; background: rgb(75, 158, 0) }
 
-div.blue {  position: fixed; margin-top: 22%; background: rgb(4, 83, 145) }
+div.blue {  position: absolute; margin-top: 26%; background: rgb(4, 83, 145) }
 
 div.black {
-    position: fixed;
-    margin-top: 28%;
+    position: absolute;
+    margin-top: 33%;
     background: rgb(36, 36, 36);
     color: #eee;
     box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.1);
@@ -74,7 +71,7 @@ div.black {
     border: 10px dotted #ccc;
 }
 
-div.gray { position: fixed; margin-top: 34%; background: rgb(109, 109, 109) }
+div.gray { position: absolute; margin-top: 40%; background: rgb(109, 109, 109) }
 
 input.qty {
     width: 40%;
@@ -91,4 +88,3 @@ input.qty {
     z-index: auto;
     top: 75%;
 }
-

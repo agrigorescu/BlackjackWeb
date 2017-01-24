@@ -1,7 +1,7 @@
 <template>
     <main-layout>
            <h2> Confirmation of registration!! </h2>
-           <button class="btn waves-effect waves-light right" style="top: 200px" type="submit" name="action" v-on:click="submit($event)" href="/">Back to homepage</button>
+           <button class="btn waves-effect waves-light right" style="top: 200px" type="submit" name="action" v-on:click="submit($event)" href="https://blackjackwebtest.herokuapp.com/login">Back to homepage</button>
     </main-layout>
 </template>
 
