@@ -14,13 +14,15 @@ div.chipsStack {
     position: relative;
 }
 
-div.container.chipStackBoard {
+div.chipStackBoard {
     background: rgba(0, 0, 0, 0.85);
     border-radius: 25px;
     padding: 20px;
-    width: 45%;
-    height: 50%;
-    /*position: absolute;*/
+    width: 19%;
+    height: 39%;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 6%;
 }
 
 label {
@@ -73,18 +75,3 @@ div.black {
 
 div.gray { position: absolute; margin-top: 40%; background: rgb(109, 109, 109) }
 
-input.qty {
-    width: 40%;
-    height: 25%;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 15px;
-}
-
-.chip {
-    position: absolute;
-    z-index: auto;
-    top: 75%;
-}
