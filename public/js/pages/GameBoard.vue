@@ -3,49 +3,28 @@
         <!--start of the game board-->
         <img id="gameBoard" src="img/gameBoard.png" alt="Game Board">
         <div class="container" id="title">
-<<<<<<< HEAD
-            <div class="chipsStack overide">
-                <div id="redChip" class="fish red">
-=======
             <div class="chipsStack">
                 <div id="five" class="fish red">
->>>>>>> master
                     <div class="value">5p</div>
                 </div>
             </div>
             <div class="chipsStack">
-<<<<<<< HEAD
-                <div id="orangeChip" class="fish orange">
-=======
                 <div id="ten" class="fish orange">
->>>>>>> master
                     <div class="value">10p</div>
                 </div>
             </div>
             <div class="chipsStack">
-<<<<<<< HEAD
-                <div id="greenChip" class="fish green">
-=======
                 <div id="twenty" class="fish green">
->>>>>>> master
                     <div class="value">20p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-<<<<<<< HEAD
-                <div id="blueChip" class="fish blue">
-=======
                 <div id="fifty" class="fish blue">
->>>>>>> master
                     <div class="value">50p</div>                
                 </div>
             </div>
             <div class="chipsStack">
-<<<<<<< HEAD
-                <div id="blackChip" class="fish black">
-=======
                 <div id="hundred" class="fish black">
->>>>>>> master
                     <div class="value">£1</div>  
                 </div>
             </div>
@@ -88,8 +67,6 @@
             </div>
         </div>
 <!--end of the game board-->
-<<<<<<< HEAD
-=======
 
             <div class="row">
                 <div class="chipStackBoard">
@@ -97,7 +74,6 @@
                     </div> 
             </div>
         </div>
->>>>>>> master
     </main-layout>
 </template>
 
