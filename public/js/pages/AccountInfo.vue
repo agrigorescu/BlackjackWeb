@@ -258,7 +258,7 @@
              * Sends a request to delete the user's account
              * */
             deleteAccount: function () {
-                api.callApi({ method: 'DELETE', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`, params: { id: this.blackjackIdCookie } })
+                api.callApi({ method: 'DELETE', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`, params: { id: idCookie } })
                     .then(result => {
                         console.log("data sent");
                         //delete cookie
