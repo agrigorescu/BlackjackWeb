@@ -204,6 +204,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                         .catch(err => {
@@ -248,6 +249,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                     .catch(err => {
