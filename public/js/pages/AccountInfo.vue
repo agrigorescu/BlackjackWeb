@@ -64,7 +64,7 @@
      * Stripe handler for adding a card
      * */
     let addCardHandler = StripeCheckout.configure({
-        key: `${process.env.STRIPE}`,
+        key: 'pk_test_5IgrEBfDgN20z1RZS0c0Ki2v',
         image: './img/logofavicon.png',
         locale: 'auto',
         token: function (token) {
