@@ -69,10 +69,10 @@
         locale: 'auto',
         token: function (token) {
             console.log(token);
-            this.stripeToken = token.card;
-            console.log(this.stripeToken.id);
+            this.stripeToken = token;
+            console.log(this.stripeToken);
             console.log(idCookie);
-            api.callApi({ method: 'POST', path: 'http://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, source: this.stripeToken.id } })
+            api.callApi({ method: 'POST', path: 'http://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, cardToken: this.stripeToken } })
                 .then(result => {
                     console.log("data sent");
                 })
@@ -202,6 +202,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                         .catch(err => {
@@ -246,6 +247,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                     .catch(err => {

@@ -1,7 +1,7 @@
 <template>
     <main-layout>
            <h2> Confirmation of registration!! </h2>
-           <button class="btn waves-effect waves-light right" style="top: 200px" type="submit" name="action" v-on:click="submit($event)" href="https://blackjackwebtest.herokuapp.com/login">Back to homepage</button>
+           <button class="btn waves-effect waves-light right" style="top: 200px" type="submit" name="action" v-on:click="submit($event)" >Back to homepage</button>
     </main-layout>
 </template>
 
@@ -31,7 +31,8 @@
                 api.callApi({method: 'POST', path: 'https://blackjackapi00.herokuapp.com/accountvalidation',params:{username:olekObj.username,token:olekObj.token}})
                 .then(result => {
                     console.log("data sent");
-                    //store token and ID
+                    //redirecting to the login page
+                    window.location.href = "http://blackjackwebtest.herokuapp.com/login";
                 })
                 .catch(err => {
                     console.log("did not send");

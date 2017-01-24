@@ -41,6 +41,11 @@
                     <div class="box" id="card3"></div>
                     <div class="box" id="card4"></div>
                 </div>
+                <div class="row" id="message">
+                    <div id="messageBox">
+                        <h3></h3>
+                    </div>
+                </div>
                 <div class="player">
                     <div class="box" id="card5"></div>
                     <div class="box" id="card6"></div>
@@ -56,9 +61,8 @@
                 <button type="input" id="reset" disabled>RESET CARDS</button><br><br>
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
-                <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
-                <button v-on:click="getBalance()">Withdraw Funds</button>
-                <button v-on:click="addFunds()">Add Funds</button>
+                <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
+                <button id="withdraw" v-on:click="withdraw()">Withdraw Funds</button>
             </div>
         </div>
 <!--end of the game board-->
@@ -71,12 +75,11 @@
         </div>
     </main-layout>
 </template>
+
 <script>
-    let bank = 20;
-    let newBank = 20;
-    let balance = [];
-    let newFunds = [];
+    let idCookie;
     import MainLayout from '../layouts/Main.vue'
+    const api = require("../services/api");
     const Game = require("../services/Game");
     export default {
         components: {
@@ -84,22 +87,45 @@
         },
         mounted: function (){
             // the game can only be initiated inside submitBet when bet is placed
-            Game.submitBet(bank, newBank);
+            $("#message").hide();
+            let bank  = parseInt($("#bank").html());
+            console.log("bank : " + bank);
+            Game.submitBet();
             Game.chipControl(0);
         },
         methods: {
-            getBalance: function(){
-                // balance = $("#bank").html();
-                balance.push($("#bank").html());
-                console.log("balance: " + $("#bank").html());
+            withdraw: function(){
+                let bank = $("#bank").html();
+                console.log("balance: " + bank);
                 $("#bank").html("");
-            },
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
+                .then(result => {
+                    console.log("data sent");
+                })
+                .catch(err => {
+                    console.log("error");
+                });
+            },  
             printBalance: function(){
                 console.log("balance: " + balance);
-            },
-            addFunds: function(){
-            
             }
+        },
+        beforeMount: function() {
+            idCookie = this.$cookie.get('blackjackIdCookie');
+            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
+                .then(result => {
+                    console.log("data received");
+                    console.log("result is ");
+                    console.log(result);
+                    let account = result.body.success;
+                    //displaying the information from the db
+                    let bank = account.balance;
+                    console.log("balance: " + bank);
+                    $("#bank").html(bank);
+                })
+                .catch(err => {
+                    console.log("error");
+                });
         }
     }
 </script>

@@ -13,7 +13,10 @@ div.chipsStack {
     margin-left: -8%;
     position: relative;
 }
-
+.value {
+    cursor:pointer;
+    cursor:hand
+}
 div.chipStackBoard {
     background: rgba(0, 0, 0, 0.85);
     border-radius: 25px;
