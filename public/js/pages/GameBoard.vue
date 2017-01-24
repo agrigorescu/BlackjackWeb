@@ -94,7 +94,6 @@
     </main-layout>
 </template>
 <script>
-    let idCookie;
     import MainLayout from '../layouts/Main.vue'
     const api = require("../services/api");
     const Game = require("../services/Game");
@@ -103,11 +102,12 @@
             MainLayout
         },
         mounted: function (){
+            let idCookie = this.$cookie.get('blackjackIdCookie');
             // the game can only be initiated inside submitBet when bet is placed
             $("#message").hide();
             let bank  = parseInt($("#bank").html());
             console.log("bank : " + bank);
-            Game.submitBet();
+            Game.submitBet(idCookie);
             Game.chipControl(0);
         },
         methods: {
@@ -125,7 +125,7 @@
             // },  
         },
         beforeMount: function() {
-            idCookie = this.$cookie.get('blackjackIdCookie');
+            let idCookie = this.$cookie.get('blackjackIdCookie');
             api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
                 .then(result => {
                     console.log("data received");
