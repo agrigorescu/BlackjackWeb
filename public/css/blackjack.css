@@ -44,7 +44,7 @@ nav{
 #title{
     background-color: #186a39;
     padding-top: 4%;
-    padding-bottom: 23%;
+    /*padding-bottom: 23%;*/
 }
 
 #titleLogin{
@@ -114,6 +114,12 @@ h1, h2, h4, h5, h6{
 p{
     font-family: 'Abel', sans-serif;
     color: #ffffff;
+}
+
+
+#blueChip{
+    margin-top: 3%;
+    margin-left: 22%;
 }
 
 
@@ -196,9 +202,20 @@ p #404Message{
     margin-top: 10%;
 }
 
-.boxinfo{
+#accountContent{
     background-color: #255b3a;
     color: #ffffff;
+    border-radius: 12%;
+    border: 5px solid #ffffff;
+    padding: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    line-height: 170%;
+}
+
+.boxinfo{
+    /*background-color: #255b3a;*/
+    /*color: #ffffff;*/
     font-family: 'Abel', sans-serif;
     /*margin-left: 2%;*/
     /*margin-right: 2%;*/
@@ -208,8 +225,8 @@ p #404Message{
     width: 100%;
     padding: 4%;
     border-radius: 12%;
-    border: 5px solid #ffffff;
-    line-height: 2vw;
+    /*border: 5px solid #ffffff;*/
+    line-height: 170%;
 }
 
 .btn, .waves-effect waves-light miniMenu{
@@ -219,11 +236,11 @@ p #404Message{
 #playButton{
     width: 100%;
     /*background-color: #a43934;*/
-    padding: 3%;
+    /*padding: 3%;*/
     float: right;
     text-align: center;
     border-radius: 12%;
-    margin-top: 2%;
+    /*margin-top: 2%;*/
     /*margin-right: 4%;*/
 
 }
@@ -377,6 +394,20 @@ textarea.materialize-textarea:focus:not([readonly]) {
         margin-left: 55.9%;
         list-style: none;
         background-color: transparent;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+
+    #registerChip{
+        width: 21%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+
+    #accountMenu{
+        margin-top: 14%;
     }
 }
 /*end of media querys */

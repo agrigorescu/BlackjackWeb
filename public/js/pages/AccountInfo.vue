@@ -14,33 +14,34 @@
                     </div>
                 </div>
 
-                <div class="col s12">
-                    <div id="accountInfo">
-                        <div class="boxinfo" id="info">
-                            <ul>
-                                <li>Name: {{ fullName }}</li>
-                                <li>Username: {{ username}}</li>
-                                <li>Email: {{ email }}</li>
-                                <li>Balance: {{ balance }}</li>
-                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
-                                <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForWithdrawl()" v-if="seenBalance">Withdraw balance</button></li>
-                                <li v-if="seenAdd"> <input v-model="addBalance" type="number" placeholder="Add amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeAddMoneyClick()">Add balance</button></li>
-                                <li v-if="seenWithdraw"> <input v-model="withdrawBalance" type="number" placeholder="Withdraw amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeWithdrawMoneyClick()">Withdraw balance</button></li>
-                            </ul>
+                <div class="col s12" id="accountContent">
+                    <div class="col s6">
+                        <div id="accountInfo">
+                            <div class="boxinfo" id="info">
+                                <ul>
+                                    <li>Name: {{ fullName }}</li>
+                                    <li>Username: {{ username}}</li>
+                                    <li>Email: {{ email }}</li>
+                                    <li>Balance: {{ balance }}</li>
+                                    <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForBalance()" v-if="seenBalance">Add balance</button>
+                                    <button class="btn waves-effect waves-light miniMenu" v-on:click="showInputForWithdrawl()" v-if="seenBalance">Withdraw balance</button></li>
+                                    <li v-if="seenAdd"> <input v-model="addBalance" type="number" placeholder="Add amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeAddMoneyClick()">Add balance</button></li>
+                                    <li v-if="seenWithdraw"> <input v-model="withdrawBalance" type="number" placeholder="Withdraw amount"> <button class="btn waves-effect waves-light miniMenu" v-on:click="stripeWithdrawMoneyClick()">Withdraw balance</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div id="playButton">
+                            <a href="/play">
+                                <img id="blueChip" src="img/playChip.png" alt="some text">
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div>
                     <input v-if="clickInviteFriend" v-model="friendEmail" type="email" placeholder="Friend Email" data-vv-rules="required|email"> <button v-if="clickInviteFriend" class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
-                </div>
-
-                <div class="col s12">
-                    <div id="playButton">
-                        <a href="/play">
-                            <img id="blueChip" src="img/playChip.png" alt="some text">
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col s12">
