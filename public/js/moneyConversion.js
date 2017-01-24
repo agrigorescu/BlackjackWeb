@@ -1,7 +1,8 @@
 $(document).ready(function (){
+    let tPos = 100;
     let zIndex = 0;
     let height = 0;
-
+    let randomPos = Math.floor(Math.random()*15);
     // $("#double").click(function(){
     //     if($counter == 0){
     //         return;
@@ -26,17 +27,19 @@ $(document).ready(function (){
     });
 
     $("#five").click(function(){
+        let randLeft = 25 - $(this).position().left + randomPos;
+        let randBot = -10 + parseInt($(this).css('marginTop')) + randomPos;
         $("#ten").hide();
         $("#twenty").hide();
         $("#fifty").hide();
         $("#hundred").hide();
-        $('#five').clone().prependTo('.chipStack').addClass("chip").animate({
-            'z-index' : zIndex++,
-            'marginTop' : height-=5
-        });
-        $('.chipStackBoard').css({
-            position: "absolute",
-        });
+        $(this)
+            .clone()
+            .appendTo('.chipStack')
+            .css('z-index', ++tPos).animate({
+                left : randLeft,
+                bottom : randBot
+            }, 500);
     });
 
     $("#ten").click(function(){
@@ -57,7 +60,8 @@ $(document).ready(function (){
         $("#hundred").hide();
         $('#twenty').clone().appendTo('.chipStack').addClass("chip").animate({
             'z-index' : zIndex++,
-            'margin-top' : height-=5
+            'margin-top' : height-=5,
+
         });
     });
 
@@ -82,5 +86,4 @@ $(document).ready(function (){
             'margin-top' : height-=5
         });
     });
-  
 });

@@ -64,8 +64,8 @@
 <!--end of the game board-->
 
             <div class="row">
-                <div class="col s12 chipStackBoard">
-                    <div class="col s12 chipStack"></div>
+                <div class="chipStackBoard">
+                    <div class="chipStack"></div>
                     </div> 
             </div>
         </div>
