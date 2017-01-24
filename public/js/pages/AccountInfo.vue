@@ -284,10 +284,8 @@
              * Send a request to the db to send and email invite to a friend
              * */
             inviteFriend: function () {
-                this.existingUserId = this.$cookie.get('idCookie');
-                console.log(this.existingUserId);
-                console.log({ data: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: this.existingUserId } })
+                console.log({ data: { firendEmail: this.friendEmail, existingUserId: idCookie } });
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: idCookie } })
                     .then(result => {
                         console.log("send data");
                         this.clickInviteFriend = false;
@@ -304,11 +302,9 @@
         beforeMount: function () {
             console.log('Mounting');
             idCookie = this.$cookie.get('blackjackIdCookie');
-            this.blackjackIdCookie = idCookie;
             console.log("cookie id  " + idCookie);
             tokenCookie = this.$cookie.get('blackjackTokenCookie');
             console.log("cookie token   " + tokenCookie);
-            this.blackjackTokenCookie = tokenCookie;
             api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}`  })
                 .then(result => {
                     console.log("data received");
