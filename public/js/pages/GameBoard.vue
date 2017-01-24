@@ -62,7 +62,7 @@
                 <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
                 <button type="input" id="submitBet" disabled>Submit Bet</button>
                 <h5 style="padding:30px">Bank :  £ <span id="bank"></span></h5>
-                <button v-on:click="withdraw()">Withdraw Funds</button>
+                <button id="withdraw" v-on:click="withdraw()">Withdraw Funds</button>
             </div>
         </div>
 <!--end of the game board-->
