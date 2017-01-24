@@ -178,37 +178,6 @@
              * Adding money to the user's balance
              * */
             stripeAddMoneyClick: function () {
-<<<<<<< HEAD
-                // console.log("add money function");
-                // addMoneyHandler.open({
-                //     name: 'BlackJack',
-                //     description: "It's in the game",
-                //     currency: 'gbp',
-                //     amount: this.addBalance * 100,
-                //     panelLabel: 'Add money'
-                // });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: this.blackjackIdCookie, amount: this.addBalance } })
-                    .then(result => {
-                        console.log("data sent");
-                        this.seenAdd = false;
-                        api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
-                            .then(result => {
-                                console.log("data received");
-                                //retrieve the information from the db
-                                this.fullName = result.body.fullName;
-                                this.username = result.body.username;
-                                this.email = result.body.email;
-                                this.balance = result.body.balance;
-                            })
-                            .catch(err => {
-                                console.log("error");
-                            });
-                    })
-                    .catch(err => {
-                        console.log("error");
-                    });
-            },
-=======
                     // console.log("add money function");
                     // addMoneyHandler.open({
                     //     name: 'BlackJack',
@@ -240,7 +209,6 @@
                             console.log("error");
                         });
                 },
->>>>>>> master
 
             /**
              * This method makes the input field for withdrawing money visible
