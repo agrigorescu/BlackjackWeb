@@ -186,7 +186,7 @@
                 //     amount: this.addBalance * 100,
                 //     panelLabel: 'Add money'
                 // });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: this.blackjackIdCookie, amount: this.amount } })
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: this.blackjackIdCookie, amount: this.addBalance } })
                     .then(result => {
                         console.log("data sent");
                         this.seenAdd = false;
