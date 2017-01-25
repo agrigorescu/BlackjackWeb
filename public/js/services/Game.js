@@ -391,7 +391,7 @@ class Game{
         // x-ScoreArrays' are for holding numbers of the scores
         // x-Cards' are for storing the actual cards i.e. 'Ah, 9s, ...'
         // x-Score's are the the sums of arrays score()
-        var dealerDealtCards = [];
+        var dealerDealtCards = []; // to store face down dealer card
         var myScoreArray = [];
         var compScoreArray = [];
         var myCards = [];
