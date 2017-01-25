@@ -335,8 +335,8 @@ class Game{
         $("#submitBet").unbind().on("click", (e) => {
             e.preventDefault();
             $("#withdraw").prop("disabled", true);
-            let bank = parseInt($("#bank").html());
-            let betVal = parseInt($("#betVal").html());
+            let bank = parseFloat($("#bank").html());
+            let betVal = parseFloat($("#betVal").html());
             console.log("betVal: " + betVal);
             console.log("bank:  " + bank);
             // pass the new bank value into init() which starts game process
