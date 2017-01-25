@@ -31,6 +31,7 @@
                                 <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
                             </p>
                         </div>
+                        <label class="label">Password</label>
                         <div class="row">
                             <div class="input-field col s12 form-group" :class="{'has-error': errors.has('password') }">
                                 <input v-model="password" id="password" v-validate.initial="password" data-vv-rules="required|alpha|min:3" type="password"
