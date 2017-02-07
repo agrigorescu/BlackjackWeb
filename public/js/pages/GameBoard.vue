@@ -41,6 +41,11 @@
                     <div class="box" id="card3"></div>
                     <div class="box" id="card4"></div>
                 </div>
+                <div class="row" id="message">
+                    <div id="messageBox">
+                        <h3></h3>
+                    </div>
+                </div>
                 <div class="player">
                     <div class="box" id="card5"></div>
                     <div class="box" id="card6"></div>
@@ -49,16 +54,33 @@
                     <div class="box" id="card9"></div>
                 </div>
             </div>
-            <div class="row" id="gameButtons">
-                <button type="input" id="stick" disabled>STICK</button>
-                <button type="input" id="twist" disabled>TWIST</button>
-                <button type="input" id="newGame" disabled>DEAL</button>
-                <button type="input" id="reset" disabled>RESET CARDS</button><br><br>
-                <h5 style="padding:5px">Bet Value :  £ <span id="betVal"></span></h5>
-                <button type="input" id="submitBet" disabled>Submit Bet</button>
-                <h5 style="padding:30px">Bank :  £ <span id="bank">20</span></h5>
-                <button v-on:click="getBalance()">Withdraw Funds</button>
-                <button v-on:click="addFunds()">Add Funds</button>
+            <div class="container">
+                <div class="row" id="gameButtons">
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="stick" disabled>STICK</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="twist" disabled>TWIST</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="newGame" disabled>DEAL</button>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light miniMenu" id="reset" disabled>RESET CARDS</button><br><br>
+                    </div>
+                    <div id="betting">
+                        <h5 id="betValue">Bet Value :  £ <span id="betVal"></span></h5>
+                    </div>
+                    <div>
+                        <button type="input" class="button btn waves-effect waves-light" id="submitBet" disabled>Place Bet</button>
+                    </div>
+                    <div>
+                        <h5 id="bankAmount">Bank :  £ <span id="bank">20</span></h5>
+                    </div>
+                    <div>
+                        <button id="withdraw" class="button btn waves-effect waves-light" >Withdraw Funds</button>
+                    </div>
+                </div>
             </div>
         </div>
 <!--end of the game board-->
@@ -72,34 +94,52 @@
     </main-layout>
 </template>
 <script>
-    let bank = 20;
-    let newBank = 20;
-    let balance = [];
-    let newFunds = [];
     import MainLayout from '../layouts/Main.vue'
+    const api = require("../services/api");
     const Game = require("../services/Game");
     export default {
         components: {
             MainLayout
         },
         mounted: function (){
+            let idCookie = this.$cookie.get('blackjackIdCookie');
             // the game can only be initiated inside submitBet when bet is placed
-            Game.submitBet(bank, newBank);
+            $("#message").hide();
+            let bank  = parseInt($("#bank").html());
+            console.log("bank : " + bank);
+            Game.submitBet(idCookie);
             Game.chipControl(0);
         },
         methods: {
-            getBalance: function(){
-                // balance = $("#bank").html();
-                balance.push($("#bank").html());
-                console.log("balance: " + $("#bank").html());
-                $("#bank").html("");
-            },
-            printBalance: function(){
-                console.log("balance: " + balance);
-            },
-            addFunds: function(){
-            
-            }
+            // withdraw: function(){
+            //     let bank = $("#bank").html();
+            //     console.log("balance: " + bank);
+            //     $("#bank").html("");
+            //     api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: bank } })
+            //     .then(result => {
+            //         console.log("data sent");
+            //     })
+            //     .catch(err => {
+            //         console.log("error");
+            //     });
+            // },  
+        },
+        beforeMount: function() {
+            let idCookie = this.$cookie.get('blackjackIdCookie');
+            api.callApi({ method: 'GET', path: `https://blackjackapi00.herokuapp.com/account/${idCookie}` })
+                .then(result => {
+                    console.log("data received");
+                    console.log("result is ");
+                    console.log(result);
+                    let account = result.body.success;
+                    //displaying the information from the db
+                    let bank = account.balance;
+                    console.log("balance: " + bank);
+                    $("#bank").html(bank);
+                })
+                .catch(err => {
+                    console.log("error");
+                });
         }
     }
 </script>

@@ -9,20 +9,23 @@ div.container.bettingBoard {
 
 div.chipsStack {
     z-index: 9015;
-    margin-top: -3%;
+    margin-top: 11%;
     margin-left: -8%;
     position: relative;
 }
-
+.value {
+    cursor:pointer;
+    cursor:hand
+}
 div.chipStackBoard {
-    background: rgba(0, 0, 0, 0.85);
+    /*background: rgba(0, 0, 0, 0.85);*/
     border-radius: 25px;
     padding: 20px;
     width: 19%;
-    height: 39%;
-    position: absolute;
-    margin-left: 25%;
-    margin-top: 6%;
+    height: 30%;
+    position: fixed;
+    margin-left: 39%;
+    margin-top: -18%;
 }
 
 label {
@@ -75,3 +78,64 @@ div.black {
 
 div.gray { position: absolute; margin-top: 40%; background: rgb(109, 109, 109) }
 
+#twist {
+    margin-left: 116%;
+    position: absolute;
+    margin-top: 23%;
+    width: 22%;
+}
+
+#stick {
+    margin-left: 116%;
+    position: absolute;
+    margin-top: 10%;
+    width: 22%;
+}
+
+#reset {
+    margin-left: 116%;
+    position: absolute;
+    margin-top: 60%;
+    width: 22%;
+}
+
+#newGame {
+    margin-left: 116%;
+    position: absolute;
+    margin-top: 35%;
+    width: 22%;
+}
+
+#submitBet {
+    margin-left: 116%;
+    position: absolute;
+    margin-top: 41%;
+    width: 22%;
+}
+
+#betting {
+    margin-left: -32%;
+    position: relative;
+    margin-top: 0%;
+}
+
+#bank {
+    margin-left: 58%;
+    position: absolute;
+    margin-top: -28%;
+}
+
+#withdraw{
+    margin-left: -37%;
+    margin-top: 1%;
+}
+
+#bankAmount{
+    margin-top: -14%;
+    margin-left: -35.5%;
+}
+
+#betValue{
+    margin-top: -4.5%;
+    margin-left: -3%;
+}

@@ -4,16 +4,13 @@
         <div class="row container" id="title">
             <div id="row">
                 <h2>{{fullName}}'s Account</h2>
-
                 <div class="col s12">
                     <div id="accountMenu">
                         <button v-on:click="stripeAddCardClick()" class="btn waves-effect waves-light miniMenu" id="customButton">Add Card</button>
                         <button v-on:click="inviteFriendField()" class="btn waves-effect waves-light miniMenu" id="miniMenu2">Invite Friends</button>
                         <button v-on:click="deleteAccount()" class="btn waves-effect waves-light miniMenu" id="miniMenu4">Delete Account</button>
-
                     </div>
                 </div>
-
                 <div class="col s12" id="accountContent">
                     <div class="col s6">
                         <div id="accountInfo">
@@ -39,17 +36,14 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <input v-if="clickInviteFriend" v-model="friendEmail" type="email" placeholder="Friend Email" data-vv-rules="required|email"> <button v-if="clickInviteFriend" class="btn waves-effect waves-light miniMenu" v-on:click="inviteFriend()">Invite</button>
                 </div>
-
                 <div class="col s12">
                     <div id="imgLogo">
                         <img id="littleLogo" src="img/logo.png" alt="some text">
                     </div>
                 </div>
-
                 <!--end of the account info page-->
     </main-layout>
 </template>
@@ -70,10 +64,10 @@
         locale: 'auto',
         token: function (token) {
             console.log(token);
-            this.stripeToken = token.card;
-            console.log(this.stripeToken.id);
+            this.stripeToken = token;
+            console.log(this.stripeToken);
             console.log(idCookie);
-            api.callApi({ method: 'POST', path: 'http://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, source: this.stripeToken.id } })
+            api.callApi({ method: 'POST', path: 'http://blackjackapi00.herokuapp.com/payment', params: { id: idCookie, cardToken: this.stripeToken } })
                 .then(result => {
                     console.log("data sent");
                 })
@@ -187,7 +181,7 @@
                     //     amount: this.addBalance * 100,
                     //     panelLabel: 'Add money'
                     // });
-                    console.log("adding balance " + this.addBalance);
+                    console.log(this.addBalance);
                     api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/charge', params: { id: idCookie, amount: this.addBalance } })
                         .then(result => {
                             console.log("data sent");
@@ -204,6 +198,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                         .catch(err => {
@@ -232,6 +227,7 @@
                 //     amount: this.withdrawBalance * 100,
                 //     panelLabel: 'Withdraw money'
                 // });
+                console.log(this.withdrawBalance);
                 api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/refund', params: { id: idCookie, amount: this.withdrawBalance } })
                     .then(result => {
                         console.log("data sent");
@@ -248,6 +244,7 @@
                                     this.username = account.username;
                                     this.email = account.email;
                                     this.balance = account.balance;
+                                    this.seenBalance = true;
                                 })
                         })
                     .catch(err => {
@@ -287,7 +284,7 @@
              * */
             inviteFriend: function () {
                 console.log({ data: { firendEmail: this.friendEmail, existingUserId: idCookie } });
-                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { firendEmail: this.friendEmail, existingUserId: idCookie } })
+                api.callApi({ method: 'POST', path: 'https://blackjackapi00.herokuapp.com/invite', params: { friendEmail: this.friendEmail, existingUserId: idCookie } })
                     .then(result => {
                         console.log("send data");
                         this.clickInviteFriend = false;
